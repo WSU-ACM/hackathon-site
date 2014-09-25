@@ -43,14 +43,14 @@ header li {
 }
 
 #box {
-  width: calc(100% - 40px);
+  min-width: 1180px;
+  width: 100%;
   padding: 20px;
   position: absolute;
   background-color: #981e32;
-
   -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
 }
 
 .fixed-width {
