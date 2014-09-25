@@ -70,8 +70,9 @@ header li {
 }
 
 #box-cougar img {
- width: 320px;
  height: auto;
+ margin-top:-40px;
+ margin-left: 30px;
 }
 
 #box-hackathon {
