@@ -63,12 +63,15 @@ header li {
   margin: 0 auto;
 }
 
-
 #box-cougar {
   position: absolute;
   background: url(/images/hackathon-stamp0.png) no-repeat scroll 0 0 transparent;
-  width: 400px;
-  height:380px;
+
+}
+
+#box-cougar img {
+ width: 320px;
+ height: auto;
 }
 
 #box-hackathon {
