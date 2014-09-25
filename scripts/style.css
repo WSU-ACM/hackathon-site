@@ -43,7 +43,7 @@ header li {
 }
 
 #box {
-  width: 100%;
+  width: calc(100% - 40px);
   padding: 20px;
   position: absolute;
   background-color: #981e32;
