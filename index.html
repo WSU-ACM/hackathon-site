@@ -11,51 +11,51 @@
 	<link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	<a id="top-button" href="#top">Top</a>
 	<header>
-		<div class="fixed-width">
-			<ul id="navmenu">
+		<nav id="master-nav">
+			<ul>
 				<li><a href="index.html">Home</a></li>
-				<li><a href="/#about">About</a></li>
-				<li><a href="/#when">When</a></li>
-				<li><a href="/#faq">FAQ</a></li>
+				<li><a href="index.html#about">About</a></li>
+				<li><a href="index.html#faq">FAQ</a></li>
 				<li><a href="pictures.html">Pictures</a></li>
 			</ul>
+		</nav>
+		<div id="banner">
+			<div id="banner-elements" class="center">
+				<img id="cougar-logo" src="assets/cougar_logo.png" />
+				<div id="hackathon-slogan">
+					Dream. Think. Learn. Explore. Teach. Collaborate. Innovate. Advocate.
+					Code. Build. Hack. WSU.
+				</div>
+			</div>
 		</div>
 	</header>
-	<section id="box">
-		<div id="box-cougar"><img src="assets/cougar_logo.png" /></div>
-		<div id="box-hackathon">
-			Dream. Think. Learn. Explore. Teach. Collaborate. Innovate. Advocate.
-			Code. Build. Hack. WSU.
-		</div>
-	</section>
-	<section id="examples">
-		<div itemscope itemtype="http://schema.org/Event" class="fixed-width">
-			<a id="about" name="about"></a>
+	<a id="top-button" href="#top">Top</a>
+	<div itemscope itemtype="http://schema.org/Event">
+		<section id="about">
 			<p class="intro-para">The School of EECS's
-				<span itemprop="name">Third Annual Hackathon</span> is coming up 
+				<span itemprop="name">Third Annual Hackathon</span> is coming up
 				February 7th &amp; 8th. The Hackathon is a great opportunity to start
 				a cool project, win cool prizes, and meet cool people, and build your resume!
 			</p>
 
 			<h2>
-				The Hackathon may be next semester, but it is never too soon to start 
+				The Hackathon may be next semester, but it is never too soon to start
 				coming up with ideas and forming teams!
 			</h2>
 
 			<p>
-				All skill levels are welcome, and you can work in teams of up to 
+				All skill levels are welcome, and you can work in teams of up to
 				3 people to create whatever your heart[s] could desire.
 			</p>
-				
+
 			<hr/>
 
 			<h3>Info</h3>
 
 			<p>
-				The Hackathon will be 
-				<strong itemprop="startDate" content="2015-2-7">February 7th 2015</strong> 
+				The Hackathon will be
+				<strong itemprop="startDate" content="2015-2-7">February 7th 2015</strong>
 				<strong itemprop="startDate" content="2015-2-8">February 8th 2015</strong>
 			</p>
 
@@ -74,15 +74,15 @@
 				<li>At the end of the event, each team is required to demo their project.</li>
 				<li>No extensions/tangents of your senior project.</li>
 			</ul>
+		</section>
 
-			<hr/>
-
-			<h3 id="faq">FAQ</h3>
+		<section id="faq">
+			<h3>FAQ</h3>
 			<dl>
 				<dt>What is a Hackathon?</dt>
 				<dd>
 					<p>
-						A Hackathon is <span itemprop="description">a day long team 
+						A Hackathon is <span itemprop="description">a day long team
 						programming competition</span>
 					</p>
 				</dd>
@@ -90,7 +90,7 @@
 				<dt>Do you really hack computers?</dt>
 				<dd>
 					<p>
-						No, we use the term 'hacking' to refer to the programmer culture of hackers. 
+						No, we use the term 'hacking' to refer to the programmer culture of hackers.
 						<a href="http://en.wikipedia.org/wiki/Hack_(programmer_subculture)">Link for reference</a>
 					</p>
 				</dd>
@@ -112,8 +112,8 @@
 				<dt>How much experience is required to participate?</dt>
 				<dd>
 					<p>
-						Basic programming experience is the only strict "requirement". 
-						Beyond that, knowledge in various topics such as GUI programming, 
+						Basic programming experience is the only strict "requirement".
+						Beyond that, knowledge in various topics such as GUI programming,
 						Network programming, and threading is very useful.
 					</p>
 				</dd>
@@ -121,7 +121,7 @@
 				<dt>Do I have to have a team?</dt>
 				<dd>
 					<p>
-						No, you do not have to have a team, but it IS recommended as 
+						No, you do not have to have a team, but it IS recommended as
 						teamwork is a good skill to have
 					</p>
 				</dd>
@@ -129,10 +129,10 @@
 				<dt>Why should I do this, are there prizes?</dt>
 				<dd>
 					<p>
-						First of all, yes, there are prizes, but the even bigger reason 
-						you should do this is because the skills you learn from 
-						participating are extremely valuable. 
-						Also, its a great resume piece, companies love to see that you 
+						First of all, yes, there are prizes, but the even bigger reason
+						you should do this is because the skills you learn from
+						participating are extremely valuable.
+						Also, its a great resume piece, companies love to see that you
 						do this type of thing.
 					</p>
 				</dd>
@@ -140,13 +140,13 @@
 				<dt>Wait, engineers socialize?</dt>
 				<dd>
 					<p>
-						Suprisingly, yes! and if you are someone who wants to socialize 
+						Suprisingly, yes! and if you are someone who wants to socialize
 						with other engineers I recommend joining one of the clubs!
 					</p>
 				</dd>
 
 				<dt>
-					Is it true that people who participate in the Hackathon are the 
+					Is it true that people who participate in the Hackathon are the
 					coolest people in the world?
 				</dt>
 				<dd><p>Yes.</p></dd>
@@ -157,9 +157,9 @@
 				<dt>Do I have to stay the whole time?</dt>
 				<dd>
 					<p>
-						We aren't going to chain you down and force you to stay, 
-						but we are VERY MUCH encouraging that everyone stay the whole time. 
-						It really adds to the atmosphere to have everyone there during the whole event. 
+						We aren't going to chain you down and force you to stay,
+						but we are VERY MUCH encouraging that everyone stay the whole time.
+						It really adds to the atmosphere to have everyone there during the whole event.
 					</p>
 				</dd>
 
@@ -179,7 +179,7 @@
 					</p>
 				</dd>
 			</dl>
-		</div>
-	</section>
+		</section>
+	</div>
 </body>
 </html>
