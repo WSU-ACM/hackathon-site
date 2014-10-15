@@ -55,6 +55,9 @@ header {
   }
 }
 
+#master-nav {
+  width: 348px;
+}
 
 #master-nav ul {
   padding-top: 10px;

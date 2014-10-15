@@ -37,6 +37,11 @@ a:hover {
   position: relative;
 }
 
+.content {
+  position: relative;
+  max-width: 900px;
+}
+
 .intro-para {
   font-size: 28px;
   line-height: 34px;
