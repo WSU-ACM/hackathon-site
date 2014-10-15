@@ -1,5 +1,10 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300");
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 /* There's only one of these */
 header {
   width: 100%;
@@ -37,6 +42,31 @@ header {
   width: 100%;
 }
 
+
+
+#master-nav {
+  height: 80px;
+  width: 600px;
+}
+
+#master-nav ul {
+  list-style-type: none;
+}
+
+#master-nav li {
+  font-size: 32px;
+  font-weight: bold;
+  float: left;
+  text-align: center;
+  width: 140px;
+}
+
+#master-nav li a {
+  display: block;
+  padding: 28px 0;
+}
+
+/* Needs to be last or it won't properly override the previous styles */
 @media (max-width: 1120px) {
   #cougar-logo {
     float: none;
@@ -53,18 +83,20 @@ header {
     margin-left: auto;
     margin-right: auto;
   }
-}
 
-#master-nav {
-  width: 348px;
-}
+  #master-nav {
+    height: 140px;
+    /*padding-left: 16px;*/
+    /*padding-right: 16px;*/
+    width: 100%;
+  }
 
-#master-nav ul {
-  padding-top: 10px;
-}
+  #master-nav li {
+    /*border-right: 1px solid;*/
+    width: 25%;
+  }
 
-#master-nav li {
-  display: inline;
-  font-weight: bold;
-  margin-right: 20px;
+  #master-nav li a {
+    padding: 56px 0;
+  }
 }
