@@ -3,7 +3,6 @@ body {
   color: #262b2d;
   font-size: 18px;
   line-height: 24px;
-  zoom: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,37 +30,17 @@ a:hover {
 header {
   background-color: white;
   height: 50px;
-  
+
 }
 
 header ul {
   padding-top: 10px;
 }
+
 header li {
   display: inline;
-  font-weight:bold;
+  font-weight: bold;
   margin-right: 20px;
-}
-
-#box {
-  min-width: 1180px;
-  width: 100%;
-  padding: 20px;
-  position: absolute;
-  background-color: #981e32;
-  -moz-box-shadow:    inset 0 0 10px #000000;
-  -webkit-box-shadow: inset 0 0 10px #000000;
-  box-shadow:         inset 0 0 10px #000000;
-}
-
-.fixed-width {
-  width: 900px;
-  margin: 0 auto;
-}
-
-.fixed_width2 {
-  width: 1200px;
-  margin: 0 auto;
 }
 
 .intro-para {
@@ -71,16 +50,26 @@ header li {
   padding-top:50px;
 }
 
+#box {
+  /*min-width: 1180px;*/
+  width: 100%;
+  padding: 20px 0px;
+  position: absolute;
+  background-color: #981e32;
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset 0 0 10px #000000;
+}
+
 #box-cougar {
   position: absolute;
-  background: url(/images/hackathon-stamp0.png) no-repeat scroll 0 0 transparent;
-
+  background: no-repeat scroll 0 0 transparent;
 }
 
 #box-cougar img {
- height: auto;
- margin-top:-40px;
- margin-left: 30px;
+  height: auto;
+  margin-top:-40px;
+  margin-left: 30px;
 }
 
 #box-hackathon {
@@ -95,8 +84,6 @@ header li {
   font-size: 64px;
 }
 
-.clear {clear:both; height: 0px;}
-
 #examples {
   margin-top: 400px;
 }
@@ -107,81 +94,80 @@ header li {
   position: fixed;
 }
 
-.fixed-width > ul {
-  margin-bottom: 40px;
-}
-
 /* -------------------------- */
 /* -------- POLAROIDS ------- */
 /* -------------------------- */
 ul.polaroids {
-    list-style: none outside none;
+  list-style: none outside none;
 }
 ul.polaroids img:after {
-    content: attr(title);
+  content: attr(title);
 }
 
 /* By default, we tilt all our images -2 degrees */
 ul.polaroids img{
-    display: block;
-    width: 160px;
-    /*-webkit-transform: rotate(-1deg);
-    -moz-transform: rotate(-1deg);*/
-    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);
-    margin: 2px;
-    border: 1px solid #000;
-    float: left;
+  display: block;
+  width: 160px;
+  /*-webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);*/
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+  margin: 2px;
+  border: 1px solid #000;
+  float: left;
 }
 
 /* Rotate all even images 2 degrees */
 ul.polaroids li:nth-child(even) a {
-    -webkit-transform: rotate(1deg);
-    -moz-transform: rotate(1deg);
+  -webkit-transform: rotate(1deg);
+  -moz-transform: rotate(1deg);
 }
 
 /* Don't rotate every third image, but offset its position */
 ul.polaroids li:nth-child(3n) a {
-    -webkit-transform: none;
-    -moz-transform: none;
-    position: relative;
-    top: -4px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  position: relative;
+  top: -4px;
 }
 
 /* Rotate every fifth image by 5 degrees and offset it */
 ul.polaroids li:nth-child(5n) a {
-    -webkit-transform: rotate(2deg);
-    -moz-transform: rotate(2deg);
-    position: relative;
-    right: 4px;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  position: relative;
+  right: 4px;
 }
 
 /* Keep default rotate for every eighth, but offset it */
 ul.polaroids li:nth-child(8n) a {
-    position: relative;
-    top: 8px;
-    right: 4px;
+  position: relative;
+  top: 8px;
+  right: 4px;
 }
 
 /* Keep default rotate for every eleventh, but offset it */
 ul.polaroids li:nth-child(11n) a {
-    position: relative;
-    top: 3px;
-    left: -5px;
+  position: relative;
+  top: 3px;
+  left: -5px;
 }
 
-/* Scale the images on hover, add transitions for smoothing things out, and ensure the hover appears on top */
+/*
+ * Scale the images on hover, add transitions for smoothing things out,
+ * and ensure the hover appears on top
+ */
 ul.polaroids img:hover {
-    -webkit-transform: scale(2.25);
-    -moz-transform: scale(2.25);
-    position: relative;
-    z-index: 5;
+  -webkit-transform: scale(2.25);
+  -moz-transform: scale(2.25);
+  position: relative;
+  z-index: 5;
 }
 
 /* Add drop shadows and smooth out the transition (Safari only) */
 ul.polaroids img {
-    -webkit-transition: -webkit-transform .15s linear;
-    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
-    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+  -webkit-transition: -webkit-transform .15s linear;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,.25);
 }
  
