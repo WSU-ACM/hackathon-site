@@ -11,6 +11,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #981e32;
+  margin: 0;
 }
 
 dt {
@@ -56,13 +57,13 @@ a:hover {
   color: #fff;
   display: block;
   float: right;
-  font-size: 24px;
-  padding: 10px 0;
+  font-size: 20px;
+  padding: 6px 0;
   position: fixed;
   right: 10px;
   text-align: center;
-  width: 96px;
-  z-index: 100;
+  width: 84px;
+  z-index: 10;
 }
 
 #top-button:active {

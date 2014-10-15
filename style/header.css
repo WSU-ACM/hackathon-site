@@ -7,13 +7,17 @@ ul {
 
 /* There's only one of these */
 header {
+  background-color: #fff;
+  position: relative;
   width: 100%;
+  z-index: 11;
 }
 
 #banner {
   background-color: #981e32;
   box-shadow: inset 0 0 10px #000000;
   height: 360px;
+  position: relative;
   width: 100%;
 }
 
@@ -27,6 +31,8 @@ header {
   float: left;
   position: relative;
   top: -20px;
+  max-width: 400px;
+  width: 100%;
 }
 
 #hackathon-slogan {
@@ -42,11 +48,9 @@ header {
   width: 100%;
 }
 
-
-
 #master-nav {
-  height: 80px;
-  width: 600px;
+  height: 64px;
+  width: 400px;
 }
 
 #master-nav ul {
@@ -54,16 +58,16 @@ header {
 }
 
 #master-nav li {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bold;
   float: left;
   text-align: center;
-  width: 140px;
+  width: 100px;
 }
 
 #master-nav li a {
   display: block;
-  padding: 28px 0;
+  padding: 20px 0;
 }
 
 /* Needs to be last or it won't properly override the previous styles */
@@ -75,28 +79,22 @@ header {
   }
 
   #banner {
-    height: 780px;
+    height: auto;
+    padding-bottom: 36px;
   }
 
   #hackathon-slogan {
     float: none;
+    font-size: 48px;
     margin-left: auto;
     margin-right: auto;
   }
 
   #master-nav {
-    height: 140px;
-    /*padding-left: 16px;*/
-    /*padding-right: 16px;*/
     width: 100%;
   }
 
   #master-nav li {
-    /*border-right: 1px solid;*/
     width: 25%;
-  }
-
-  #master-nav li a {
-    padding: 56px 0;
   }
 }
