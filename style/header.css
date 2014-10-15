@@ -1,0 +1,67 @@
+/* There's only one of these */
+header {
+  position: absolute;
+  width: 100%;
+}
+
+#banner {
+  background-color: #981e32;
+  box-shadow: inset 0 0 10px #000000;
+  height: 360px;
+  position: absolute;
+  width: 100%;
+}
+
+#banner-elements {
+  max-width: 1120px;
+  width: 100%;
+}
+
+#cougar-logo {
+  display: block;
+  float: left;
+  position: relative;
+  top: -20px;
+}
+
+#hackathon-slogan {
+  color: white;
+  float: right;
+  font-family: 'Oswald', sans-serif;
+  font-size: 64px;
+  line-height: 64px;
+  position: relative;
+  text-transform: uppercase;
+  top: 20px;
+  max-width: 650px;
+  width: 100%;
+}
+
+@media (max-width: 1120px) {
+  #cougar-logo {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #banner {
+    height: 780px;newe
+  }
+
+  #hackathon-slogan {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+#master-nav ul {
+  padding-top: 10px;
+}
+
+#master-nav li {
+  display: inline;
+  font-weight: bold;
+  margin-right: 20px;
+}
