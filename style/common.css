@@ -14,6 +14,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+dd {
+  margin: 0 0 10px 20px;
+}
+
 dt {
   color: #981e32;
   font-weight: bold;
@@ -44,8 +48,10 @@ a:hover {
 }
 
 .content {
-  position: relative;
   max-width: 900px;
+  margin-bottom: 64px;
+  padding: 0 10px 0 10px;
+  position: relative;
 }
 
 .intro-para {
