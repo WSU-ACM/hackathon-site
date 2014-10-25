@@ -32,6 +32,11 @@ a:hover {
   color: #5e6a71;
 }
 
+.bulleted {
+  list-style-type: disc;
+  padding-left: 40px;
+}
+
 .center {
   margin-left: auto;
   margin-right: auto;
