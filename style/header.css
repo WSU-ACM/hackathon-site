@@ -91,7 +91,9 @@ header {
     margin-right: auto;
     width: 320px;
   }
+}
 
+@media (max-width: 900px) {
   #master-nav {
     width: 100%;
   }
