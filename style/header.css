@@ -1,10 +1,5 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald:400,700,300");
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
 /* There's only one of these */
 header {
   background-color: #fff;
@@ -51,11 +46,7 @@ header {
   width: 400px;
 }
 
-#master-nav ul {
-  list-style-type: none;
-}
-
-#master-nav li {
+#master-nav menuitem {
   font-size: 20px;
   font-weight: bold;
   float: left;
@@ -63,7 +54,7 @@ header {
   width: 100px;
 }
 
-#master-nav li a {
+#master-nav menuitem a {
   display: block;
   padding: 20px 0;
 }
@@ -98,7 +89,7 @@ header {
     width: 100%;
   }
 
-  #master-nav li {
+  #master-nav menuitem {
     width: 25%;
   }
 }

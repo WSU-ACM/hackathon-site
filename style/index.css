@@ -1,2 +1,17 @@
 @import "common.css";
 
+.index-section {
+  padding-top: 5px;
+}
+
+.index-section h1 {
+  margin-top: 10px;
+}
+
+#quick-info {
+  margin-top: 20px;
+}
+
+#quick-info * {
+  margin: 0;
+}
