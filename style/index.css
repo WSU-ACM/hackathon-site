@@ -15,3 +15,32 @@
 #quick-info * {
   margin: 0;
 }
+
+#register-button {
+  background-color: #981e32;
+  border-radius: 12px;
+  color: #fff;
+  display: block;
+  font-size: 30px;
+  margin-bottom: 24px;
+  padding: 20px 0 20px 0;
+  text-align: center;
+  width: 360px;
+}
+
+#register-button:hover,
+#register-button:active {
+  box-shadow: inset 0 0 8px #000;
+}
+
+/* 
+  Note that scroll bars are considered to be part of the screen width. 
+  However, there's no way to know the width of the scroll bar or whether one
+  even exists. This will miss-render if scrollbars are present at the change 
+  point, but fuck it, the spec is broken.
+*/
+@media (max-width: 380px) {
+  #register-button {
+    width: 100%;
+  }
+}
