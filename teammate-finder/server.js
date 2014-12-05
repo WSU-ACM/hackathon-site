@@ -9,7 +9,7 @@ var path = require('path'),
 	app = express(),
 	request = require('request'),
 	async = require('async'),
-	teams = [],
+	_teams = [],
 	fs = require('fs'),
 	glob = require('glob');
 
@@ -42,22 +42,23 @@ function getTeamInfo(req, res) {
 function removeHiddenTeams(teams, attendees) {
 	var visible_teams = [],
 		answered = false;
-	teams.forEach(function(team) {
-		attendees.forEach(function(user, i) {
+	console.log(typeof(teams.teams));
+	teams.teams.forEach(function(team) {
+		attendees.attendees.forEach(function(user, i) {
 			answered = false;
 			if(team.creator.emails[0].email === user.profile.email) {
 				user.answers.forEach(function(question) {
 					
 					if(question.question_id === 8622569) { //"question": "Would you like to have your team listed on our Team finder page?",
 						if(question.answer === "Yes, I am looking for additional members") {
-							visible_teams.push(team);
-							attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+							visible_teams.push(_team);
+							attendees.attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
 						}
 						answered = true;
 					}
 				});
 				if(!answered) {
-					attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+					attendees.attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
 				}
 			}
 		});
@@ -75,38 +76,45 @@ function filterTeams(teams) {
 	return filtered;
 }
 
-function requestTeams(callback) {
+var requestTeams = function(callback) {
 	var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "/teams/?token=" + config.eventbrite.oathtoken;
-	request(request_url, callback);
+	make_request(request_url, callback);
 }
 
-function requestAttendees(callback) {
+var requestAttendees = function(callback) {
 	var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "/attendees/?token=" + config.eventbrite.oathtoken;
-	request(request_url, callback);
+	make_request(request_url, callback);
 }
 
-function request(url, callback) {
+function make_request(url, callback) {
+	console.log("Making request");
 	request(url, function(err, response, body) {
+		console.log("Got response");
 		if(!err && response.statusCode === 200) {
 			callback(err, JSON.parse(body));
+		} else {
+			callback(err);
 		}
-		callback(err);
 	});
 }
 
-function processResults(err, results) {
+var processResults = function(err, results) {
 	if(!err) {
+		console.log("Got results!");
 		var attendees = results[0];
 		var teams = results[1];
 		teams = removeHiddenTeams(teams, attendees);
-		console.log(JSON.stringify(teams));
+		console.log(JSON.stringify(_teams));
+	} else {
+		console.log("Error getting results: " + JSON.stringify(err));
 	}
 }
 
 var updateInterval = setInterval(function() {
+	console.log("Starting interval");
 	async.parallel([
 		requestAttendees,
 		requestTeams
 	],
 	processResults);
-}, 20 * 1000 * 60); //update every 20 minutes
+}, 1000 * 30); //update every 20 minutes
