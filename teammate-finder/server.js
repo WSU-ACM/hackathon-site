@@ -42,28 +42,31 @@ function getTeamInfo(req, res) {
 function removeHiddenTeams(teams, attendees) {
 	var visible_teams = [],
 		answered = false;
-	console.log(typeof(teams.teams));
-	teams.teams.forEach(function(team) {
-		attendees.attendees.forEach(function(user, i) {
+	teams.forEach(function(team, i_team) {
+		attendees.forEach(function(user, i) {
 			answered = false;
+
 			if(team.creator.emails[0].email === user.profile.email) {
 				user.answers.forEach(function(question) {
-					
-					if(question.question_id === 8622569) { //"question": "Would you like to have your team listed on our Team finder page?",
+					if(question.question_id === "8622569") { //"question": "Would you like to have your team listed on our Team finder page?",
+						console.log("Team " + team.name + " has " + team.attendee_count + 
+						", and creator says " + question.answer + "to if he wants more help");
 						if(question.answer === "Yes, I am looking for additional members") {
-							visible_teams.push(_team);
-							attendees.attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+							_teams.push(team);
+							attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
 						}
 						answered = true;
 					}
 				});
 				if(!answered) {
-					attendees.attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+					attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
 				}
 			}
 		});
 	});
-	return visible_teams;
+	console.log(_teams.length + " teams want more people");
+	console.log("Need teammates: " + JSON.stringify(_teams, null, '\t'));
+	return;
 }
 
 function filterTeams(teams) {
@@ -73,6 +76,7 @@ function filterTeams(teams) {
 			filtered.push(team);
 		}
 	});
+	console.log(filtered.length + " teams have < 3 people on them");
 	return filtered;
 }
 
@@ -87,15 +91,53 @@ var requestAttendees = function(callback) {
 }
 
 function make_request(url, callback) {
-	console.log("Making request");
-	request(url, function(err, response, body) {
-		console.log("Got response");
-		if(!err && response.statusCode === 200) {
-			callback(err, JSON.parse(body));
+	function actual_request(url, callback) {
+		request(url, function(err, response, body) {
+			if(!err && response.statusCode === 200) {
+				callback(err, JSON.parse(body));
+			} else {
+				console.log("Error: " + JSON.stringify(err));
+				console.log("response code: " + JSON.stringify(response.statusCode));
+				callback(err);
+			}
+		});	
+	}
+	function page(url, field, callback) {
+		actual_request(url, function(err, body) {
+			if(err) {
+				callback(err, results); //return the results we already have
+			}
+			callback(err, body[field]);
+		});
+	}
+	actual_request(url, function(err, body) {
+		if(err) {
+			callback(err); 
+		}
+		var field = Object.keys(body)[1]; //gets the field after pagination
+		if(body.pagination.page_number < body.pagination.page_count) {
+			var results = body[field];
+			var tasks = [];
+
+			for(var i = 2; i <= body.pagination.page_count; i++) {
+				var pageURL = url + '&page=' + i;
+				tasks.push(async.apply(page, pageURL, field))
+			}
+
+			async.parallel(tasks, function(err, _results) {
+				console.log("Results before: " + results.length);
+				_results.forEach(function(result) {
+					console.log("Result length: " + result.length);
+					results = results.concat(result);
+				});
+				console.log("Results after: " + results.length);
+				callback(err, results);
+			});
 		} else {
-			callback(err);
+			callback(err, body[field]);
 		}
 	});
+	
 }
 
 var processResults = function(err, results) {
@@ -103,18 +145,26 @@ var processResults = function(err, results) {
 		console.log("Got results!");
 		var attendees = results[0];
 		var teams = results[1];
+		teams = filterTeams(teams);
+		//console.log(teams, null, '\t');
 		teams = removeHiddenTeams(teams, attendees);
-		console.log(JSON.stringify(_teams));
+		//console.log(JSON.stringify(_teams));
 	} else {
 		console.log("Error getting results: " + JSON.stringify(err));
 	}
 }
 
-var updateInterval = setInterval(function() {
+async.parallel([
+		requestAttendees,
+		requestTeams
+	],
+	processResults);
+
+/*var updateInterval = setInterval(function() {
 	console.log("Starting interval");
 	async.parallel([
 		requestAttendees,
 		requestTeams
 	],
 	processResults);
-}, 1000 * 30); //update every 20 minutes
+}, 1000 * 30); //update every 20 minutes*/
