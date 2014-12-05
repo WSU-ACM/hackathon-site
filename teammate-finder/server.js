@@ -8,7 +8,8 @@ var path = require('path'),
 	compression = require('compression'),
 	app = express(),
 	request = require('request'),
-	async = require('async');
+	async = require('async'),
+	teams = [];
 
 
 app.set('port', process.env.VCAP_APP_PORT || 80);
@@ -43,8 +44,9 @@ function removeHiddenTeams(teams, attendees) {
 					attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
 				}
 			}
-		})
+		});
 	});
+	return visible_teams;
 }
 
 function filterTeams(teams) {
@@ -76,7 +78,19 @@ function request(url, callback) {
 	});
 }
 
-requestTeams();
+function processResults(err, results) {
+	if(!err) {
+		var attendees = results[0];
+		var teams = results[1];
+		teams = removeHiddenTeams(teams, attendees);
+		console.log(JSON.stringify(teams));
+	}
+}
 
-
-https://www.eventbriteapi.com/v3/events/13887256157/attendees/?token=HTSLIYVD5O6RDZX7756F
+var updateInterval = setInterval(function() {
+	async.parallel([
+		requestAttendees,
+		requestTeams
+	],
+	processResults);
+}, 20 * 1000 * 60); //update every 20 minutes
