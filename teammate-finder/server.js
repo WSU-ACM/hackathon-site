@@ -9,7 +9,9 @@ var path = require('path'),
 	app = express(),
 	request = require('request'),
 	async = require('async'),
-	teams = [];
+	teams = [],
+	fs = require('fs'),
+	glob = require('glob');
 
 
 app.set('port', process.env.VCAP_APP_PORT || 80);
@@ -18,9 +20,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/teams", getTeamInfo);
+app.get("/imgs/:year?", getImageNames);
+
+function getImageNames(req, res) {
+	var year = req.param('year', null);
+	var path = "./images/";
+	if(year) {
+		path = path + year + "/"; 
+	}
+	path + "**/*.jpg";
+	glob(path, function(err, names) {
+		console.log("Files: " + JSON.stringify(names));
+		res.send(names);
+	});
+}
 
 function getTeamInfo(req, res) {
-	
+	res.send(teams);	
 }
 
 function removeHiddenTeams(teams, attendees) {

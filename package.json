@@ -18,10 +18,11 @@
   },
   "homepage": "https://github.com/techfreek/hackathon-site",
   "dependencies": {
+    "async": "~0.9.0",
     "body-parser": "^1.9.3",
     "compression": "^1.2.1",
     "express": "^4.10.2",
-    "request": "^2.48.0",
-    "async": "~0.9.0"
+    "glob": "^4.3.1",
+    "request": "^2.48.0"
   }
 }
