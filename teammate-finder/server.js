@@ -3,7 +3,6 @@ var path = require('path'),
 	http = require('http'),
 	express = require(path.join(__dirname, '..', 'node_modules', 'express')),
 	bodyParser = require('body-parser'),
-	bodyParser = require('body-parser'),
 	config = require(path.join(__dirname, 'config.json')),
 	compression = require('compression'),
 	app = express(),
@@ -42,15 +41,18 @@ function getTeamInfo(req, res) {
 function removeHiddenTeams(teams, attendees) {
 	var visible_teams = [],
 		answered = false;
+	//console.log("Team: " + JSON.stringify(teams[0], null, '\t'));
+	//console.log("attendees: " + JSON.stringify(attendees[0], null, '\t'));
 	teams.forEach(function(team, i_team) {
 		attendees.forEach(function(user, i) {
 			answered = false;
-
-			if(team.creator.emails[0].email === user.profile.email) {
+			//onsole.log("User team: " + JSON.stringify(user.team, null,  '\t'));
+			if(team.creator.emails[0].email === user.profile.email ||
+				(user.team !== null && team.id == user.team.id)) {
 				user.answers.forEach(function(question) {
 					if(question.question_id === "8622569") { //"question": "Would you like to have your team listed on our Team finder page?",
 						console.log("Team " + team.name + " has " + team.attendee_count + 
-						", and creator says " + question.answer + "to if he wants more help");
+						" members, and creator says " + question.answer + " to if he wants more help");
 						if(question.answer === "Yes, I am looking for additional members") {
 							_teams.push(team);
 							attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
@@ -145,7 +147,7 @@ var processResults = function(err, results) {
 		console.log("Got results!");
 		var attendees = results[0];
 		var teams = results[1];
-		teams = filterTeams(teams);
+		//teams = filterTeams(teams);
 		//console.log(teams, null, '\t');
 		teams = removeHiddenTeams(teams, attendees);
 		//console.log(JSON.stringify(_teams));
