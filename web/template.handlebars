@@ -5,12 +5,10 @@
   <script type="application/javascript" src="scripts/google_analytics.js"></script>
   <link rel="shortcut icon" href="images/hackathon_logo.png"/>
 
-  <title>Ideas</title>
-  <link rel="stylesheet" type="text/css" href="style/ideas.css" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" type="text/css" href="styles/{{file_name}}.css" />
 </head>
 <body>
-
-  <!-- Copied from index.html. Do not modify -->
   <header id="top">
     <nav id="master-nav" class="center">
       <menu>
@@ -31,9 +29,9 @@
     </div>
   </header>
   <a id="top-button" href="#top">Top</a>
-  <!-- Down to here...yeah no touchy -->
 
-  <div id="content" class="center content">
-
+  <div class="content center">
+    {{{content}}}
   </div>
 </body>
+</html>

@@ -1,2 +1,13 @@
-/images/hackathon_02
-/images/hackathon_02_mini
+### Hosted images ###
+/images/hackathon_02/
+/images/hackathon_02_mini/
+
+### Node ###
+logs
+*.log
+
+### NPM ###
+/node_modules/
+
+## Build dir ##
+/build/
