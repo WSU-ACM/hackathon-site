@@ -1,0 +1,32 @@
+{
+  "name": "hackathon-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The website for the WSU 2015 Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WSU-ACM/hackathon-site.git"
+  },
+  "author": "The WSU Hackathon Wizkids",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/WSU-ACM/hackathon-site/issues"
+  },
+  "homepage": "http://hackathon.eecs.wsu.edu",
+  "dependencies": {
+    "async": "~0.9.0",
+    "body-parser": "^1.9.3",
+    "compression": "^1.2.1",
+    "express": "^4.10.2",
+    "glob": "^4.3.1",
+    "request": "^2.48.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.0",
+    "handlebars": "~2.0"
+  }
+}

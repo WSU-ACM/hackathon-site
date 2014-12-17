@@ -3,8 +3,8 @@
 
 Build Instructions
 ------------------
-1. Install nodejs and npm as recommended by your distro.
-2. Install gulp
+1. Install nodejs and npm. This is dependant upon your system.
+2. Grab the dependencies
 ```
-npm install gulp
+npm install
 ```
