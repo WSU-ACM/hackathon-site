@@ -1,7 +1,8 @@
 var eventStream = require('event-stream');
 var gulp = require('gulp');
 var handlebars = require('handlebars');
-var stream = require('stream')
+var map = require('map-stream');
+var stream = require('stream');
 
 var buildDir = 'build/';
 var webDir = 'web/';
@@ -25,20 +26,25 @@ gulp.task('handle-bars', function() {
     { file_name: 'sponsorship', title: 'Sponsorship'}
   ];
 
-  var template = function() {};
+  var template = '';
   return gulp.src(webDir + 'template.handlebars')
-    .pipe(function() {
-      var template = handlebars.compile(aStringWithFileContents);
-      return 'something...';
-    }).pipe(function() {
-      var tasks = staticDirs.map(function(page) {
-        return gulp.src(webDir + 'pages/_' + file_name + '.html')
-               .pipe(function() {
-            page.content = htmlContentsAsString;
-            template(page);
-            return 'something....';
-          });
-      });
-      return eventStream.concat(null, tasks);
-  });
+    .pipe(map(function(file, cb) {
+      template = handlebars.compile(file.contents.toString());
+      cb();
+    }))
+    .pipe(buildFiles());
+
+  function buildFiles() {
+    var tasks = pages.map(function(page) {
+      return gulp.src(webDir + 'pages/_' + page.file_name + '.html')
+        .pipe(map(function(file, cb) {
+          page.content = file.contents.toString();
+          cb(null, template(page));
+        }))
+        .pipe(gulp.dest(buildDir + page.file_name + '.html'));
+    });
+    return eventStream.concat(null, tasks);
+  }
 });
+
+gulp.task('default', ['static', 'handle-bars']);

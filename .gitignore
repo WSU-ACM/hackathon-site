@@ -8,3 +8,6 @@ logs
 
 ### NPM ###
 /node_modules/
+
+## Build dir ##
+/build/
