@@ -1,11 +1,29 @@
 @import "common.css";
 
+.left {
+  float: left;
+}
+
 .index-section {
   padding-top: 5px;
 }
 
 .index-section h1 {
   margin-top: 10px;
+}
+
+.right {
+  float: right;
+}
+
+#connect-list li {
+  max-width: 300px;
+  min-width: 128px;
+  width: 33%;
+}
+
+#facebook-img {
+  width: 128px;
 }
 
 #quick-info {
