@@ -17,9 +17,16 @@
 }
 
 #connect-list li {
-  max-width: 300px;
-  min-width: 128px;
+  /*max-width: 300px;*/
+  min-width: 192px;
+  text-align: center;
   width: 33%;
+}
+
+#connect-list .center {
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 160px;
 }
 
 #facebook-img {
@@ -59,6 +66,13 @@
 */
 @media (max-width: 380px) {
   #register-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 612px) {
+  #connect-list li {
+    clear: both;
     width: 100%;
   }
 }
