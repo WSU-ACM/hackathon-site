@@ -25,7 +25,7 @@ var server = http.createServer(app);
 
 function getImageNames(req, res) {
 	var year = req.param('year', null);
-	var img_path = path.join("..", "images");
+	var img_path = path.join("web", "images");
 	
 	if(year) {
 		img_path = path.join(img_path, year);
