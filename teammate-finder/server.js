@@ -25,14 +25,16 @@ var server = http.createServer(app);
 
 function getImageNames(req, res) {
 	var year = req.param('year', null);
-	var path = "./images/";
+	var img_path = path.join("..", "images");
+	
 	if(year) {
-		path = path + year + "/";
+		img_path = path.join(img_path, year);
 	}
 
-	path + "**/*.jpg";
-	glob(path, function(err, names) {
-		console.log("Files: " + JSON.stringify(names));
+	img_path = path.join(img_path, "**", "*.jpg"); //for globbing
+
+	glob(img_path, function(err, names) {
+			console.log("Files: " + JSON.stringify(names));
 		res.send(names);
 	});
 }
