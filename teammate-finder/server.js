@@ -21,12 +21,15 @@ app.use(bodyParser.json());
 app.get("/teams", getTeamInfo);
 app.get("/imgs/:year?", getImageNames);
 
+var server = http.createServer(app);
+
 function getImageNames(req, res) {
 	var year = req.param('year', null);
 	var path = "./images/";
 	if(year) {
-		path = path + year + "/"; 
+		path = path + year + "/";
 	}
+
 	path + "**/*.jpg";
 	glob(path, function(err, names) {
 		console.log("Files: " + JSON.stringify(names));
@@ -35,39 +38,72 @@ function getImageNames(req, res) {
 }
 
 function getTeamInfo(req, res) {
-	res.send(teams);	
+	var processed = [];
+
+	_teams.forEach(function(team) {
+		var teamObj = {
+			name: team.name,
+			members: team.attendee_count,
+			description: team.description,
+			captain: team.captain
+		};
+		processed.push(teamObj);
+	});
+
+	res.send(processed);
+}
+
+function removeDuplicates(list) {
+	var uniqueArr = list.filter(function(elem, pos) {
+		return list.indexOf(elem) == pos;
+	});
+	return uniqueArr;
 }
 
 function removeHiddenTeams(teams, attendees) {
 	var visible_teams = [],
-		answered = false;
-	//console.log("Team: " + JSON.stringify(teams[0], null, '\t'));
-	//console.log("attendees: " + JSON.stringify(attendees[0], null, '\t'));
+		answered = false,
+		approved = false,
+		description = null,
+		captain = null;
+
 	teams.forEach(function(team, i_team) {
 		attendees.forEach(function(user, i) {
 			answered = false;
-			//onsole.log("User team: " + JSON.stringify(user.team, null,  '\t'));
-			if(team.creator.emails[0].email === user.profile.email ||
-				(user.team !== null && team.id == user.team.id)) {
+			approved = false;
+			description = null;
+			captain = null;
+			
+			if(team.creator.emails[0].email === user.profile.email) {
+				captain = {
+					name: user.profile.name,
+					email: user.profile.email
+				};
+
 				user.answers.forEach(function(question) {
 					if(question.question_id === "8622569") { //"question": "Would you like to have your team listed on our Team finder page?",
-						console.log("Team " + team.name + " has " + team.attendee_count + 
-						" members, and creator says " + question.answer + " to if he wants more help");
 						if(question.answer === "Yes, I am looking for additional members") {
-							_teams.push(team);
-							attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+							approved = true;							
 						}
-						answered = true;
+
+					} else if(question.question_id === "8622571") {
+						if(typeof(question.answer) !== "undefined") {
+							description = question.answer;
+						}
 					}
 				});
-				if(!answered) {
-					attendees.splice(i, 1); //remove the user from the array so we don't have to scan through multiple times
+
+				if(approved) {
+					team.description = description;
+					team.captain = captain;
+					_teams.push(team);
 				}
 			}
 		});
 	});
-	console.log(_teams.length + " teams want more people");
-	console.log("Need teammates: " + JSON.stringify(_teams, null, '\t'));
+
+	_teams = removeDuplicates(_teams); //ensure it is free of dups
+
 	return;
 }
 
@@ -78,7 +114,7 @@ function filterTeams(teams) {
 			filtered.push(team);
 		}
 	});
-	console.log(filtered.length + " teams have < 3 people on them");
+	//console.log(filtered.length + " teams have < 3 people on them");
 	return filtered;
 }
 
@@ -104,6 +140,7 @@ function make_request(url, callback) {
 			}
 		});	
 	}
+
 	function page(url, field, callback) {
 		actual_request(url, function(err, body) {
 			if(err) {
@@ -112,10 +149,12 @@ function make_request(url, callback) {
 			callback(err, body[field]);
 		});
 	}
+
 	actual_request(url, function(err, body) {
 		if(err) {
 			callback(err); 
 		}
+
 		var field = Object.keys(body)[1]; //gets the field after pagination
 		if(body.pagination.page_number < body.pagination.page_count) {
 			var results = body[field];
@@ -127,46 +166,60 @@ function make_request(url, callback) {
 			}
 
 			async.parallel(tasks, function(err, _results) {
-				console.log("Results before: " + results.length);
+
 				_results.forEach(function(result) {
-					console.log("Result length: " + result.length);
 					results = results.concat(result);
 				});
-				console.log("Results after: " + results.length);
+
 				callback(err, results);
 			});
 		} else {
 			callback(err, body[field]);
 		}
-	});
-	
+	});	
 }
 
 var processResults = function(err, results) {
 	if(!err) {
-		console.log("Got results!");
 		var attendees = results[0];
 		var teams = results[1];
-		//teams = filterTeams(teams);
-		//console.log(teams, null, '\t');
-		teams = removeHiddenTeams(teams, attendees);
-		//console.log(JSON.stringify(_teams));
+		console.log("Total attendees: " + attendees.length);
+
+		teams = filterTeams(teams);
+		
+		removeHiddenTeams(teams, attendees);
+
+		console.log("Teams that need members: " + _teams.length);
+
 	} else {
 		console.log("Error getting results: " + JSON.stringify(err));
 	}
 }
 
-async.parallel([
-		requestAttendees,
-		requestTeams
-	],
-	processResults);
-
-/*var updateInterval = setInterval(function() {
-	console.log("Starting interval");
+function update() {
+	var now = new Date();
+	console.log("Updating at " + now.toLocaleString());
 	async.parallel([
 		requestAttendees,
 		requestTeams
 	],
 	processResults);
-}, 1000 * 30); //update every 20 minutes*/
+}
+
+app.use(function(err, req, res, next) {
+	if(!err) return next();
+	console.log("Error: ".red + JSON.stringify(err));
+	console.log(err.stack);
+	if(!res.headersSent) {
+		res.json({error: err});
+	}
+});
+
+server.listen(app.get('port'), function(){
+	console.log('Express server listening on port ' + app.get('port'));
+	update();
+});
+
+var updateInterval = setInterval(function() {
+	update();
+}, 1000 * 60 * 20); //update every 20 minutes
