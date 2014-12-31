@@ -1,0 +1,19 @@
+@import "common.css";
+
+#sponsorship-benefits-table {
+  height: 390px;
+  width: 556px;
+}
+
+#sponsorship-level-capt {
+  font-size: 14px;
+  font-style: oblique;
+  max-width: 700px;
+  text-align: center;
+  width: 100%;
+}
+
+#sponsorship-level-table {
+  height: 380px;
+  width: 380px;
+}

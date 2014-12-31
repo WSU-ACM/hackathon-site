@@ -94,3 +94,9 @@ header {
     width: 25%;
   }
 }
+
+@media (max-width: 336px) {
+  #master-nav menuitem {
+    font-size: 16px;
+  }
+}

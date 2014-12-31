@@ -1,22 +1,22 @@
 {
   "name": "hackathon-site",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "Teammate finding app for the WSU 2015 Hackathon",
+  "description": "The website for the WSU 2015 Hackathon",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/techfreek/hackathon-site.git"
+    "url": "https://github.com/WSU-ACM/hackathon-site.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "The WSU Hackathon Wizkids",
+  "license": "BSD",
   "bugs": {
-    "url": "https://github.com/techfreek/hackathon-site/issues"
+    "url": "https://github.com/WSU-ACM/hackathon-site/issues"
   },
-  "homepage": "https://github.com/techfreek/hackathon-site",
+  "homepage": "http://hackathon.eecs.wsu.edu",
   "dependencies": {
     "async": "~0.9.0",
     "body-parser": "^1.9.3",
@@ -24,5 +24,14 @@
     "express": "^4.10.2",
     "glob": "^4.3.1",
     "request": "^2.48.0"
+  },
+  "devDependencies": {
+    "del": "~1.1.0",
+    "event-stream": "~3.1.7",
+    "gulp": "~3.8.0",
+    "gulp-rename": "~1.2.0",
+    "handlebars": "~2.0.0",
+    "map-stream": "~0.0.5",
+    "streamqueue": "~0.1.1"
   }
 }

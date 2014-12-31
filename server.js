@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var path = require('path'),
 	http = require('http'),
-	express = require(path.join(__dirname, '..', 'node_modules', 'express')),
+	express = require('express'),
 	bodyParser = require('body-parser'),
 	config = require(path.join(__dirname, 'config.json')),
 	compression = require('compression'),

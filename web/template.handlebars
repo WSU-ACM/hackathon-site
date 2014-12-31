@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Hackathon Ideas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script type="application/javascript" src="scripts/google_analytics.js"></script>
-  <link rel="stylesheet" type="text/css" href="style/ideas.css" />
+  <link rel="shortcut icon" href="images/hackathon_logo.png"/>
+
+  <title>{{title}}</title>
+  <link rel="stylesheet" type="text/css" href="styles/{{file_name}}.css" />
 </head>
 <body>
-
-  <!-- Copied from index.html. Do not modify -->
   <header id="top">
     <nav id="master-nav" class="center">
       <menu>
@@ -20,7 +20,7 @@
     </nav>
     <div id="banner">
       <div id="banner-elements" class="center">
-        <img id="cougar-logo" src="assets/cougar_logo.png" />
+        <img id="cougar-logo" src="images/cougar_logo.png" />
         <div id="hackathon-slogan">
           Dream. Think. Learn. Explore. Teach. Collaborate. Innovate. Advocate.
           Code. Build. Hack. WSU.
@@ -29,9 +29,9 @@
     </div>
   </header>
   <a id="top-button" href="#top">Top</a>
-  <!-- Down to here...yeah no touchy -->
 
-  <div id="content" class="center content">
-
+  <div class="content center">
+    {{{content}}}
   </div>
 </body>
+</html>

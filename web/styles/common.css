@@ -2,16 +2,15 @@
 @import "header.css";
 @import url("http://fonts.googleapis.com/css?family=Droid+Sans:400,700");
 
-body {
-  font-family: 'Droid Sans', sans-serif;
-  color: #262b2d;
-  font-size: 18px;
-  line-height: 24px;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: #981e32;
-  margin: 20px 0 4px 0;
+  margin: 16px 0 4px 0;
+}
+
+body {
+  color: #262b2d;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 18px;
 }
 
 dd {
@@ -31,6 +30,13 @@ h2 {
   font-size: 20px;
 }
 
+h3 {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0 0 4px 0;
+}
+
 menu {
   margin: 0;
   padding: 0;
@@ -42,8 +48,13 @@ ol {
   padding: 0;
 }
 
+p {
+  line-height: 24px;
+  margin: 0 0 8px 4px;
+}
+
 strong {
-  color: #5e6a71;
+  color: #40494E;
 }
 
 ul {
@@ -67,6 +78,7 @@ a:hover {
 }
 
 .center {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -75,7 +87,7 @@ a:hover {
 .content {
   max-width: 900px;
   margin-bottom: 64px;
-  padding: 0 10px 0 10px;
+  padding: 0 10px;
   position: relative;
 }
 
@@ -83,6 +95,11 @@ a:hover {
   font-size: 24px;
   line-height: 34px;
   margin: 10px 0 10px 0;
+}
+
+.x-scrollable {
+  overflow-x: auto;
+  margin: 0 -10px;
 }
 
 #top-button {

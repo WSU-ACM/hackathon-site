@@ -1,5 +1,4 @@
 /images
-
 # Created by https://www.gitignore.io
 
 ### Node ###
@@ -32,4 +31,18 @@ build/Release
 node_modules
 
 # Ignore config (Which has API keys)
-teammate-finder/*.json
+config.json
+
+### Hosted images ###
+/images/hackathon_02/
+/images/hackathon_02_mini/
+
+### Node ###
+logs
+*.log
+
+### NPM ###
+/node_modules/
+
+## Build dir ##
+/build/
