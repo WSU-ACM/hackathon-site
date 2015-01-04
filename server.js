@@ -27,7 +27,7 @@ var server = http.createServer(app);
 
 function getImageNames(req, res) {
   var year = req.param('year', null);
-  var file_ext = req.param('ext', 'jpg') //default parameter is jpg
+  var file_ext = req.param('ext', 'jpg'); //default parameter is jpg
   var img_path = path.join('web', 'images');
   
   if(year) {
@@ -69,7 +69,7 @@ function processResponse(err, team, creator) {
           name: creator.profile.name,
           email: creator.profile.email
         }
-      }
+      };
       _teams.push(teamObj);
     }
   }
