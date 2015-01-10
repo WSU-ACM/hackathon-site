@@ -7,6 +7,8 @@ var map = require('map-stream');
 var rename = require('gulp-rename');
 var stream = require('stream');
 var streamqueue = require('streamqueue');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -75,6 +77,13 @@ gulp.task('handle-bars', ['clean'], function() {
     });
     return eventStream.concat.apply(null, tasks);
   }
+});
+
+//jshint the server script
+gulp.task('jshint-server', function() {
+  gulp.src('./server.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('default', ['static', 'handle-bars']);
