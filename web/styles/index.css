@@ -76,3 +76,41 @@
     width: 100%;
   }
 }
+
+#platinum,
+#silver,
+#gold,
+#bronze,
+#supporter
+ {
+  display: block;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.sponsor.img {
+  padding: 10px;
+  float: left;
+}
+
+#platinum img {
+  float: none;
+  margin: 0 auto;
+  width: 90%;
+}
+
+#silver img {
+  width: 45%;
+}
+
+#gold img {
+  width: 30%;
+}
+
+#bronze img {
+  width: 20%;
+}
+
+#supporter img {
+  width: 15%;
+}

@@ -13,13 +13,13 @@ var path = require('path'),
   glob = require('glob');
 
 
-app.set('port', process.env.VCAP_APP_PORT || 80);
+app.set('port', process.env.VCAP_APP_PORT || 3000);
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/teams", getTeamInfo);
-app.get("/imgs/:year?", getImageNames);
+app.get("api/teams", getTeamInfo);
+app.get("api/imgs/:year?", getImageNames);
 
 var server = http.createServer(app);
 
