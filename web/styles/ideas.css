@@ -1,1 +1,7 @@
 @import "common.css";
+
+iframe {
+	width: 75%;
+	min-height: 500px;
+	border: none;
+}
