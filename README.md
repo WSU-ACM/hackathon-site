@@ -29,4 +29,6 @@ Build Instructions
 
 5. The website assets will have been built and copied into a newly created
    directory called ```build```. From there you can serve the files using
-   your favorite web development server.
+   your favorite web development server. If you leave gulp running, it will
+   rerun when it senses any file changes. To only do a build with no file
+   watching, run ```gulp build```.
