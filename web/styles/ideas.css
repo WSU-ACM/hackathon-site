@@ -1,7 +1,7 @@
 @import "common.css";
 
 iframe {
-	width: 75%;
 	min-height: 500px;
+	min-width: 100%;
 	border: none;
 }
