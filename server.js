@@ -19,8 +19,8 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/", express.static(path.join(__dirname, 'build')));
-app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
+//app.use("/", express.static(__dirname));
+//app.get('/', express.static(path.join(__dirname, 'index.html')));
 app.get("api/teams", getTeamInfo);
 app.get("api/imgs/:year?", getImageNames);
 
