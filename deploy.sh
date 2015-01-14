@@ -12,6 +12,8 @@ failure() {
   exit
 }
 
+rm -rf build
+
 gulp bump-minor
 gulp build
 if [ $? -ne 0 ]; then
@@ -39,7 +41,9 @@ ssh -p $ssh_port $user_name@$server_addr \
   "rm -r $deploy_dir && \
   mv $stage_dir $deploy_dir && \
   chown -R :web $deploy_dir && \
-  chmod -R o-w $deploy_dir"
+  chmod -R o-w $deploy_dir && \
+  pm2 restart all"
+
 if [ $? -ne 0 ]; then
   echo
   echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Danger !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'

@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 
 //app.use("/", express.static(path.join(__dirname, 'build')));
 //app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
-app.get("/api/teams", getTeamInfo);
-app.get("/api/spots", getRemainingSpots);
-app.get("/api/imgs/:year?", getImageNames);
+app.get("/teams", getTeamInfo);
+app.get("/spots", getRemainingSpots);
+app.get("/imgs/:year?", getImageNames);
 
 var server = http.createServer(app);
 
