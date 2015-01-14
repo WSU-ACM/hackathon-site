@@ -9,6 +9,10 @@ var rename = require('gulp-rename');
 var streamqueue = require('streamqueue');
 var stylish = require('jshint-stylish');
 var watch = require('gulp-watch');
+var bump = require('gulp-bump');
+var seq = require('run-sequence');
+var replace = require('gulp-replace');
+var version = require('./package.json').version;
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -58,15 +62,27 @@ gulp.task('clean-static', function(cb) {
   del(buildStaticGlobs, cb);
 });
 
-
 // This takes all the static assets and simply moves them to the build directory.
 gulp.task('static', ['clean-static'], function() {
-  var tasks = staticDirs.map(function(dir) {
+  function copyStatic(dir) {
     return gulp.src(webDir + dir + '**/*')
-               .pipe(gulp.dest(buildDir + dir));
+      .pipe(gulp.dest(buildDir + dir));
+  }
+
+  staticDirs.forEach(function(dir) {
+    if(dir === "styles/") {
+      //rename the file with the version and update the @import file names
+      gulp.src(webDir + dir + '**/*')
+        .pipe(rename(function(path) {
+          path.basename += '-v' + version;  
+        }))
+        .pipe(replace('.css', '-v' + version + '.css'))
+        .pipe(gulp.dest(buildDir + dir));
+    } else {
+      copyStatic(dir);
+    }
   });
 
-  return eventStream.concat.apply(null, tasks);
 });
 
 
@@ -87,6 +103,7 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
     var tasks = pages.map(function(page) {
       return gulp.src(pagesDir + '_' + page.file_name + '.html')
         .pipe(map(function(file, cb) {
+          page.version = version; //for cache busting
           page.content = file.contents.toString();
 
           // Compile the pictures as a template first
@@ -130,3 +147,23 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['static', 'handle-bars']);
 gulp.task('default', ['build', 'watch']);
+
+/******************************************** Version MGMT ********************************************/
+function bumpIt(type) {
+  gulp.src('./package.json')
+    .pipe(bump({type: type}))
+    .pipe(gulp.dest('./'));
+  console.log("Site Version is now: " + version);
+}
+
+gulp.task('bump-minor', function() {
+  bumpIt('minor')
+});
+
+gulp.task('bump-major', function() {
+  bumpIt('major')
+});
+
+gulp.task('bump-patch', function() {
+  bumpIt('patch')
+});

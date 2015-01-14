@@ -12,6 +12,7 @@ failure() {
   exit
 }
 
+gulp bump-minor
 gulp build
 if [ $? -ne 0 ]; then
   failure
