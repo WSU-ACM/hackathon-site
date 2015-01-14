@@ -12,6 +12,7 @@ var watch = require('gulp-watch');
 var bump = require('gulp-bump');
 var seq = require('run-sequence');
 var replace = require('gulp-replace');
+var install = require('gulp-install');
 var version = require('./package.json').version;
 
 
@@ -85,6 +86,16 @@ gulp.task('static', ['clean-static'], function() {
 
 });
 
+gulp.task('node-serv', function() {
+  //Copy server and config file over
+  gulp.src(['./server.js', './config.json'])
+    .pipe(gulp.dest(buildDir));
+
+  //install npm dependencies
+  gulp.src('./package.json')
+    .pipe(gulp.dest(buildDir))
+    .pipe(install({production: true}));
+});
 
 /*
 Handles the template compilation. All it does is take the template at
@@ -145,7 +156,7 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('build', ['static', 'handle-bars']);
+gulp.task('build', ['static', 'handle-bars', 'node-serv']);
 gulp.task('default', ['build', 'watch']);
 
 /******************************************** Version MGMT ********************************************/

@@ -35,6 +35,7 @@
     "handlebars": "~2.0.0",
     "jshint-stylish": "~1.0.0",
     "map-stream": "~0.0.5",
-    "streamqueue": "~0.1.1"
+    "streamqueue": "~0.1.1",
+    "gulp-install": "~0.2.0"
   }
 }
