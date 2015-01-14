@@ -1,3 +1,10 @@
+<!-- Required for the odometer -->
+<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+<script src="http://github.hubspot.com/odometer/odometer.js"></script>
+
+<!-- Used to help with HTTP requests -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
 <p class="intro-para">
   The WSU EECS 3rd Annual Hackathon is coming up on February 7th &amp; 8th!
   The Hackathon is a great opportunity to start a cool project,
@@ -6,10 +13,12 @@
   24 hours. Only 250 seats are available, so register now!
 </p>
 
-<a id="register-button" class="center"
+<a id="register-button"
    href="https://eecs-hackathon-2015.eventbrite.com" target="_blank">
-  Register Here
+  Register Now!
+  Only <div id="odometer" class="odometer">250</div> spots left!
 </a>
+
 
 <ul id="connect-list">
   <li class="left">
@@ -286,3 +295,13 @@
     <div class="logo"><img src="images/sponsors/GitHub.png"></div>
   </div>
 </section>
+
+<script type="text/javascript">
+
+  $.getJSON("http://hackathon.eecs.wsu.edu:3000/api/spots",
+   function(spots) {
+    console.log("Remaining spots: " + spots.remainingSpots);
+     odometer.innerHTML = spots.remainingSpots 
+   });
+
+</script>
