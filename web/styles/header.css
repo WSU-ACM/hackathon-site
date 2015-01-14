@@ -44,7 +44,12 @@ header {
 
 #master-nav {
   height: 64px;
-  width: 400px;
+  width: 100%;
+}
+
+#nav {
+  margin: 0 auto;
+  width: 500px;
 }
 
 #master-nav menuitem {

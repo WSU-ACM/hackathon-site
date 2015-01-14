@@ -73,6 +73,12 @@ a:hover {
   color: #5e6a71;
 }
 
+strong a:visited,
+strong a:link,
+strong a:active {
+  color: #981e32;
+}
+
 .bulleted {
   list-style-type: disc;
   padding-left: 40px;

@@ -35,7 +35,8 @@ var pages = [
   { file_name: 'ideas', title: 'Ideas' },
   { file_name: 'index', title: 'WSU Hackathon' },
   { file_name: 'pictures', title: 'Pictures' },
-  { file_name: 'sponsorship', title: 'Sponsorship' }
+  { file_name: 'sponsorship', title: 'Sponsorship' },
+  { file_name: 'teams', title: 'Teams' }
 ];
 
 var picturesTemplateData = { picturesUrl: 'http://hackathon.eecs.wsu.edu/hosted_images/hackathon_02' };
