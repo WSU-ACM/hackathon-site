@@ -84,6 +84,11 @@ strong a:active {
   padding-left: 40px;
 }
 
+.numbered {
+  list-style-type: decimal;
+  padding-left: 40px;
+}
+
 .center {
   display: block;
   margin-left: auto;
