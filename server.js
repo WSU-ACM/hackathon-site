@@ -19,10 +19,11 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//app.use("/", express.static(path.join(__dirname, 'build')));
-//app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
-app.get("api/teams", getTeamInfo);
-app.get("api/imgs/:year?", getImageNames);
+app.use("/", express.static(path.join(__dirname, 'build')));
+app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
+app.get("/api/teams", getTeamInfo);
+app.get("/api/spots", getRemainingSpots);
+app.get("/api/imgs/:year?", getImageNames);
 
 var server = http.createServer(app);
 
@@ -44,6 +45,24 @@ function getImageNames(req, res) {
     res.send(names);
   });
 }
+
+function getRemainingSpots(req, res) {
+  var remainingSpots = 0;
+  var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "?token=" + config.eventbrite.oathtoken;
+  request(request_url, function(err, response, body) {
+    if(!err && response.statusCode === 200) {
+      body = JSON.parse(body);
+      body.ticket_classes.forEach(function addSeats(ticket_type) {
+        remainingSpots += ticket_type.quantity_sold;
+      });
+    } else {
+      console.log("Error: " + JSON.stringify(err));
+      console.log("response code: " + JSON.stringify(response.statusCode));
+    }
+    res.send({remainingSpots: (250 - remainingSpots)});
+  });
+}
+
 
 function getTeamInfo(req, res) {
   res.send(approvedTeams);
