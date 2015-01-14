@@ -76,3 +76,47 @@
     width: 100%;
   }
 }
+
+.sponsor-category {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  display: inline-block;
+  padding: 20px;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: inherit;
+}
+
+#platinum .logo {
+  float: none;
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  max-height: 250px;
+}
+
+#silver .logo {
+  max-width: 45%;
+  max-height: 200px; 
+}
+
+#gold .logo {
+  max-width: 30%;
+  max-height: 150px;
+}
+
+#bronze .logo {
+  max-width: 25%;
+  max-height: 125px;
+}
+
+#supporter .logo {
+  max-width: 20%;
+  max-height: 75px;
+}

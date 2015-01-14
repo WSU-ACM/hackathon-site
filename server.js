@@ -9,17 +9,20 @@ var path = require('path'),
   request = require('request'),
   async = require('async'),
   _teams = [],
+  approvedTeams = [],
   fs = require('fs'),
   glob = require('glob');
 
 
-app.set('port', process.env.VCAP_APP_PORT || 80);
+app.set('port', process.env.VCAP_APP_PORT || 3000);
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/teams", getTeamInfo);
-app.get("/imgs/:year?", getImageNames);
+//app.use("/", express.static(path.join(__dirname, 'build')));
+//app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
+app.get("api/teams", getTeamInfo);
+app.get("api/imgs/:year?", getImageNames);
 
 var server = http.createServer(app);
 
@@ -43,7 +46,7 @@ function getImageNames(req, res) {
 }
 
 function getTeamInfo(req, res) {
-  res.send(_teams);
+  res.send(approvedTeams);
 }
 
 /************************************** Team Processing Functions **************************************/
@@ -208,7 +211,10 @@ var processResults = function(err, results) {
     
     removeHiddenTeams(teams, attendees);
 
-    console.log("Teams that need members: " + _teams.length);
+    approvedTeams = _teams;
+    _teams = [];
+
+    console.log("Teams that need members: " + approvedTeams.length);
 
   } else {
     console.log("Error getting results: " + JSON.stringify(err));
