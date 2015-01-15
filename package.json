@@ -1,6 +1,6 @@
 {
   "name": "hackathon-site",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "The website for the WSU 2015 Hackathon",
   "main": "index.js",

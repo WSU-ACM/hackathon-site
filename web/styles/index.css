@@ -105,6 +105,7 @@
   display: block;
   margin: 25px auto;
   min-width: 200px;
+  max-width: 400px;
   width: 75%;
   border-radius: 12px;
   background-color: #981e32;
