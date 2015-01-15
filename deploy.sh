@@ -14,7 +14,6 @@ failure() {
 
 rm -rf build
 
-gulp bump-minor
 gulp build
 if [ $? -ne 0 ]; then
   failure
