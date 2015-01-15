@@ -47,11 +47,6 @@
   even exists. This will miss-render if scrollbars are present at the change 
   point, but fuck it, the spec is broken.
 */
-@media (max-width: 380px) {
-  #register-button {
-    width: 100%;
-  }
-}
 
 @media (max-width: 612px) {
   #connect-list li {
@@ -109,7 +104,8 @@
   color: #fff;
   display: block;
   margin: 25px auto;
-  width: 400px;
+  min-width: 200px;
+  width: 75%;
   border-radius: 12px;
   background-color: #981e32;
   padding: 10px;
