@@ -19,8 +19,8 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//app.use("/", express.static(path.join(__dirname, 'build')));
-//app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
+app.use("/", express.static(path.join(__dirname, 'build')));
+app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
 app.get("/teams", getTeamInfo);
 app.get("/spots", getRemainingSpots);
 app.get("/imgs/:year?", getImageNames);
@@ -32,7 +32,7 @@ var server = http.createServer(app);
 function getImageNames(req, res) {
   var year = req.param('year', null);
   var file_ext = req.param('ext', 'jpg'); //default parameter is jpg
-  var img_path = path.join('web', 'images');
+  var img_path = path.join('/var', 'www', 'hosted_images');
   
   if(year) {
     img_path = path.join(img_path, year);
