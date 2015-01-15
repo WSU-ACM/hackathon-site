@@ -298,11 +298,13 @@
 </section>
 
 <script type="text/javascript">
-
-  $.getJSON("http://hackathon.eecs.wsu.edu/api/spots",
-   function(spots) {
-    console.log("Remaining spots: " + spots.remainingSpots);
-     odometer.innerHTML = spots.remainingSpots 
-   });
-
+  function updateOdometer() {
+    $.getJSON("http://hackathon.eecs.wsu.edu/api/spots",
+     function(spots) {
+      console.log("Remaining spots: " + spots.remainingSpots);
+       odometer.innerHTML = spots.remainingSpots 
+     });
+  }
+  updateOdometer(); //update immediately
+  window.setInterval(updateOdometer, 15 * 1000); //update every 15 seconds
 </script>
