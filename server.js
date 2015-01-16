@@ -269,4 +269,4 @@ server.listen(app.get('port'), function(){
 
 var updateInterval = setInterval(function() {
   update();
-}, 1000 * 60 * 20); //update every 20 minutes
+}, 1000 * 60 * 15); //update every 15 minutes
