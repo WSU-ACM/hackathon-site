@@ -1,1 +1,45 @@
 @import "common.css";
+
+#teams {
+    width: 100;
+}
+
+.team {
+    margin: 15px;
+    box-shadow: 0 0 1px #000000;
+}
+
+.team .name {
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 22px;
+    font-weight: 800;
+    background-color: #981e32;
+    width 100%;
+    color: #fff;
+}
+
+.team .body {
+    width: 100%;
+    padding: 10px;
+}
+
+.description {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.contact {
+    min-height: 40px;
+    margin: 0 auto;
+}
+
+.contact * {
+    width: inherit;
+    margin: 0 auto;
+    display: block;
+}
+
+.captain-name {
+	text-transform: capitalize;
+}
