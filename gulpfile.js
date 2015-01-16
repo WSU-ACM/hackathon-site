@@ -117,6 +117,9 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
           page.version = version; //for cache busting
           page.content = file.contents.toString();
 
+          //Makes it easier to move to production
+          page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+
           // Compile the pictures as a template first
           if (page.file_name == 'pictures') {
             var pictures_template = handlebars.compile(page.content);

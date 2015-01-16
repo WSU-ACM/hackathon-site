@@ -118,6 +118,10 @@
   box-shadow: inset 0 0 8px #000;
 }
 
+#register-button.soldout {
+  background-color: #5e6a71 !important;
+}
+
 .odometer {
   font-weight: 700;
 }

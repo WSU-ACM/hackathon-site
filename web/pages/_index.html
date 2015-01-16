@@ -12,8 +12,7 @@
 
 <a id="register-button"
    href="https://eecs-hackathon-2015.eventbrite.com" target="_blank">
-  Register Now!
-  Only <div id="odometer" class="odometer">250</div> spots left!
+    Register Now! Only <div id="odometer" class="odometer">250</div> spots left!
 </a>
 
 
@@ -296,10 +295,17 @@
 
 <script type="text/javascript">
   function updateOdometer() {
-    $.getJSON("http://hackathon.eecs.wsu.edu/api/spots",
+    $.getJSON("http://localhost:3000/spots",
      function(spots) {
-      console.log("Remaining spots: " + spots.remainingSpots);
-       odometer.innerHTML = spots.remainingSpots 
+        if(spots.remainingSpots === 0) {
+          odometer.innerHTML = 0;
+          window.setTimeout(function() {
+            var button = document.getElementById("register-button");
+            button.innerHTML = button.innerHTML.replace("Register Now! Only", "Sold Out!")
+            button.className = "soldout";
+          }, 2010);
+        }
+       odometer.innerHTML = spots.remainingSpots;
      });
   }
   updateOdometer(); //update immediately
