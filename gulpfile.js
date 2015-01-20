@@ -1,5 +1,6 @@
 // Imports
 var del = require('del');
+var path = require('path');
 var eventStream = require('event-stream');
 var gulp = require('gulp');
 var handlebars = require('handlebars');
@@ -54,7 +55,7 @@ var buildStaticGlobs = staticDirs.map(function(dir) { return buildDir + dir + '*
 
 // A basic clean task
 gulp.task('clean', function(cb) {
-  del(buildDir, cb);
+  del(buildDir.substring(0, buildDir.length - 1), cb);
 });
 
 
@@ -70,19 +71,31 @@ gulp.task('static', ['clean-static'], function() {
       .pipe(gulp.dest(buildDir + dir));
   }
 
+  //Copies our static content
   staticDirs.forEach(function(dir) {
-    if(dir === "styles/") {
+    if(dir !== "images/") {
       //rename the file with the version and update the @import file names
       gulp.src(webDir + dir + '**/*')
         .pipe(rename(function(path) {
           path.basename += '-v' + version;  
         }))
-        .pipe(replace('.css', '-v' + version + '.css'))
+        .pipe(replace('-v<version>', '-v' + version))
         .pipe(gulp.dest(buildDir + dir));
     } else {
       copyStatic(dir);
     }
   });
+
+  //Copies photoswipe
+  var photoswipe_dist = path.join(__dirname, 'node_modules', 'photoswipe', 'dist/');
+  var photoswipe_css = gulp.src(photoswipe_dist + "*.css")
+        .pipe(gulp.dest(buildDir + 'styles/'));
+
+  var photoswipe_css = gulp.src(photoswipe_dist + "*.js")
+        .pipe(gulp.dest(buildDir + 'scripts/'));
+
+  var default_skin = gulp.src(photoswipe_dist + 'default-skin/*')
+        .pipe(gulp.dest(buildDir + 'styles/' + 'default-skin/'));
 
 });
 
@@ -118,7 +131,11 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
           page.content = file.contents.toString();
 
           //Makes it easier to move to production
-          page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+          //page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+
+          // Replace filename with version for cache breaking
+          page.content = page.content.replace('-v<version>', '-v' + version);
+
 
           // Compile the pictures as a template first
           if (page.file_name == 'pictures') {

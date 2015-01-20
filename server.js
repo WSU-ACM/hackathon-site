@@ -2,6 +2,7 @@
 var path = require('path'),
   http = require('http'),
   express = require('express'),
+  imgSize = require('image-size'),
   bodyParser = require('body-parser'),
   config = require(path.join(__dirname, 'config.json')),
   compression = require('compression'),
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/", express.static(path.join(__dirname, 'build')));
+app.use("/hosted-images", express.static(path.join('/var', 'www', 'hosted-images')));
 app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
 app.get("/teams", getTeamInfo);
 app.get("/spots", getRemainingSpots);
@@ -30,19 +32,35 @@ var server = http.createServer(app);
 /************************************** API End Points **************************************/
 
 function getImageNames(req, res) {
-  var year = req.param('year', null);
-  var file_ext = req.param('ext', 'jpg'); //default parameter is jpg
-  var img_path = path.join('/var', 'www', 'hosted_images');
-  
+  var year = req.query.year;
+  var file_ext = req.query.ext; //default parameter is jpg
+  var img_path = path.join('/var', 'www', 'hosted-images');
+  console.log("Year: " + year);
+  console.log("file_ext: " + file_ext);
   if(year) {
     img_path = path.join(img_path, year);
   }
 
+  if(!file_ext) {
+    file_ext = "jpg";
+  }
+
   img_path = path.join(img_path, "**", "*." + file_ext); //for globbing
 
+  console.log("Path: " + img_path);
+
   glob(img_path, function(err, names) {
-      console.log("Files: " + JSON.stringify(names));
-    res.send(names);
+    var imgs = [];
+    for(var i = 0; i < names.length; i++) {
+      var size = imgSize(names[i]);
+      var temp = {
+        link: names[i],
+        width: size.width,
+        height: size.height
+      }
+      imgs.push(temp);
+    }
+    res.send(imgs);
   });
 }
 

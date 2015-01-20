@@ -23,7 +23,9 @@
     "compression": "^1.2.1",
     "express": "^4.10.2",
     "glob": "^4.3.1",
-    "request": "^2.48.0"
+    "request": "^2.48.0",
+    "photoswipe": "~4.0.5",
+    "image-size": "~0.3.5"
   },
   "devDependencies": {
     "del": "~1.1.0",

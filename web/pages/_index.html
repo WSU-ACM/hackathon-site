@@ -12,7 +12,7 @@
 
 <a id="register-button"
    href="https://eecs-hackathon-2015.eventbrite.com" target="_blank">
-    Register Now! Only <div id="odometer" class="odometer">250</div> spots left!
+    Register Now! <wbr> Only <div id="odometer" class="odometer">250</div> spots left!
 </a>
 
 
@@ -30,7 +30,7 @@
        data-show-count="false"
        data-size="large"
        data-dnt="true">Follow @wsuhackathon</a>
-    <script type="application/javascript" src="scripts/twitter_follow.js"></script>
+    <script type="application/javascript" src="scripts/twitter_follow-v<version>.js"></script>
   </li>
   <li class="right">
     <a class="center"
@@ -296,15 +296,27 @@
 <script type="text/javascript">
   function updateOdometer() {
     $.getJSON("http://localhost:3000/spots",
-     function(spots) {
+      function(spots) {
+        var button = document.getElementById("register-button");
         if(spots.remainingSpots === 0) {
-          odometer.innerHTML = 0;
           window.setTimeout(function() {
-            var button = document.getElementById("register-button");
+            
             button.innerHTML = button.innerHTML.replace("Register Now! Only", "Sold Out!")
             button.className = "soldout";
           }, 2010);
+        } else {
+          //make sure there is no sold out text
+          button.innerHTML = button.innerHTML.replace("Sold Out!", "Register Now! Only");
+          button.className = "";
         }
+
+        // Make sure the correct pluraity (sp) is used on spot
+        if(spots.remainingSpots === 1) {
+          button.innerHTML = button.innerHTML.replace("spots", "spot");
+        } else {
+          button.innerHTML = button.innerHTML.replace("spot", "spots");
+        }
+
        odometer.innerHTML = spots.remainingSpots;
      });
   }

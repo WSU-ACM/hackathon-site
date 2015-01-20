@@ -1,4 +1,4 @@
-@import "common.css";
+@import "common-v<version>.css";
 
 iframe {
 	min-height: 500px;
