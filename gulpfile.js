@@ -20,7 +20,8 @@ var version = require('./package.json').version;
 var imagemin = require('gulp-imagemin');
 var cssmin = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
-var soucemaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
+var print = require('gulp-print');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -73,39 +74,43 @@ gulp.task('clean-static', function(cb) {
 
 // This takes all the static assets and simply moves them to the build directory.
 gulp.task('static', ['clean-static'], function() {
-  function copyStatic(dir) {
-    return gulp.src(webDir + dir + '**/*')
-      .pipe(gulp.dest(buildDir + dir));
-  }
-
   //Copies our static content
-  staticDirs.forEach(function(dir) {
-    if(dir !== "images/") {
-      //rename the file with the version and update the @import file names
-      gulp.src(webDir + dir + '**/*')
-        .pipe(rename(function(path) {
-          path.basename += '-v' + version;  
-        }))
-        .pipe(gulpif((dir === "styles/"), 
-            cssmin({noAdvanced: true})))
-        .pipe(gulpif(dir === "scripts/"),
-            uglify())
-        .pipe(gulpif(dir === "scripts/"),
-            sourcemaps.write())
-        .pipe(replace('-v<version>', '-v' + version))
-        .pipe(replace("localhost:3000", "hackathon.eecs.wsu.edu/api"))
-        .pipe(gulp.dest(buildDir + dir));
-    } else {
-      copyStatic(dir);
-    }
-  });
+  var styles = "styles/";
+  var scripts = "scripts/";
+  var images = "images/";
+  
+  var cssStream = gulp.src(webDir + styles + '**/*.*')
+    .pipe(replace('-v<version>', '-v' + version)) //rename the file with the version and update the @import file names
+    .pipe(rename(function(path) {
+       path.basename += '-v' + version;  
+    }))
+    .pipe(cssmin({processImport: false})) //will crash if it processes imports due to file renaming
+    .pipe(gulp.dest(buildDir + styles));
+
+  var jsStream = gulp.src(webDir + scripts + '**/*.*')
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(replace('-v<version>', '-v' + version))
+    .pipe(rename(function(path) {
+       path.basename += '-v' + version;  
+    }))
+    .pipe(replace("localhost:3000", "hackathon.eecs.wsu.edu/api"))
+    .pipe(gulp.dest(buildDir + scripts));
+
+  var imgStream = gulp.src(webDir + 'images/**/*.*')
+    .pipe(imagemin({optimizationLevel: 10}))
+    .pipe(gulp.dest(buildDir + 'images/'));
+
 
   //Copies photoswipe
   var photoswipe_dist = path.join(__dirname, 'node_modules', 'photoswipe', 'dist/');
   var photoswipe_css = gulp.src(photoswipe_dist + "*.css")
+        .pipe(cssmin({processImport: false}))
         .pipe(gulp.dest(buildDir + 'styles/'));
 
-  var photoswipe_css = gulp.src(photoswipe_dist + "*.js")
+  var photoswipe_js = gulp.src(photoswipe_dist + "*.js")
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(buildDir + 'scripts/'));
 
   var default_skin = gulp.src(photoswipe_dist + 'default-skin/*')
@@ -252,7 +257,7 @@ gulp.task('copy-images', function(cb) {
           'username': username,
           'password': pass
         }))
-        .on('error' function(err) {
+        .on('error', function(err) {
           console.error("An error occured during copy: " + err)
         });
       del(hosted_images); //clear so we don't try to copy them over again
