@@ -192,7 +192,7 @@ function getImagesForGalleries(galleries) {
 
     $.getJSON(url, function rmAbsolutePath(imgs) {
       for(var i = 0; i < imgs.length; i++) {
-        imgs[i].link = imgs[i].link.replace("/var/www", "");
+        imgs[i].link = imgs[i].link.replace("/var/www/hosted-images", "hosted_images");
       }
       callback(imgs);
     });
@@ -241,7 +241,7 @@ function addImagesToGallery(gallery, imgs, callback) {
         1: (id) //ex: hackathon_02
         2: img name or sub sub folder
     */
-    linkParts[2] += '_mini'; //append to id
+    linkParts[1] += '_mini'; //append to id
     
     //join components back together
     for(var i = 0; i < (linkParts.length - 1); i++) {

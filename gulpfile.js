@@ -82,6 +82,7 @@ gulp.task('static', ['clean-static'], function() {
           path.basename += '-v' + version;  
         }))
         .pipe(replace('-v<version>', '-v' + version))
+        .pipe(replace("localhost:3000", "hackathon.eecs.wsu.edu/api"))
         .pipe(gulp.dest(buildDir + dir));
     } else {
       copyStatic(dir);
@@ -136,7 +137,7 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
           page.content = file.contents.toString();
 
           //Makes it easier to move to production
-          if(argv.local) {
+          if(!argv.local) {
             page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
           }
 
