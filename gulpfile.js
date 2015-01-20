@@ -17,6 +17,10 @@ var install = require('gulp-install');
 var argv = require('yargs').argv;
 var gulpif = require('gulp-if');
 var version = require('./package.json').version;
+var imagemin = require('gulp-imagemin');
+var cssmin = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
+var soucemaps = require('gulp-sourcemaps');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -24,6 +28,7 @@ var version = require('./package.json').version;
 var buildDir = 'build/';
 var webDir = 'web/';
 var pagesDir = webDir + 'pages/';
+var hosted_images = 'hosted-images/';
 
 /*
 These are your static directories. Files in these directories will get copied as
@@ -81,6 +86,12 @@ gulp.task('static', ['clean-static'], function() {
         .pipe(rename(function(path) {
           path.basename += '-v' + version;  
         }))
+        .pipe(gulpif((dir === "styles/"), 
+            cssmin({noAdvanced: true})))
+        .pipe(gulpif(dir === "scripts/"),
+            uglify())
+        .pipe(gulpif(dir === "scripts/"),
+            sourcemaps.write())
         .pipe(replace('-v<version>', '-v' + version))
         .pipe(replace("localhost:3000", "hackathon.eecs.wsu.edu/api"))
         .pipe(gulp.dest(buildDir + dir));
@@ -205,4 +216,47 @@ gulp.task('bump-major', function() {
 
 gulp.task('bump-patch', function() {
   bumpIt('patch')
+});
+
+/******************************************** Server Communication ********************************************/
+gulp.task('copy-images', function(cb) {
+  // Configure readline
+  var readline = require('readline');
+  var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  // Server settings
+  var server = {
+    'host': 'csg-gate.eecs.wsu.edu',
+    'port': 22
+  }
+
+  // Get user account info
+  rl.question("Please enter your username: ", function(username) {
+    rl.question("Please enter your password: ", function(pass) {
+      //copy and minify images
+      gulp.src(hosted_images + '**/*.*') //get all images
+        .pipe(imagemin({optimizationLevel: 10}))
+        .pipe(rename(function(path) {
+          path.dirname += '_mini';
+        }))
+        .pipe(gulp.dest(hosted_images));
+
+      //copy images to server
+      gulp.src(hosted_images + '**/*.*') //get all images
+        .gulp(scp({
+          'host': server.host,
+          'port': server.port,
+          'username': username,
+          'password': pass
+        }))
+        .on('error' function(err) {
+          console.error("An error occured during copy: " + err)
+        });
+      del(hosted_images); //clear so we don't try to copy them over again
+      cb();
+    });
+  });
 });

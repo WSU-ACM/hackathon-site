@@ -14,7 +14,8 @@ logs
 /node_modules/
 
 ### Build dir ###
-/build/
+build/
+hosted-images/
 
 ### Config File ###
 config.json
