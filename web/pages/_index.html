@@ -12,7 +12,7 @@
 
 <a id="register-button"
    href="https://eecs-hackathon-2015.eventbrite.com" target="_blank">
-    Register Now! <wbr> Only <div id="odometer" class="odometer">250</div> spots left!
+    Register Now! Only <div id="odometer" class="odometer">250</div> spots left!
 </a>
 
 
@@ -297,29 +297,30 @@
   function updateOdometer() {
     $.getJSON("http://localhost:3000/spots",
       function(spots) {
+        var numSpots = spots.remainingSpots;
         var button = document.getElementById("register-button");
-        if(spots.remainingSpots === 0) {
-          window.setTimeout(function() {
-            
-            button.innerHTML = button.innerHTML.replace("Register Now! Only", "Sold Out!")
-            button.className = "soldout";
-          }, 2010);
-        } else {
-          //make sure there is no sold out text
-          button.innerHTML = button.innerHTML.replace("Sold Out!", "Register Now! Only");
-          button.className = "";
-        }
-
-        // Make sure the correct pluraity (sp) is used on spot
-        if(spots.remainingSpots === 1) {
-          button.innerHTML = button.innerHTML.replace("spots", "spot");
-        } else {
-          button.innerHTML = button.innerHTML.replace("spot", "spots");
-        }
-
-       odometer.innerHTML = spots.remainingSpots;
+        odometer.innerHTML = numSpots;
+        window.setTimeout(updateButtonText, 2010, button, numSpots);
      });
   }
+  function updateButtonText(button, spots) {
+    if(spots === 0) {        
+      button.innerHTML = button.innerHTML.replace("Register Now! Only", "Sold Out!")
+      button.className = "soldout";
+    } else {
+      //make sure there is no sold out text
+      button.innerHTML = button.innerHTML.replace("Sold Out!", "Register Now! Only");
+      button.className = "";
+    }
+
+    // Make sure the correct pluraity (sp) is used on spot
+    if(spots === 1) {
+      button.innerHTML = button.innerHTML.replace("spots ", "spot ");
+    } else {
+      button.innerHTML = button.innerHTML.replace("spot ", "spots ");
+    }
+  }
+
   updateOdometer(); //update immediately
   window.setInterval(updateOdometer, 15 * 1000); //update every 15 seconds
 </script>

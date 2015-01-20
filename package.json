@@ -1,6 +1,6 @@
 {
   "name": "hackathon-site",
-  "version": "0.5.2",
+  "version": "0.7.0",
   "private": true,
   "description": "The website for the WSU 2015 Hackathon",
   "main": "index.js",
@@ -41,6 +41,8 @@
     "jshint-stylish": "~1.0.0",
     "map-stream": "~0.0.5",
     "run-sequence": "^1.0.2",
-    "streamqueue": "~0.1.1"
+    "streamqueue": "~0.1.1",
+    "yargs": "~1.3.3",
+    "gulp-if": "~1.2.5"
   }
 }

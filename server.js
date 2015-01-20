@@ -20,8 +20,8 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/", express.static(path.join(__dirname, 'build')));
-app.use("/hosted-images", express.static(path.join('/var', 'www', 'hosted-images')));
+app.use('/', express.static(path.join(__dirname, 'build')));
+app.use('/hosted-images', express.static(path.join('/var', 'www', 'hosted-images')));
 app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
 app.get("/teams", getTeamInfo);
 app.get("/spots", getRemainingSpots);
@@ -35,8 +35,6 @@ function getImageNames(req, res) {
   var year = req.query.year;
   var file_ext = req.query.ext; //default parameter is jpg
   var img_path = path.join('/var', 'www', 'hosted-images');
-  console.log("Year: " + year);
-  console.log("file_ext: " + file_ext);
   if(year) {
     img_path = path.join(img_path, year);
   }
@@ -287,4 +285,4 @@ server.listen(app.get('port'), function(){
 
 var updateInterval = setInterval(function() {
   update();
-}, 1000 * 60 * 20); //update every 20 minutes
+}, 1000 * 60 * 15); //update every 15 minutes

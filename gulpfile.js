@@ -14,6 +14,8 @@ var bump = require('gulp-bump');
 var seq = require('run-sequence');
 var replace = require('gulp-replace');
 var install = require('gulp-install');
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
 var version = require('./package.json').version;
 
 
@@ -101,7 +103,10 @@ gulp.task('static', ['clean-static'], function() {
 
 gulp.task('node-serv', function() {
   //Copy server and config file over
+  //If the --local argument is not passed in, it will remove the lines that allow for hosting
   gulp.src(['./server.js', './config.json'])
+    .pipe(gulpif(!argv.local, 
+      replace(/app\.(use|get)\(('\/'|'\/hosted-images').*/ig, '')))
     .pipe(gulp.dest(buildDir));
 
   //install npm dependencies
@@ -131,7 +136,9 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
           page.content = file.contents.toString();
 
           //Makes it easier to move to production
-          //page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+          if(argv.local) {
+            page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+          }
 
           // Replace filename with version for cache breaking
           page.content = page.content.replace('-v<version>', '-v' + version);
