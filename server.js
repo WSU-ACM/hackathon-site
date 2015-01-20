@@ -52,7 +52,7 @@ function getImageNames(req, res) {
     for(var i = 0; i < names.length; i++) {
       var size = imgSize(names[i]);
       var temp = {
-        link: names[i],
+        link: names[i].replace("/var/www/hosted-images", "hosted_images"),
         width: size.width,
         height: size.height
       }

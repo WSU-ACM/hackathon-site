@@ -190,12 +190,7 @@ function getImagesForGalleries(galleries) {
       url = baseURL + "?ext=" + options.ext;
     }
 
-    $.getJSON(url, function rmAbsolutePath(imgs) {
-      for(var i = 0; i < imgs.length; i++) {
-        imgs[i].link = imgs[i].link.replace("/var/www/hosted-images", "hosted_images");
-      }
-      callback(imgs);
-    });
+    $.getJSON(url, callback(imgs));
   };
 
   function getImgsForGallery(gallery) {
