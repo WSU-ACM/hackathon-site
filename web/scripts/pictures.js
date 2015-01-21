@@ -190,7 +190,7 @@ function getImagesForGalleries(galleries) {
       url = baseURL + "?ext=" + options.ext;
     }
 
-    $.getJSON(url, callback(imgs));
+    $.getJSON(url, callback);
   };
 
   function getImgsForGallery(gallery) {
@@ -228,23 +228,7 @@ function addImagesToGallery(gallery, imgs, callback) {
     imgLink.setAttribute('itemprop', 'contentUrl');
     imgLink.setAttribute('data-size', img.width + 'x' + img.height);
 
-    //create link for thumbnail
-    var thumbnail = "";
-    var linkParts = img.link.split('/');
-    /* Parts are something like this:
-        0: 'hosted-images'
-        1: (id) //ex: hackathon_02
-        2: img name or sub sub folder
-    */
-    linkParts[1] += '_mini'; //append to id
-    
-    //join components back together
-    for(var i = 0; i < (linkParts.length - 1); i++) {
-      thumbnail += linkParts[i] + '/';
-    }
-    thumbnail += linkParts[linkParts.length - 1];
-
-    imgImg.src = thumbnail;
+    imgImg.src = img.link_mini;
     imgImg.setAttribute('itemprop', 'thumbnail');
 
     imgLink.appendChild(imgImg);

@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, 'build')));
-app.use('/hosted-images', express.static(path.join('/var', 'www', 'hosted-images')));
+app.use('/hosted_images', express.static(path.join('/var', 'www', 'hosted-images')));
 app.get('/', express.static(path.join(__dirname, 'build', 'index.html')));
 app.get("/teams", getTeamInfo);
 app.get("/spots", getRemainingSpots);
@@ -45,18 +45,30 @@ function getImageNames(req, res) {
 
   img_path = path.join(img_path, "**", "*." + file_ext); //for globbing
 
-  console.log("Path: " + img_path);
-
   glob(img_path, function(err, names) {
     var imgs = [];
     for(var i = 0; i < names.length; i++) {
+
       var size = imgSize(names[i]);
-      var temp = {
-        link: names[i].replace("/var/www/hosted-images", "hosted_images"),
+      //update file path so it works from browser
+      var filepath = names[i].replace("/var/www/hosted-images", "hosted_images");
+
+      //make filepath_mini;
+      var filepath_components = filepath.split('/'); 
+      // ^^ Produced [hosted_images, hackathon_0#, (filename).jpg]
+      filepath_components[1] += '_mini';
+
+      //reassemble path
+      var filepath_mini = filepath_components.join([separator = '/']);
+
+      var img = {
+        link: filepath,
+        link_mini: filepath_mini,
         width: size.width,
         height: size.height
       }
-      imgs.push(temp);
+      imgs.push(img);
+
     }
     res.send(imgs);
   });
@@ -64,7 +76,9 @@ function getImageNames(req, res) {
 
 function getRemainingSpots(req, res) {
   var remainingSpots = 0;
-  var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "?token=" + config.eventbrite.oathtoken;
+  var request_url = "https://www.eventbriteapi.com/v3/events/" + 
+      config.eventbrite.event_id + "?token=" + config.eventbrite.oathtoken;
+
   request(request_url, function(err, response, body) {
     if(!err && response.statusCode === 200) {
       body = JSON.parse(body);
@@ -129,7 +143,8 @@ function getUserResponse(questions) {
   };
 
   questions.forEach(function(answer) {
-    if(answer.question_id === "8622569") { //"question": "Would you like to have your team listed on our Team finder page?",
+    if(answer.question_id === "8622569") { 
+      //"question": "Would you like to have your team listed on our Team finder page?",
       if(answer.answer === "Yes, I am looking for additional members") {
         response.approved = true;
       }
@@ -175,12 +190,16 @@ function filterTeams(teams) {
 
 /************************************** EVENTBRITE API Requests **************************************/
 var requestTeams = function(callback) {
-  var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "/teams/?token=" + config.eventbrite.oathtoken;
+  var request_url = "https://www.eventbriteapi.com/v3/events/" + 
+      config.eventbrite.event_id + "/teams/?token=" + config.eventbrite.oathtoken;
+
   make_request(request_url, callback);
 };
 
 var requestAttendees = function(callback) {
-  var request_url = "https://www.eventbriteapi.com/v3/events/" + config.eventbrite.event_id + "/attendees/?token=" + config.eventbrite.oathtoken;
+  var request_url = "https://www.eventbriteapi.com/v3/events/" + 
+      config.eventbrite.event_id + "/attendees/?token=" + config.eventbrite.oathtoken;
+
   make_request(request_url, callback);
 };
 
@@ -240,17 +259,12 @@ var processResults = function(err, results) {
   if(!err) {
     var attendees = results[0];
     var teams = results[1];
-    console.log("Total attendees: " + attendees.length);
 
     teams = filterTeams(teams);
-    
     removeHiddenTeams(teams, attendees);
 
     approvedTeams = _teams;
     _teams = [];
-
-    console.log("Teams that need members: " + approvedTeams.length);
-
   } else {
     console.log("Error getting results: " + JSON.stringify(err));
   }

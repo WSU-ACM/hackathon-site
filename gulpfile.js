@@ -21,7 +21,6 @@ var imagemin = require('gulp-imagemin');
 var cssmin = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var print = require('gulp-print');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -84,17 +83,23 @@ gulp.task('static', ['clean-static'], function() {
     .pipe(rename(function(path) {
        path.basename += '-v' + version;  
     }))
-    .pipe(cssmin({processImport: false})) //will crash if it processes imports due to file renaming
+    .pipe(gulpif(!argv.nomin,
+      cssmin({processImport: false})
+    )) //will crash if it processes imports due to file renaming
     .pipe(gulp.dest(buildDir + styles));
 
   var jsStream = gulp.src(webDir + scripts + '**/*.*')
-    .pipe(uglify())
+    .pipe(gulpif(!argv.nomin,
+      uglify()
+    ))
     .pipe(sourcemaps.write())
     .pipe(replace('-v<version>', '-v' + version))
     .pipe(rename(function(path) {
        path.basename += '-v' + version;  
     }))
-    .pipe(replace("localhost:3000", "hackathon.eecs.wsu.edu/api"))
+    .pipe(gulpif(!argv.local, 
+      replace("localhost:3000", "hackathon.eecs.wsu.edu/api")
+    ))
     .pipe(gulp.dest(buildDir + scripts));
 
   var imgStream = gulp.src(webDir + 'images/**/*.*')
@@ -123,7 +128,7 @@ gulp.task('node-serv', function() {
   //If the --local argument is not passed in, it will remove the lines that allow for hosting
   gulp.src(['./server.js', './config.json'])
     .pipe(gulpif(!argv.local, 
-      replace(/app\.(use|get)\(('\/'|'\/hosted-images').*/ig, '')))
+      replace(/app\.(use|get)\(('\/'|'\/hosted_images').*/ig, '')))
     .pipe(gulp.dest(buildDir));
 
   //install npm dependencies
