@@ -21,6 +21,7 @@ var imagemin = require('gulp-imagemin');
 var cssmin = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+var imageResize = require('gulp-image-resize');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -248,6 +249,9 @@ gulp.task('copy-images', function(cb) {
     rl.question("Please enter your password: ", function(pass) {
       //copy and minify images
       gulp.src(hosted_images + '**/*.*') //get all images
+        .pipe(imageResize({
+          width: 250
+        }))
         .pipe(imagemin({optimizationLevel: 10}))
         .pipe(rename(function(path) {
           path.dirname += '_mini';
