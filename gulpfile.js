@@ -21,6 +21,9 @@ var imagemin = require('gulp-imagemin');
 var cssmin = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+var imageResize = require('gulp-image-resize');
+var fs = require('fs-extra');
+var glob = require('glob');
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -232,6 +235,8 @@ gulp.task('bump-patch', function() {
 gulp.task('copy-images', function(cb) {
   // Configure readline
   var readline = require('readline');
+  var scp = require('gulp-scp2');
+
   var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -240,33 +245,50 @@ gulp.task('copy-images', function(cb) {
   // Server settings
   var server = {
     'host': 'csg-gate.eecs.wsu.edu',
-    'port': 22
+    'port': 11993
   }
+
+  //copy and minify images
+  glob(hosted_images + '*', function(err, folders) {
+    folders.forEach(function(folder) {
+      fs.copySync('./' + folder, './' +folder + '_mini');
+      gulp.src(hosted_images + '@(*_mini)/*.*') //get all images
+        .pipe(imageResize({
+          width: 250
+        }))
+        .pipe(gulp.dest(function(file) {
+          var parts = file.history[0].split('/');
+          parts.splice(-2, 2); //remove the last two parts of the path
+          //Needed to keep image in same folder
+          var filedest = parts.join([separator = '/']);
+          return filedest;
+        }));
+    });
+  });
 
   // Get user account info
   rl.question("Please enter your username: ", function(username) {
     rl.question("Please enter your password: ", function(pass) {
-      //copy and minify images
-      gulp.src(hosted_images + '**/*.*') //get all images
-        .pipe(imagemin({optimizationLevel: 10}))
-        .pipe(rename(function(path) {
-          path.dirname += '_mini';
-        }))
-        .pipe(gulp.dest(hosted_images));
 
       //copy images to server
       gulp.src(hosted_images + '**/*.*') //get all images
-        .gulp(scp({
+        .pipe(scp({
           'host': server.host,
           'port': server.port,
           'username': username,
-          'password': pass
+          'password': pass,
+          'dest': '/var/www/hosted-images'  
         }))
         .on('error', function(err) {
           console.error("An error occured during copy: " + err)
+        })
+        .on('end', function() {
+          console.log("Images uploaded");
+          //del(hosted_images); //clear so we don't try to copy them over again
+          //Not working for some reason
         });
-      del(hosted_images); //clear so we don't try to copy them over again
-      cb();
+        console.log("Please clear the hosted-images folder so you don't have two copies on the server");
+        cb();
     });
   });
 });
