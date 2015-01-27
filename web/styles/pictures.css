@@ -15,10 +15,3 @@ figure a img {
   padding: 10px;
   max-width: 200px;
 }
-
-figure a img:hover {
-  -webkit-transform: scale(2.25);
-  -moz-transform: scale(2.25);
-  position: relative;
-  z-index: 5;
-}

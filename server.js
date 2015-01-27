@@ -265,6 +265,9 @@ var processResults = function(err, results) {
 
     approvedTeams = _teams;
     _teams = [];
+    //Make sure these are empty. They should be
+    attendees = [];
+    teams = [];
   } else {
     console.log("Error getting results: " + JSON.stringify(err));
   }
