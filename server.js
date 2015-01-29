@@ -53,13 +53,18 @@ function getImageNames(req, res) {
       //update file path so it works from browser
       var filepath = names[i].replace("/var/www/hosted-images", "hosted_images");
 
-      //make filepath_mini;
-      var filepath_components = filepath.split('/'); 
-      // ^^ Produced [hosted_images, hackathon_0#, (filename).jpg]
-      filepath_components[1] += '_mini';
+      //calculate minipath
+      var filepath_mini = filepath.replace(year, year + '_mini');
+      
+      /*
+        //make filepath_mini;
+        var filepath_components = filepath.split('/'); 
+        // ^^ Produced [hosted_images, hackathon_0#, (filename).jpg]
+        filepath_components[1] += '_mini';
 
-      //reassemble path
-      var filepath_mini = filepath_components.join([separator = '/']);
+        //reassemble path
+        var filepath_mini = filepath_components.join([separator = '/']);
+      */
 
       var img = {
         link: filepath,
@@ -95,7 +100,11 @@ function getRemainingSpots(req, res) {
 
 
 function getTeamInfo(req, res) {
-  res.send(approvedTeams);
+  if(new Date() > new Date(2015, 2, 8)) {
+    res.send([]);
+  } else {
+    res.send(approvedTeams);
+  }
 }
 
 /************************************** Team Processing Functions **************************************/
