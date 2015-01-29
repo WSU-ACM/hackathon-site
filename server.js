@@ -12,6 +12,7 @@ var path = require('path'),
   _teams = [],
   approvedTeams = [],
   fs = require('fs'),
+  afterHackathon = new Date(2015, 2, 8),
   glob = require('glob');
 
 
@@ -84,23 +85,29 @@ function getRemainingSpots(req, res) {
   var request_url = "https://www.eventbriteapi.com/v3/events/" + 
       config.eventbrite.event_id + "?token=" + config.eventbrite.oathtoken;
 
-  request(request_url, function(err, response, body) {
-    if(!err && response.statusCode === 200) {
-      body = JSON.parse(body);
-      body.ticket_classes.forEach(function addSeats(ticket_type) {
-        remainingSpots += ticket_type.quantity_sold;
-      });
-    } else {
-      console.log("Error: " + JSON.stringify(err));
-      console.log("response code: " + JSON.stringify(response.statusCode));
-    }
-    res.send({remainingSpots: (250 - remainingSpots)});
-  });
+  if(new Date() > afterHackathon) {
+    //after the hackathon, there are no spots
+    res.send({remainingSpots: 0});
+  } else {
+    request(request_url, function(err, response, body) {
+      if(!err && response.statusCode === 200) {
+        body = JSON.parse(body);
+        body.ticket_classes.forEach(function addSeats(ticket_type) {
+          remainingSpots += ticket_type.quantity_sold;
+        });
+      } else {
+        console.log("Error: " + JSON.stringify(err));
+        console.log("response code: " + JSON.stringify(response.statusCode));
+      }
+      res.send({remainingSpots: (250 - remainingSpots)});
+    });
+  }
 }
 
 
 function getTeamInfo(req, res) {
-  if(new Date() > new Date(2015, 2, 8)) {
+  //Don't send teams after the hackathon
+  if(new Date() > afterHackathon) {
     res.send([]);
   } else {
     res.send(approvedTeams);
@@ -286,11 +293,14 @@ var processResults = function(err, results) {
 function update() {
   var now = new Date();
   console.log("Updating at " + now.toLocaleString());
-  async.parallel([
-    requestAttendees,
-    requestTeams
-  ],
-  processResults);
+  //If it's before the hackathon, keep updating
+  if(now < afterHackathon) {
+    async.parallel([
+      requestAttendees,
+      requestTeams
+    ],
+    processResults);
+  }
 }
 
 // Log errors before crash
