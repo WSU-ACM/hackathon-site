@@ -41,7 +41,7 @@ ssh -p $ssh_port $user_name@$server_addr \
   mv $stage_dir $deploy_dir && \
   chown -R :web $deploy_dir && \
   chmod -R o-w $deploy_dir && \
-  pm2 restart all"
+  chmod -R g+w $deploy_dir"
 
 if [ $? -ne 0 ]; then
   echo
