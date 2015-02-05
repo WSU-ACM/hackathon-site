@@ -45,7 +45,7 @@ function getImageNames(req, res) {
   }
 
   img_path = path.join(img_path, "**", "*." + file_ext); //for globbing
-
+  console.log("Path: " + img_path);
   glob(img_path, function(err, names) {
     var imgs = [];
     for(var i = 0; i < names.length; i++) {
@@ -56,16 +56,6 @@ function getImageNames(req, res) {
 
       //calculate minipath
       var filepath_mini = filepath.replace(year, year + '_mini');
-      
-      /*
-        //make filepath_mini;
-        var filepath_components = filepath.split('/'); 
-        // ^^ Produced [hosted_images, hackathon_0#, (filename).jpg]
-        filepath_components[1] += '_mini';
-
-        //reassemble path
-        var filepath_mini = filepath_components.join([separator = '/']);
-      */
 
       var img = {
         link: filepath,
@@ -204,6 +194,13 @@ function filterTeams(teams) {
   return filtered;
 }
 
+function isObject(input) {
+  if(typeof(input) === 'object' && !Array.isArray(input)) {
+    return true;
+  }
+  return false;
+}
+
 /************************************** EVENTBRITE API Requests **************************************/
 var requestTeams = function(callback) {
   var request_url = "https://www.eventbriteapi.com/v3/events/" + 
@@ -246,28 +243,37 @@ function make_request(url, callback) {
     if(err) {
       callback(err); 
     }
-
-    var field = Object.keys(body)[1]; //gets the field after pagination
-    if(body.pagination.page_number < body.pagination.page_count) {
-      var results = body[field];
-      var tasks = [];
-
-      for(var i = 2; i <= body.pagination.page_count; i++) {
-        var pageURL = url + '&page=' + i;
-        tasks.push(async.apply(page, pageURL, field));
+    if(isObject(body)) {
+      try {
+        var field = Object.keys(body)[1]; //gets the field after pagination
+      } catch(e) {
+        console.log("Exception trying to get the keys of: " + body);
       }
+      
+      if(body.pagination.page_number < body.pagination.page_count) {
+        var results = body[field];
+        var tasks = [];
 
-      async.parallel(tasks, function(err, _results) {
+        for(var i = 2; i <= body.pagination.page_count; i++) {
+          var pageURL = url + '&page=' + i;
+          tasks.push(async.apply(page, pageURL, field));
+        }
 
-        _results.forEach(function(result) {
-          results = results.concat(result);
+        async.parallel(tasks, function(err, _results) {
+
+          _results.forEach(function(result) {
+            results = results.concat(result);
+          });
+
+          callback(err, results);
         });
-
-        callback(err, results);
-      });
+      } else {
+        callback(err, body[field]);
+      }
     } else {
-      callback(err, body[field]);
+      console.log("Body is a: " + typeof(body));
     }
+    
   }); 
 }
 
