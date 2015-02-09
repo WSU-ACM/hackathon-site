@@ -129,15 +129,15 @@ gulp.task('static', ['clean-static'], function() {
 gulp.task('node-serv', function() {
   //Copy server and config file over
   //If the --local argument is not passed in, it will remove the lines that allow for hosting
-  gulp.src(['./server.js', './config.json'])
-    .pipe(gulpif(!argv.local, 
-      replace(/app\.(use|get)\(('\/'|'\/hosted_images').*/ig, '')))
-    .pipe(gulp.dest(buildDir));
+  //gulp.src(['./server.js', './config.json'])
+  //  .pipe(gulpif(!argv.local,
+  //    replace(/app\.(use|get)\(('\/'|'\/hosted_images').*/ig, '')))
+  //  .pipe(gulp.dest(buildDir));
 
   //install npm dependencies
-  gulp.src('./package.json')
-    .pipe(gulp.dest(buildDir))
-    .pipe(install({production: true}));
+  //gulp.src('./package.json')
+  //  .pipe(gulp.dest(buildDir))
+  //  .pipe(install({production: true}));
 });
 
 /*

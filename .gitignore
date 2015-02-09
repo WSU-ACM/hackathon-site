@@ -17,5 +17,3 @@ logs
 build/
 hosted-images/
 
-### Config File ###
-config.json
