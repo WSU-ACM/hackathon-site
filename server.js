@@ -12,7 +12,7 @@ var path = require('path'),
   _teams = [],
   approvedTeams = [],
   fs = require('fs'),
-  afterHackathon = new Date(2015, 2, 8),
+  afterHackathon = new Date(2015, 1, 8),
   glob = require('glob');
 
 
@@ -298,9 +298,9 @@ var processResults = function(err, results) {
 
 function update() {
   var now = new Date();
-  console.log("Updating at " + now.toLocaleString());
   //If it's before the hackathon, keep updating
   if(now < afterHackathon) {
+    console.log("Updating at " + now.toLocaleString());
     async.parallel([
       requestAttendees,
       requestTeams
