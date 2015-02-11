@@ -40,7 +40,7 @@ Build Instructions
    ```configs/api-server-config.json```. Fill in the Eventbrite eventId and
    oathToken params with suitable values. Whatever you do, do NOT add the
    Eventbrite credentials to the ```default-api-server-config.json``` file and
-   commit it into the repo!
+   proceed to commit it into the repo!
 
 6. At this point, building and serving is as easy as calling
    ```
