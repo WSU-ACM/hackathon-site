@@ -13,25 +13,38 @@ Build Instructions
    and then reload your shell.
 
 2. Install gulp.
-  ```
-  sudo npm install gulp -g
-  ```
+   ```
+   sudo npm install gulp -g
+   ```
 
-3. Grab the dependencies.
-  ```
-  npm install
-  ```
+3. Grab the dependencies. This may occasionally have to be rerun as we update
+   the site and add additional dependencies.
+   ```
+   npm install
+   ```
 
-4. Run gulp.
-  ```
-  gulp
-  ```
+4. Install Jekyll. If you already have ruby, and ruby gems installed,
+   this can be as simple as running
+   ```
+   gem install jekyll
+   ```
+   If not, jekyll may be in your distro's repositories
+   (a big maybe as it will probably be an old version) or you can
+   choose to take the recommended route and
+   install ruby from scratch. To do that use [RVM](rvm.io).
+   Whichever way you decide, the oldest version of
+   Jekyll known to work is 2.5.3.
 
-5. The website assets will have been built and copied into a newly created
-   directory called ```build```. From there you can serve the files using
-   your favorite web development server. If you leave gulp running, it will
-   rerun when it senses any file changes. To only do a build with no file
-   watching, run ```gulp build```.
+5. At this point, building and serving is as easy as calling
+   ```
+   ./serve.sh
+   ```
+   This script will build and copy the assets into a
+   directory called ```build```. From there they will be served at the address
+   http://localhost:3030. The build will automatically be rerun as you make
+   file changes and all you'll have to do is refresh your web page =)
+   To only do a build with no file
+   watching or serving, run ```jekyll build -s web -d build```.
 
 
 Deploy Instructions
