@@ -1,4 +1,6 @@
-@import "common-v<version>.css";
+@import "common.css";
+@import "photoswipe/photoswipe.css";
+@import "photoswipe/default-skin.css";
 
 .gallery {
   text-align: center;

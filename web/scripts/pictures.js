@@ -181,7 +181,7 @@ function findGalleries(callback) {
 function getImagesForGalleries(galleries) {
   function imgRequest(options, callback) {
     var url;
-    var baseURL = "http://localhost:3000/imgs";
+    var baseURL = "/api/imgs";
     if(options.year && options.ext) {
       url = baseURL + "?year=" + options.year + "&ext=" + options.ext;
     } else if(options.year) {
@@ -190,8 +190,13 @@ function getImagesForGalleries(galleries) {
       url = baseURL + "?ext=" + options.ext;
     }
 
-    $.getJSON(url, callback);
-  };
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+      callback(JSON.parse(request.response));
+    };
+    request.open("GET", url);
+    request.send();
+  }
 
   function getImgsForGallery(gallery) {
     imgRequest({year: gallery.id}, function(imgs) {
