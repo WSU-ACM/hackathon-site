@@ -1,6 +1,6 @@
 build/
 hosted-images/
-api-server-config.json
+configs/api-server-config.json
 _site/
 
 ### Node ###
