@@ -3,7 +3,7 @@
 
 Build Instructions
 ------------------
-1. Install nodejs and npm. This will be dependant upon your system. Note that for
+1. Install Node.js and npm. This will be dependant upon your system. Note that for
    those new to node on Debian systems, the nodejs-legacy package
    will probably be required. It's also probably worthwhile to update npm to
    the most latest version with:
@@ -28,7 +28,7 @@ Build Instructions
    ```
    gem install jekyll
    ```
-   If not, jekyll may be in your distro's repositories
+   If not, Jekyll may be in your distro's repositories
    (a big maybe as it will probably be an old version) or you can
    choose to take the recommended route and
    install ruby from scratch. To do that use [RVM](rvm.io).
