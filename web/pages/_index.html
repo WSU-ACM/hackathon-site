@@ -296,7 +296,7 @@
 
 <script type="text/javascript">
   function updateOdometer() {
-    $.getJSON("http://localhost:3000/spots",
+    $.getJSON("/api/spots",
       function(spots) {
         var numSpots = spots.remainingSpots;
         var button = document.getElementById("register-button");

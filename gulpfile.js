@@ -24,6 +24,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var imageResize = require('gulp-image-resize');
 var fs = require('fs-extra');
 var glob = require('glob');
+var hackathonApiServer = require('hackathon-api-server');
+var apiServerConfig = require('./api-server-config.json')
 
 
 /** !!!! Critical Configuration Variables !!!! **/
@@ -100,9 +102,9 @@ gulp.task('static', ['clean-static'], function() {
     .pipe(rename(function(path) {
        path.basename += '-v' + version;  
     }))
-    .pipe(gulpif(!argv.local, 
-      replace("localhost:3000", "hackathon.eecs.wsu.edu/api")
-    ))
+    //.pipe(gulpif(!argv.local,
+    //  //replace("localhost:3000", "hackathon.eecs.wsu.edu/api")
+    //))
     .pipe(gulp.dest(buildDir + scripts));
 
   var imgStream = gulp.src(webDir + 'images/**/*.*')
@@ -127,6 +129,7 @@ gulp.task('static', ['clean-static'], function() {
 });
 
 gulp.task('node-serv', function() {
+  hackathonApiServer.startServer(apiServerConfig);
   //Copy server and config file over
   //If the --local argument is not passed in, it will remove the lines that allow for hosting
   //gulp.src(['./server.js', './config.json'])
@@ -162,7 +165,7 @@ gulp.task('handle-bars', ['clean', 'static'], function() {
 
           //Makes it easier to move to production
           if(!argv.local) {
-            page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
+            //page.content = page.content.replace("localhost:3000", "hackathon.eecs.wsu.edu/api");
           }
 
           // Replace filename with version for cache breaking
