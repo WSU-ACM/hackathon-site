@@ -1,7 +1,6 @@
 build/
 hosted-images/
 configs/api-server-config.json
-_site/
 
 ### Node ###
 logs

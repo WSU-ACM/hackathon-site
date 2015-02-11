@@ -1,38 +1,59 @@
 // Imports
-var del = require('del');
-var path = require('path');
-var eventStream = require('event-stream');
-var gulp = require('gulp');
-var handlebars = require('handlebars');
-var jshint = require('gulp-jshint');
-var map = require('map-stream');
-var rename = require('gulp-rename');
-var streamqueue = require('streamqueue');
-var stylish = require('jshint-stylish');
-var watch = require('gulp-watch');
-var bump = require('gulp-bump');
-var seq = require('run-sequence');
-var replace = require('gulp-replace');
-var install = require('gulp-install');
-var argv = require('yargs').argv;
-var gulpif = require('gulp-if');
-var version = require('./package.json').version;
-var imagemin = require('gulp-imagemin');
-var cssmin = require('gulp-minify-css');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var imageResize = require('gulp-image-resize');
-var fs = require('fs-extra');
-var glob = require('glob');
-var hackathonApiServer = require('hackathon-api-server');
-var apiServerConfig = require('./configs/api-server-config.json')
+var apiServerConfig = require('./configs/api-server-config.json'),
+    bump = require('gulp-bump'),
+    express = require('express'),
+    fs = require('fs-extra'),
+    glob = require('glob'),
+    gulp = require('gulp'),
+    hackathonApiServer = require('hackathon-api-server'),
+    http = require('http'),
+    httpProxy = require('http-proxy'),
+    imageResize = require('gulp-image-resize'),
+    url = require('url'),
+    version = require('./package.json').version;
 
+var API_PORT = 3000;
+var HOSTED_IMAGES_DIR = 'hosted-images';
+var HOSTED_IMAGES_SERV_PORT = 3031;
+var JEKYLL_SERV_PORT = 4000;
+var PROXY_PORT = 3030;
+
+gulp.task('dev-server', function() {
+  runImageServer();
+  runProxyServer();
+
+  function runProxyServer() {
+    var proxy = httpProxy.createProxyServer({});
+
+    http.createServer(function (req, res) {
+      var rootPath = url.parse(req.url).pathname.split('/')[1];
+      if (rootPath === 'api') {
+        proxy.web(req, res, { target: 'http://127.0.0.1:' + API_PORT });
+      } else if (rootPath === 'hosted_images') {
+        proxy.web(req, res, { target: 'http://127.0.0.1:' + HOSTED_IMAGES_SERV_PORT });
+      } else {
+        proxy.web(req, res, { target: 'http://127.0.0.1:' + JEKYLL_SERV_PORT });
+      }
+    }).listen(PROXY_PORT, function() {
+      console.log('Server loaded. Open http://localhost:' + PROXY_PORT + ' in your browser');
+    });
+  }
+
+  function runImageServer() {
+    var imageServerConfig = express();
+    imageServerConfig.use('/hosted_images', express.static(HOSTED_IMAGES_DIR));
+    var imageServer = http.createServer(imageServerConfig);
+    imageServer.listen(HOSTED_IMAGES_SERV_PORT, function() {
+      console.log('Serving ' + HOSTED_IMAGES_DIR + ' on port ' + HOSTED_IMAGES_SERV_PORT);
+    })
+  }
+});
 
 gulp.task('node-serv', function() {
   hackathonApiServer.startServer(apiServerConfig);
 });
 
-gulp.task('default', ['node-serv']);
+gulp.task('default', ['node-serv', 'dev-server']);
 
 /******************************************** Version MGMT ********************************************/
 function bumpIt(type) {
