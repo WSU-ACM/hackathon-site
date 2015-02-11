@@ -1,5 +1,5 @@
-@import "normalize-v<version>.css";
-@import "header-v<version>.css";
+@import "normalize.css";
+@import "header.css";
 @import url("http://fonts.googleapis.com/css?family=Droid+Sans:400,700");
 
 h1, h2, h3, h4, h5, h6 {

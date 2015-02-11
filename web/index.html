@@ -1,19 +1,14 @@
-<!-- Required for the odometer -->
-<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
-<script src="http://github.hubspot.com/odometer/odometer.js"></script>
-
+---
+layout: default
+title: WSU Hackathon
+css: index.css
+---
 <p class="intro-para">
   The WSU EECS 3rd Annual Hackathon is coming up on February 7th &amp; 8th!
   The Hackathon is a great opportunity to start a cool project,
   win cool prizes, meet cool people, and build your resume! This will be our 
   largest hackathon yet with 250 people hacking for a full 24 hours.
 </p>
-
-<a id="register-button"
-   href="https://eecs-hackathon-2015.eventbrite.com" target="_blank">
-    Register Now! Only <div id="odometer" class="odometer">250</div> spots left!
-</a>
-
 
 <ul id="connect-list">
   <li class="left">
@@ -29,7 +24,7 @@
        data-show-count="false"
        data-size="large"
        data-dnt="true">Follow @wsuhackathon</a>
-    <script type="application/javascript" src="scripts/twitter_follow-v<version>.js"></script>
+    <script type="application/javascript" src="scripts/twitter_follow.js"></script>
   </li>
   <li class="right">
     <a class="center"
@@ -270,12 +265,10 @@
   <div id="platinum" class="sponsor-category"> 
     <div class="logo"><img src="images/sponsors/intel.png"></div>
     <div class="logo"><img src="images/sponsors/AWS.jpg"></div>
-  </section>
+  </div>
   <div id="silver" class="sponsor-category">
     <div class="logo"><img src="images/sponsors/Isilon.jpg"></div>
   </div>
-  <!--<div id="gold" class="sponsor-category">
-  </div>-->
   <div id="bronze" class="sponsor-category">
     <div class="logo"><img src="images/sponsors/iSec.png"></div>
     <div class="logo"><img src="images/sponsors/Starbucks.png"></div>
@@ -293,35 +286,3 @@
     <div class="logo"><img src="images/sponsors/strideline.jpg"></div>
   </div>
 </section>
-
-<script type="text/javascript">
-  function updateOdometer() {
-    $.getJSON("/api/spots",
-      function(spots) {
-        var numSpots = spots.remainingSpots;
-        var button = document.getElementById("register-button");
-        odometer.innerHTML = numSpots;
-        window.setTimeout(updateButtonText, 2010, button, numSpots);
-     });
-  }
-  function updateButtonText(button, spots) {
-    if(spots === 0) {        
-      button.innerHTML = button.innerHTML.replace("Register Now! Only", "Sold Out!")
-      button.className = "soldout";
-    } else {
-      //make sure there is no sold out text
-      button.innerHTML = button.innerHTML.replace("Sold Out!", "Register Now! Only");
-      button.className = "";
-    }
-
-    // Make sure the correct pluraity (sp) is used on spot
-    if(spots === 1) {
-      button.innerHTML = button.innerHTML.replace("spots ", "spot ");
-    } else {
-      button.innerHTML = button.innerHTML.replace("spot ", "spots ");
-    }
-  }
-
-  updateOdometer(); //update immediately
-  window.setInterval(updateOdometer, 15 * 1000); //update every 15 seconds
-</script>
