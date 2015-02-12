@@ -53,7 +53,7 @@ Build Instructions
    To only do a build with no file
    watching or serving, run ```jekyll build -s web -d build```.
 
-*Bonus:*
+***Bonus:***  
 If you've downloaded the source for the
 [api server](https://github.com/WSU-ACM/hackathon-api-server) you can have Node
 directly link into it so you don't continually have to be pushing code around.
