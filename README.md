@@ -3,6 +3,13 @@
 
 Build Instructions
 ------------------
+#### Short Story
+If you've installed and configured everything, generally all you'll need is these two commands:
+```sh
+npm install  ## Grab any missing dependencies
+./serve.sh   ## Start the dev server at http://localhost:3030
+```
+#### Long Story
 1. Install Node.js and npm. This will be dependant upon your system. Note that for
    those new to node on Debian systems, the nodejs-legacy package
    will probably be required. It's also probably worthwhile to update npm to
@@ -29,9 +36,9 @@ Build Instructions
    gem install jekyll
    ```
    If not, Jekyll may be in your distro's repositories
-   (a big maybe as it will probably be an old version) or you can
+   (a big maybe as it will probably be an older version) or you can
    choose to take the recommended route and
-   install ruby from scratch. To do that use [RVM](rvm.io).
+   install ruby from scratch. Most people use [RVM](rvm.io) to do that.
    Whichever way you decide, the oldest version of
    Jekyll known to work is 2.5.3.
 
@@ -56,9 +63,9 @@ Build Instructions
 
 ***Bonus:***  
 If you've downloaded the source for the
-[api server](https://github.com/WSU-ACM/hackathon-api-server) you can have Node
+[api server](https://github.com/WSU-ACM/hackathon-api-server) you can have npm
 directly link into it so you don't continually have to be pushing code around.
-To do this run the following in the directory of the hackathon-api-server source
+To do this, run the following in the directory of the hackathon-api-server source
 ```
 sudo npm link
 ```
