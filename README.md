@@ -48,7 +48,8 @@ Build Instructions
    ```
    This script will build and copy the assets into a
    directory called ```build```. From there they will be served at the address
-   http://localhost:3030. The build will automatically be rerun as you make
+   [http://localhost:3030](http://localhost:3030). The build will automatically 
+   be rerun as you make
    file changes and all you'll have to do is refresh your web page =)
    To only do a build with no file
    watching or serving, run ```jekyll build```.
