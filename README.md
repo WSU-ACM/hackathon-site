@@ -51,7 +51,7 @@ Build Instructions
    http://localhost:3030. The build will automatically be rerun as you make
    file changes and all you'll have to do is refresh your web page =)
    To only do a build with no file
-   watching or serving, run ```jekyll build -s web -d build```.
+   watching or serving, run ```jekyll build```.
 
 ***Bonus:***  
 If you've downloaded the source for the

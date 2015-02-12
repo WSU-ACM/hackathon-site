@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-jekyll serve -s web -d build &
+jekyll serve &
 gulp
 
 clean_up() {
