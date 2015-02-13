@@ -88,8 +88,12 @@ Other Info
 When adding logos and other graphics it's best to minify/compress them first
 before adding them to the repo. To do this, use imagemin.
 It's available through npm and can be installed by running
-```sudo npm install -g imagemin```.
+```
+sudo npm install -g imagemin
+```
 Then compress the image by running the command
-```imagemin my-bloated-image.img-ext web/assets/images/wherever-its-going```.
+```
+imagemin my-bloated-image.img-ext web/assets/images/wherever-its-going
+```
 Once you do that, verify that it looks fine and then commit it to the repo.
 
