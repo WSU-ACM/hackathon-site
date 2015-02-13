@@ -7,7 +7,7 @@ server {
   server_name hackathon.eecs.wsu.edu;
 
   location / {
-    add_header Cache-Control "public, max-age=600, must-revalidate";
+    add_header Cache-Control "public, max-age=300, must-revalidate";
     autoindex off;
   }
 
