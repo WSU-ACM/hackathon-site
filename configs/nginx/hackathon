@@ -13,7 +13,7 @@ server {
 
   location /hosted_images/ {
     alias /var/www/hosted-images/;
-    autoindex off;
+    autoindex on;
     allow all;
   }
 
