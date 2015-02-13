@@ -6,7 +6,7 @@ Build Instructions
 #### Short Story
 If you've installed and configured everything, generally all you'll need is these two commands:
 ```sh
-npm install  ## Grab any missing dependencies
+./install-deps.sh  ## Grab any missing dependencies
 ./serve.sh   ## Start the dev server at http://localhost:3030
 ```
 #### Long Story
@@ -24,13 +24,19 @@ npm install  ## Grab any missing dependencies
    sudo npm install gulp -g
    ```
 
-3. Grab the dependencies. This may occasionally have to be rerun as we update
-   the site and add additional dependencies.
+3. Install ruby. Most people use [RVM](rvm.io) to do that.
+   It's also important in ruby to install the bundler package with
    ```
-   npm install
+   gem install bundler
    ```
 
-4. Configure the API server. Start with the file at ```node_modules/hackathon-api-server/sample-api-server-config.json```
+4. Grab the dependencies. This may occasionally have to be rerun as we update
+   the site and add additional dependencies.
+   ```
+   ./install-deps.sh
+   ```
+
+5. Configure the API server. Start with the file at ```node_modules/hackathon-api-server/sample-api-server-config.json```
    and copy it to ```api-server-config.json```.
    Fill in the Eventbrite eventId and
    oathToken params with suitable values. After setting up the config,
@@ -39,18 +45,6 @@ npm install  ## Grab any missing dependencies
    ```
    node_modules/hackathon-api-server/seed-hosted-images.sh
    ```
-
-5. Install Jekyll. If you already have ruby, and ruby gems installed,
-   this can be as simple as running
-   ```
-   gem install jekyll
-   ```
-   If not, Jekyll may be in your distro's repositories
-   (a big maybe as it will probably be an older version) or you can
-   choose to take the recommended route and
-   install ruby from scratch. Most people use [RVM](rvm.io) to do that.
-   Whichever way you decide, the oldest version of
-   Jekyll known to work is 2.5.3.
 
 6. At this point, building and serving is as easy as calling
    ```
