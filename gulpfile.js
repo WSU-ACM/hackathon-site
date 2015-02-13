@@ -1,5 +1,5 @@
 // Imports
-var apiServerConfig = require('./configs/api-server-config.json'),
+var apiServerConfig = require('./api-server-config.json'),
     bump = require('gulp-bump'),
     express = require('express'),
     fs = require('fs-extra'),

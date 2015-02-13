@@ -1,10 +1,10 @@
 build/
 hosted-images/
-configs/api-server-config.json
+api-server-config.json
 
-### Node ###
+## Node.js
 logs
 *.log
 
-### NPM ###
-/node_modules/
+## npm
+node_modules/

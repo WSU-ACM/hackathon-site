@@ -31,15 +31,14 @@ npm install  ## Grab any missing dependencies
    ```
 
 4. Configure the API server. Start with the file at
-   ```configs/default-api-server-config.json``` and copy it to
-   ```configs/api-server-config.json```. Fill in the Eventbrite eventId and
-   oathToken params with suitable values. Whatever you do, do NOT add the
-   Eventbrite credentials to the ```default-api-server-config.json``` file and
-   proceed to commit it into the repo! After setting up the config, you'll need
-   to grab some images to put in your hosted-images directory.
+   ```node_modules/hackathon-api-server/default-api-server-config.json```
+   and copy it to ```api-server-config.json```.
+   Fill in the Eventbrite eventId and
+   oathToken params with suitable values. After setting up the config,
+   you'll need to grab some images to put in your hosted-images directory.
    This can be done simply enough by running
    ```
-   ./seed-hosted-images.sh
+   node_modules/hackathon-api-server/seed-hosted-images.sh
    ```
 
 5. Install Jekyll. If you already have ruby, and ruby gems installed,
