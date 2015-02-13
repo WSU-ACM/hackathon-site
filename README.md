@@ -30,8 +30,7 @@ npm install  ## Grab any missing dependencies
    npm install
    ```
 
-4. Configure the API server. Start with the file at
-   ```node_modules/hackathon-api-server/default-api-server-config.json```
+4. Configure the API server. Start with the file at ```node_modules/hackathon-api-server/sample-api-server-config.json```
    and copy it to ```api-server-config.json```.
    Fill in the Eventbrite eventId and
    oathToken params with suitable values. After setting up the config,
