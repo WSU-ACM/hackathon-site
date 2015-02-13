@@ -18,7 +18,7 @@ failure() {
 }
 trap failure SIGHUP SIGINT SIGTERM
 
-jekyll build
+jekyll build --config _config.production.yml
 if [ $? -ne 0 ]; then failure; fi
 
 echo

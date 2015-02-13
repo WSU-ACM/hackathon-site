@@ -1,0 +1,4 @@
+destination: build
+gems:
+  - jekyll-minifier
+source: web
