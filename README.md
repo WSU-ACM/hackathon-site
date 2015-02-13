@@ -30,7 +30,19 @@ npm install  ## Grab any missing dependencies
    npm install
    ```
 
-4. Install Jekyll. If you already have ruby, and ruby gems installed,
+4. Configure the API server. Start with the file at
+   ```configs/default-api-server-config.json``` and copy it to
+   ```configs/api-server-config.json```. Fill in the Eventbrite eventId and
+   oathToken params with suitable values. Whatever you do, do NOT add the
+   Eventbrite credentials to the ```default-api-server-config.json``` file and
+   proceed to commit it into the repo! After setting up the config, you'll need
+   to grab some images to put in your hosted-images directory.
+   This can be done simply enough by running
+   ```
+   ./seed-hosted-images.sh
+   ```
+
+5. Install Jekyll. If you already have ruby, and ruby gems installed,
    this can be as simple as running
    ```
    gem install jekyll
@@ -41,13 +53,6 @@ npm install  ## Grab any missing dependencies
    install ruby from scratch. Most people use [RVM](rvm.io) to do that.
    Whichever way you decide, the oldest version of
    Jekyll known to work is 2.5.3.
-
-5. Configure the API server. Start with the file at
-   ```configs/default-api-server-config.json``` and copy it to
-   ```configs/api-server-config.json```. Fill in the Eventbrite eventId and
-   oathToken params with suitable values. Whatever you do, do NOT add the
-   Eventbrite credentials to the ```default-api-server-config.json``` file and
-   proceed to commit it into the repo!
 
 6. At this point, building and serving is as easy as calling
    ```
