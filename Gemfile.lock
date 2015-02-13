@@ -73,4 +73,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll-minifier
+  jekyll (~> 2.5.3)
+  jekyll-minifier (~> 0.0.2)
