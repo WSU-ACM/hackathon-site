@@ -23,7 +23,7 @@ server {
     proxy_set_header Host $http_host;
     proxy_set_header X-NginX-Proxy true;
 
-    proxy_pass http://node_api/;
+    proxy_pass http://node_api$request_uri;
     proxy_redirect off;
   }
 }
