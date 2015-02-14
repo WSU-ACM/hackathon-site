@@ -32,7 +32,7 @@
     "gulp-sourcemaps": "~1.3.0",
     "gulp-uglify": "~1.1.0",
     "gulp-watch": "~3.0.0",
-    "hackathon-api-server": "git+https://github.com/dylanPowers/hackathon-api-server.git",
+    "hackathon-api-server": "git+https://github.com/WSU-ACM/hackathon-api-server.git",
     "http-proxy": "~1.8.1",
     "jshint-stylish": "~1.0.0",
     "map-stream": "~0.0.5",

@@ -36,14 +36,14 @@ If you've installed and configured everything, generally all you'll need is thes
    ./install-deps.sh
    ```
 
-5. Configure the API server. Start with the file at ```node_modules/hackathon-api-server/sample-api-server-config.json```
+5. Configure the API server. Start with the file at ```node_modules/hackathon-api-server/conf/sample-api-server-config.json```
    and copy it to ```api-server-config.json```.
    Fill in the Eventbrite eventId and
    oathToken params with suitable values. After setting up the config,
    you'll need to grab some images to put in your hosted-images directory.
    This can be done simply enough by running
    ```
-   node_modules/hackathon-api-server/seed-hosted-images.sh
+   node_modules/hackathon-api-server/bin/seed-hosted-images.sh
    ```
 
 6. At this point, building and serving is as easy as calling
