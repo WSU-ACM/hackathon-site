@@ -1,7 +1,5 @@
 @import "common.css";
 
-}
-
 .captain-name {
     text-transform: capitalize;
 }
@@ -20,7 +18,7 @@
     font-size: 22px;
     font-weight: 800;
     background-color: #981e32;
-    width 100%;
+    width: 100%;
     color: #fff;
 }
 
