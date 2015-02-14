@@ -19,7 +19,6 @@ header {
 
 #banner-elements {
   max-width: 1120px;
-  width: 100%;
 }
 
 #cougar-logo {
@@ -81,6 +80,7 @@ header {
   }
 
   #hackathon-slogan {
+    clear: both;
     float: none;
     font-size: 32px;
     line-height: 32px;
@@ -98,6 +98,7 @@ header {
   #master-nav menuitem {
     width: 33%;
   }
+
   menuitem.mobile-hidden {
     display: none;
   } 
