@@ -1,4 +1,4 @@
 destination: build
 source: web
 jekyll-minifier:
-  exclude: '.*/**'
+  exclude: '*'
