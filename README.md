@@ -7,7 +7,7 @@ Build Instructions
 If you've installed and configured everything, generally all you'll need is these two commands:
 ```sh
 ./install-deps.sh  ## Grab any missing dependencies
-./serve.sh   ## Start the dev server at http://localhost:3030
+./serve.sh         ## Start the dev server at http://localhost:3030
 ```
 #### Long Story
 1. Install Node.js and npm. This will be dependant upon your system. Note that for
