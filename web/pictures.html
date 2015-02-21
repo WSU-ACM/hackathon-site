@@ -65,7 +65,9 @@ css: pictures.css
     <p>
       We will add pictures as they become available. 
     </p>
-    <div id="hackathon_03" class="gallery" itemscope itemtype="http://schema.org/ImageGallery"></div>
+    <div id="hackathon_03" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+      <button id="hackathon_03_button" onclick="loadMore(hackathon_03)">Load More</button>
+    </div>
   </section>
 
   <section id="gallery-wrapper">
@@ -82,7 +84,9 @@ css: pictures.css
       So we don't use ALL the bandwidth, we use a thumbnail hosted in hackathon_02_mini (<id> + '_mini')
     -->
 
-    <div id="hackathon_02" class="gallery" itemscope itemtype="http://schema.org/ImageGallery"></div>
+    <div id="hackathon_02" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+      <button id="hackathon_02_button" onclick="loadMore(hackathon_02)">Load More</button>
+    </div>
   </section>
 </section>
 

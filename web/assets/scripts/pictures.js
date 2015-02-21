@@ -178,17 +178,31 @@ function findGalleries(callback) {
   callback(galleries);
 }
 
+
+//contains some data about the galleries
+var img_galleries = {};
+
+function loadMore(gallery) {
+  getImagesForGalleries([gallery]);
+}
+
 function getImagesForGalleries(galleries) {
+  function moreButton(galleryID, show) {
+    console.log("button: " + galleryID + "_button");
+    var button = document.getElementById(galleryID + '_button');
+
+    if(show) {
+      button.style.display = "block";
+    } else {
+      button.style.display = "none";
+    }
+  }
+
   function imgRequest(options, callback) {
     var url;
     var baseURL = "/api/imgs";
-    if(options.year && options.ext) {
-      url = baseURL + "?year=" + options.year + "&ext=" + options.ext;
-    } else if(options.year) {
-      url = baseURL + "?year=" + options.year;
-    } else if(options.ext) {
-      url = baseURL + "?ext=" + options.ext;
-    }
+
+    url = baseURL + toQueryString(options);
 
     var request = new XMLHttpRequest();
     request.onload = function() {
@@ -199,8 +213,22 @@ function getImagesForGalleries(galleries) {
   }
 
   function getImgsForGallery(gallery) {
-    imgRequest({year: gallery.id}, function(imgs) {
+    console.log("Skip for " + gallery.id + " is " + img_galleries[gallery.id])
+    var skip = img_galleries[gallery.id] || 0;
+    
+    if(skip === 0) {
+      // initialze the value
+      img_galleries[gallery.id] = 0;
+    }
+
+    imgRequest({year: gallery.id, skip: skip}, function(response) {
       //console.log(imgs.length + " images for " + gallery.id);
+      var imgs = response.imgs;
+      
+      moreButton(gallery.id, response.moreImages);
+
+      img_galleries[gallery.id] += imgs.length;
+
       if(imgs.length > 0) {
         addImagesToGallery(gallery, imgs, function() {
           initPhotoSwipeFromDOM('#' + gallery.id);
@@ -222,6 +250,7 @@ function addImagesToGallery(gallery, imgs, callback) {
     var imgFigure = document.createElement("figure");
     var imgLink   = document.createElement("a");
     var imgImg    = document.createElement("img");
+    var button    = document.getElementById(gallery.id + "_button");
 
     imgFigure.setAttribute('itemprop', 'associatedMedia');
     imgFigure.setAttribute('itemscope', 'null');
@@ -238,7 +267,7 @@ function addImagesToGallery(gallery, imgs, callback) {
 
     imgLink.appendChild(imgImg);
     imgFigure.appendChild(imgLink);
-    gallery.appendChild(imgFigure);
+    gallery.insertBefore(imgFigure, button);
   }
 
   //process each image
@@ -247,6 +276,21 @@ function addImagesToGallery(gallery, imgs, callback) {
   }
   callback();
 
+}
+
+function toQueryString(params) {
+  var keys = Object.keys(params);
+  var qs = "";
+
+  for(var i = 0; i < keys.length; i++) {
+    if(i === 0) {
+      qs += "?" + keys[i] + "=" + params[keys[i]];
+    } else {
+      qs += "&" + keys[i] + "=" + params[keys[i]];
+    }
+  }
+  console.log("qs: " + qs);
+  return qs;
 }
 
 findGalleries(getImagesForGalleries);
