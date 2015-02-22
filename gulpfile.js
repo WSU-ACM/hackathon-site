@@ -8,12 +8,12 @@ var apiServerConfig = require('./api-server-config.json'),
     hackathonApiServer = require('hackathon-api-server'),
     http = require('http'),
     httpProxy = require('http-proxy'),
-    imageResize = require('gulp-image-resize'),
+    print = require('gulp-print'),
     url = require('url'),
     version = require('./package.json').version;
 
 var API_PORT = 3000;
-var HOSTED_IMAGES_DIR = 'hosted-images';
+var HOSTED_IMAGES_DIR = '/var/www/hosted-images';
 var HOSTED_IMAGES_SERV_PORT = 3031;
 var JEKYLL_SERV_PORT = 4000;
 var PROXY_PORT = 3030;
@@ -76,63 +76,43 @@ gulp.task('bump-patch', function() {
 });
 
 /******************************************** Server Communication ********************************************/
-gulp.task('copy-images', function(cb) {
+gulp.task('min-images', function(cb) {
   // Configure readline
-  var readline = require('readline');
-  var scp = require('gulp-scp2');
-
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  // Server settings
-  var server = {
-    'host': 'csg-gate.eecs.wsu.edu',
-    'port': 11993
-  }
+  var gulpSharp = require('gulp-sharp');
 
   //copy and minify images
-  glob(hosted_images + '*', function(err, folders) {
+  glob(HOSTED_IMAGES_DIR + '/*', function(err, folders) {
     folders.forEach(function(folder) {
-      fs.copySync('./' + folder, './' +folder + '_mini');
-      gulp.src(hosted_images + '@(*_mini)/*.*') //get all images
-        .pipe(imageResize({
-          width: 250
-        }))
-        .pipe(gulp.dest(function(file) {
-          var parts = file.history[0].split('/');
-          parts.splice(-2, 2); //remove the last two parts of the path
-          //Needed to keep image in same folder
-          var filedest = parts.join([separator = '/']);
-          return filedest;
-        }));
-    });
-  });
-
-  // Get user account info
-  rl.question("Please enter your username: ", function(username) {
-    rl.question("Please enter your password: ", function(pass) {
-
-      //copy images to server
-      gulp.src(hosted_images + '**/*.*') //get all images
-        .pipe(scp({
-          'host': server.host,
-          'port': server.port,
-          'username': username,
-          'password': pass,
-          'dest': '/var/www/hosted-images'  
-        }))
-        .on('error', function(err) {
-          console.error("An error occured during copy: " + err)
-        })
-        .on('end', function() {
-          console.log("Images uploaded");
-          //del(hosted_images); //clear so we don't try to copy them over again
-          //Not working for some reason
-        });
-        console.log("Please clear the hosted-images folder so you don't have two copies on the server");
-        cb();
+      
+      var destFolder = './' + folder + '_mini';
+      var srcFolder = './' + folder;
+      //console.log("Folder: " + destFolder);
+      
+      fs.copy(srcFolder, destFolder, function(err) {
+        console.log("Done copying");
+        //get all images
+        gulp.src(HOSTED_IMAGES_DIR + '/*_mini/*.*') 
+          .pipe(print())
+          .pipe(gulpSharp({
+            resize: [300],
+            max: true
+          }))
+          .pipe(print(function(filepath) {
+            return "Minified: " + filepath;
+          }))
+          .pipe(gulp.dest(function(file) {
+            var parts = file.history[0].split('/');
+            parts.splice(-2, 2); //remove the last two parts of the path
+            //Needed to keep image in same folder
+            var filedest = parts.join([separator = '/']);
+            return filedest;
+          }));
+      });
+      
     });
   });
 });
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 
