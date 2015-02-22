@@ -15,7 +15,15 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     for(var i = 0; i < numNodes; i++) {
       figureEl = thumbElements[i]; // <figure> element
       // include only element nodes 
-      if(figureEl.nodeType !== 1) {
+      if(figureEl.nodeType !== 1 &&
+          figureEl.nodeName !== "FIGURE" &&
+          typeof(figureEl.children) === "undefined")  {
+        continue;
+      }
+
+      //sorry Dylan. JavaScript was being dumb. I tried to put it in the previous
+      //if statement, but it didn't work
+      if(figureEl.children.length === 0) {
         continue;
       }
 
@@ -223,14 +231,16 @@ function getImagesForGalleries(galleries) {
 
     imgRequest({year: gallery.id, skip: skip}, function(response) {
       //console.log(imgs.length + " images for " + gallery.id);
-      var imgs = response.imgs;
+      
       
       moreButton(gallery.id, response.moreImages);
 
+      var imgs = response.imgs;
       img_galleries[gallery.id] += imgs.length;
 
       if(imgs.length > 0) {
         addImagesToGallery(gallery, imgs, function() {
+          console.log("galleryID: " + gallery.id);
           initPhotoSwipeFromDOM('#' + gallery.id);
         });
       } else {
