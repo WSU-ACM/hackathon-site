@@ -18,3 +18,17 @@ figure a img {
   max-height: 133px;
   max-width: 200px;
 }
+
+.picture-button {
+    margin: 0 auto;
+    background-color: #981e32;
+    color: #fff;
+    border-radius: 9px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.picture-button:hover,
+.picture-button:active {
+  box-shadow: inset 0 0 8px #000;
+}
