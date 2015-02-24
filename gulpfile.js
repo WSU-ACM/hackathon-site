@@ -13,7 +13,7 @@ var apiServerConfig = require('./api-server-config.json'),
     version = require('./package.json').version;
 
 var API_PORT = 3000;
-var HOSTED_IMAGES_DIR = '/var/www/hosted-images';
+var HOSTED_IMAGES_DIR = 'hosted-images';
 var HOSTED_IMAGES_SERV_PORT = 3031;
 var JEKYLL_SERV_PORT = 4000;
 var PROXY_PORT = 3030;
