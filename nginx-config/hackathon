@@ -4,7 +4,7 @@ server {
   root /var/www/hackathon-site/;
   index index.html;
 
-  server_name hackathon.eecs.wsu.edu;
+  server_name hackathon.eecs.wsu.edu acm.dylankpowers.com;
 
   location / {
     add_header Cache-Control "public, max-age=300, must-revalidate";
