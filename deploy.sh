@@ -3,8 +3,8 @@
 deploy_dir=/var/www/hackathon-site
 build_tarball=hackathon-site-build.tar
 
-server_addr=hackathon.eecs.wsu.edu
-ssh_port=11993
+server_addr=acm.dylankpowers.com
+ssh_port=22
 
 clean_up() {
   if [ -e $build_tarball ]; then rm $build_tarball; fi
