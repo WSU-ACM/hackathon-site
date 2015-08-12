@@ -35,7 +35,14 @@ gulp.task('dev-server', function() {
         proxy.web(req, res, { target: 'http://127.0.0.1:' + JEKYLL_SERV_PORT });
       }
     }).listen(PROXY_PORT, function() {
-      console.log('Server loaded. Open http://localhost:' + PROXY_PORT + ' in your browser');
+      console.log('\n' +
+'********************************************************************************\n' +
+'**                    Ignore above output. Server loaded                      **\n' +
+'**                Open http://localhost:' + 
+                                   PROXY_PORT + 
+                                            ' in your browser                  **\n' +
+'********************************************************************************\n' +
+'');
     });
   }
 
