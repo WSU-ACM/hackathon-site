@@ -26,6 +26,10 @@ server {
     proxy_pass http://node_api$request_uri;
     proxy_redirect off;
   }
+
+  location /cgi-bin/mailman/ {
+    proxy_pass http://127.0.0.1:8080$request_uri;
+  }
 }
 
 upstream node_api {
