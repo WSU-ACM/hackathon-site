@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+
 clean_up() {
   jekyll_proc=$(pgrep -f jekyll)
   if [ ! -z "$jekyll_proc" ]; then
@@ -10,7 +12,7 @@ clean_up() {
 
 trap clean_up SIGHUP SIGINT SIGTERM
 
-jekyll serve &
+jekyll serve --config _jekyll-config.yml &
 gulp
 
 ## And now we're done
