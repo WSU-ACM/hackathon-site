@@ -1,0 +1,7 @@
+serve:
+  build: tools/
+  ports:
+    - "3030:3030"
+  volumes:
+    - ./web:/hackathon-site/web
+  command: /hackathon-site/tools/serve.sh

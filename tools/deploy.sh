@@ -56,7 +56,7 @@ ssh -p $ssh_port $user_name@$server_addr \
   "rm -r $deploy_dir
    tar -xf $build_tarball && 
    mv build $deploy_dir && 
-   chown -R :web $deploy_dir && 
+   chown -R :web $deploy_dir && s
    chmod -R o-w,g+w $deploy_dir"
 
 if [ $? -ne 0 ]; then danger; fi
