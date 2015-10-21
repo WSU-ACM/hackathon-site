@@ -2,13 +2,20 @@ FROM ubuntu:14.04
 
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y --no-install-recommends \
+      pkg-config \
+      ca-certificates \
+      curl
+RUN curl https://raw.githubusercontent.com/lovell/sharp/ef62daccf99c5f734d21b56d2f49938aa9032719/preinstall.sh | bash -
+
+RUN apt-get install -y --no-install-recommends \
       apt-transport-https \
       ca-certificates \
-      curl \
       git \
+      g++ \
       make \
+      python \
       ruby \
       ruby-dev \
       wget
@@ -24,22 +31,17 @@ RUN npm install npm -g
 RUN npm install gulp -g
 RUN gem install --no-rdoc --no-ri bundle
 
-# For Node
-RUN apt-get install -y --no-install-recommends \
-      pkg-config
-RUN curl https://raw.githubusercontent.com/lovell/sharp/ef62daccf99c5f734d21b56d2f49938aa9032719/preinstall.sh | bash -
-
 # For Ruby
 RUN apt-get install -y --no-install-recommends \
       openjdk-7-jre-headless
 
-COPY . /hackathon-site/tools/
-RUN /hackathon-site/tools/install-deps.sh
-RUN cd /hackathon-site/tools && \
-    node_modules/hackathon-api-server/bin/seed-hosted-images.sh && \
-    cp node_modules/hackathon-api-server/conf/sample-api-server-config.json api-server-config.json
+COPY Gemfile /hackathon-site/tools/
+COPY Gemfile.lock /hackathon-site/tools/
+RUN cd /hackathon-site/tools && bundle install
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME /hackathon-site/build
+VOLUME /hackathon-site/tools
 VOLUME /hackathon-site/web
 
