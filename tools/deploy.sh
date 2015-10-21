@@ -1,5 +1,7 @@
 #!/bin/bash
 
+make
+
 deploy_dir=/var/www/hackathon-site
 build_tarball=hackathon-site-build.tar
 

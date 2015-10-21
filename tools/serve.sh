@@ -2,6 +2,8 @@
 
 cd "$(dirname "$0")"
 
+make
+
 clean_up() {
   jekyll_proc=$(pgrep -f jekyll)
   if [ ! -z "$jekyll_proc" ]; then
