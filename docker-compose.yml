@@ -1,0 +1,10 @@
+dev:
+  build: tools/
+  ports:
+    - "3030:3030"
+  volumes:
+    - ./build:/hackathon-site/build
+    - ./tools:/hackathon-site/tools
+    - ./web:/hackathon-site/web
+  tty: true
+  working_dir: /hackathon-site

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+make
+
 deploy_dir=/var/www/hackathon-site
 build_tarball=hackathon-site-build.tar
 
@@ -30,7 +33,7 @@ echo 'Copying to the server...'
 
 ## Creating a tar archive. No need for compression however. Just need to
 ## reduce the number of files transferred.
-tar -cf $build_tarball build
+tar -cf $build_tarball ../build
 
 scp -P $ssh_port $build_tarball $user_name@$server_addr:$build_tarball
 
@@ -56,7 +59,7 @@ ssh -p $ssh_port $user_name@$server_addr \
   "rm -r $deploy_dir
    tar -xf $build_tarball && 
    mv build $deploy_dir && 
-   chown -R :web $deploy_dir && 
+   chown -R :web $deploy_dir && s
    chmod -R o-w,g+w $deploy_dir"
 
 if [ $? -ne 0 ]; then danger; fi
