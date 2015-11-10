@@ -206,11 +206,11 @@ function getImagesForGalleries(galleries) {
     }
   }
 
-  function imgRequest(options, callback) {
+  function imgRequest(year, options, callback) {
     var url;
-    var baseURL = "/api/imgs";
+    var baseURL = "/api/v1/photos";
 
-    url = baseURL + toQueryString(options);
+    url = baseURL + "/" + year + toQueryString(options);
 
     var request = new XMLHttpRequest();
     request.onload = function() {
@@ -229,13 +229,23 @@ function getImagesForGalleries(galleries) {
       img_galleries[gallery.id] = 0;
     }
 
-    imgRequest({year: gallery.id, skip: skip}, function(response) {
+    var year;
+    switch (gallery.id) {
+      case "hackathon_02":
+        year = 2;
+        break;
+      case "hackathon_03":
+        year = 3;
+        break;
+    }
+
+    imgRequest(year, {skip: skip}, function(response) {
       //console.log(imgs.length + " images for " + gallery.id);
       
       
       moreButton(gallery.id, response.moreImages);
 
-      var imgs = response.imgs;
+      var imgs = response;
       img_galleries[gallery.id] += imgs.length;
 
       if(imgs.length > 0) {

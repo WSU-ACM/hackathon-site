@@ -24,7 +24,7 @@ clean_up() {
 trap clean_up SIGHUP SIGINT SIGTERM
 
 jekyll build --watch --config _jekyll-config.yml & # Job 1
-$(cd ../api-server && go run main.go) &
+(cd ../api-server && go run main.go) &
 
 /usr/sbin/nginx -c nginx.conf -p "$(pwd)"
 

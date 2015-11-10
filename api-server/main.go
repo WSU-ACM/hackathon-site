@@ -30,7 +30,7 @@ func (pServ *PhotoServer) serve() {
 	secret, err := ioutil.ReadAll(file)
 	pServ.fbAccessToken = fb.RequestFBAccessToken(strings.TrimSpace(string(secret)))
 
-	println("Facebook access token: ", pServ.fbAccessToken)
+	fmt.Println("Facebook access token: ", pServ.fbAccessToken)
 	http.HandleFunc("/v1/photos/", pServ.servePhotos)
 	if http.ListenAndServe(":4001", nil) != nil {
 		fmt.Println("We aren't doing shit")
@@ -49,7 +49,7 @@ func (pServ *PhotoServer) servePhotos(w http.ResponseWriter, req *http.Request) 
 		fmt.Println("Photos year 2")
 		photos := fb.RequestPhotosForAlbum(pServ.fbAccessToken, fb.Album2ID)
 		writePhotos(photos, w)
-	case "/v2/photos/3":
+	case "/v1/photos/3":
 		fmt.Println("Photos year 3")
 		photos := fb.RequestPhotosForAlbum(pServ.fbAccessToken, fb.Album3ID)
 		writePhotos(photos, w)
