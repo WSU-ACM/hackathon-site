@@ -12,10 +12,12 @@ clean_up() {
     kill $jekyll_proc
   fi
 
-  nginx_proc=$(cat nginx.pid)
-  if [ ! -z "$nginx_proc" ]; then
-    kill $nginx_proc
-    if [ -e nginx.pid ]; then rm nginx.pid; fi
+  if [ -e nginx.pid ]; then
+    nginx_proc=$(cat nginx.pid)
+    if [ ! -z "$nginx_proc" ]; then
+      kill $nginx_proc
+      if [ -e nginx.pid ]; then rm nginx.pid; fi
+    fi
   fi
 }
 
@@ -24,6 +26,6 @@ trap clean_up SIGHUP SIGINT SIGTERM
 jekyll build --watch --config _jekyll-config.yml & # Job 1
 $(cd ../api-server && go run main.go) &
 
-nginx -c nginx.conf -p "$(pwd)"
+/usr/sbin/nginx -c nginx.conf -p "$(pwd)"
 
 sleep infinity
