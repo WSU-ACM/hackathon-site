@@ -1,76 +1,74 @@
 package fb
 
 import (
-	"net/http"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"encoding/json"
+	"net/http"
 )
 
 const facebookApiEndpoint = "https://graph.facebook.com/v2.5"
 const Album2ID = "615849938471305"
 const Album3ID = "855587011164262"
 
-
 type Photo struct {
-	Images []Image
+	Images  []Image
 	Picture string
 }
 
 type Image struct {
 	Height int
 	Source string
-	Width int
+	Width  int
 }
 
 type PhotoRequest struct {
-	Data []*Photo
+	Data   []*Photo
 	Paging interface{}
 }
 
-func RequestFBAccessToken(secret string) string {
+func RequestFBAccessToken(secret string) (string, error) {
 	resp, err := http.Get(facebookApiEndpoint + "/oauth/access_token?" +
-					  "client_id=162401547444127" +
-					  "&client_secret=" + secret +
-					  "&grant_type=client_credentials")
+		"client_id=162401547444127" +
+		"&client_secret=" + secret +
+		"&grant_type=client_credentials")
+
 	if err != nil {
-		fmt.Println("fail")
-		return ""
+		return "", fmt.Errorf("Unable to access facebook oauth api\n%v", err)
 	}
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Can't read no body")
-		return ""
+		return "", fmt.Errorf("Can't read facebook oath api response body\n%v", err)
 	}
 
-	var f interface{}
-	err = json.Unmarshal(body, &f)
+	var responseMap interface{}
+	err = json.Unmarshal(body, &responseMap)
 	if err != nil {
-		fmt.Println("Wat?!?")
-		return ""
+		return "", fmt.Errorf("Unable to marshal from JSON\n%v", err)
 	}
-	m := f.(map[string]interface{})
-	return m["access_token"].(string)
+
+	m := responseMap.(map[string]interface{})
+	return m["access_token"].(string), nil
 }
 
-func RequestPhotosForAlbum(accessToken string, albumID string) []*Photo {
+func RequestPhotosForAlbum(accessToken string, albumID string) ([]*Photo, error) {
 	resp, err := http.Get(facebookApiEndpoint + "/" + albumID + "/photos?" +
-						  "access_token=" + accessToken +
-						  "&fields=images,picture")
+		"access_token=" + accessToken +
+		"&fields=images,picture")
 	if err != nil {
-		fmt.Println("Whoops! WTF happened?", err)
-
+		return nil, fmt.Errorf("Unable to access the Facebook photos api\n%v", err)
 	}
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	var f PhotoRequest
 	err = json.Unmarshal(body, &f)
+
 	if err != nil {
-		fmt.Println("ERROR BITCHES: ", err)
+		return nil, fmt.Errorf("Unable to marshal from JSON\n%v", err)
 	}
 
-	return f.Data
+	return f.Data, nil
 }
