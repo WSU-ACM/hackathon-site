@@ -1,8 +1,7 @@
 build/
 hosted-images/
-/web/lib
-api-server-config.json
 fb-client-secret
+/web/assets/photoswipe
 
 ## Node.js
 logs
