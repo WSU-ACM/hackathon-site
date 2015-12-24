@@ -1,6 +1,8 @@
 build/
 hosted-images/
+/web/lib
 api-server-config.json
+fb-client-secret
 
 ## Node.js
 logs
