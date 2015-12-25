@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-docker-compose run --service-ports dev $@
+if [ ! -e build ]; then mkdir build; fi
+
+docker-compose run --user $UID --service-ports dev $@

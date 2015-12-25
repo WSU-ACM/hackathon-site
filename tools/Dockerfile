@@ -2,22 +2,32 @@ FROM ubuntu:14.04
 
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends \
+
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
       pkg-config \
       ca-certificates \
-      curl
-
-RUN apt-get install -y --no-install-recommends \
+      curl \
       apt-transport-https \
       git \
       g++ \
       make \
       nginx \
+      openjdk-7-jre-headless \
       python \
       ruby \
       ruby-dev \
+      unzip \      
       wget
+
+# nginx does some initialization when it's first ran
+RUN nginx
+
+# AUFS glitch. To properly set permissions have to remove and add with new perms
+RUN rm -r /var/log/nginx && \
+    mkdir /var/log/nginx && \
+    chmod 777 /var/log/nginx
+
 
 # There's still a node dependency in the Ruby stuff. At least we 
 # don't have to deal with NPM
@@ -31,9 +41,6 @@ RUN wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && \
 
 RUN gem install --no-rdoc --no-ri bundle
 
-# For Ruby
-RUN apt-get install -y --no-install-recommends \
-      openjdk-7-jre-headless
 
 COPY Gemfile /hackathon-site/tools/
 COPY Gemfile.lock /hackathon-site/tools/
@@ -47,8 +54,6 @@ RUN wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.g
 ENV GOROOT /opt/go
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-COPY ./fb-client-secret /hackathon-site/
 
 VOLUME /hackathon-site/build
 VOLUME /hackathon-site/api-server
