@@ -11,21 +11,28 @@
   display: inline-block
 }
 
+figure a {
+  display: block;
+  height: 104px;
+  overflow: hidden;
+  margin: 10px;
+  width: 160px;
+}
+
 figure a img {
   /* Smooths out Safari transistions */
   -webkit-transition: -webkit-transform .15s linear;
-  padding: 10px;
-  max-height: 133px;
-  max-width: 200px;
+  /*padding: 10px;*/
+  min-width: 160px;
 }
 
 .picture-button {
-    margin: 0 auto;
-    background-color: #981e32;
-    color: #fff;
-    border-radius: 9px;
-    border: none;
-    padding: 10px 20px;
+  margin: 0 auto;
+  background-color: #981e32;
+  color: #fff;
+  border-radius: 9px;
+  border: none;
+  padding: 10px 20px;
 }
 
 .picture-button:hover,
