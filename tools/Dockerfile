@@ -1,6 +1,5 @@
 FROM ubuntu:14.04
 
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade -y && \
@@ -47,9 +46,8 @@ COPY Gemfile.lock /hackathon-site/tools/
 RUN cd /hackathon-site/tools && bundle install
 
 ENV GO_VERSION 1.5.1
-RUN wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
-      --output-document go && \
-    tar -vxzf go -C /opt && \
+RUN curl https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz | \
+      tar -vxz -C /opt && \
     ln -s /opt/go/bin/go /usr/local/bin/
 ENV GOROOT /opt/go
 
