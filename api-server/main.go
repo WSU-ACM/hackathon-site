@@ -64,7 +64,7 @@ func (pServ *PhotoServer) servePhotos(w http.ResponseWriter, req *http.Request) 
 			writePhotos(photos, w)
 		}
 	default:
-		fmt.Fprintln(os.Stderr, "Invalid url path: %s", req.URL.Path)
+		fmt.Fprintln(os.Stderr, "Invalid url path: ", req.URL.Path)
 	}
 }
 

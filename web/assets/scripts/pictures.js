@@ -208,7 +208,7 @@ function getImagesForGalleries(galleries) {
 
   function imgRequest(year, options, callback) {
     var url;
-    var baseURL = "/api/v1/photos";
+    var baseURL = "api/v1/photos";
 
     url = baseURL + "/" + year + toQueryString(options);
 
