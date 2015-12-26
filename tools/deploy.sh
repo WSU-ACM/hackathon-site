@@ -100,11 +100,11 @@ start_site_server() {
       docker rm $SITE_CONTAINER_NAME
     fi
     docker create \
-      --link $API_CONTAINTER_NAME \
-      --name $SITE_CONTAINER_NAME \
-      --publish 127.0.0.1:4000:4000 \
-      --restart unless-stopped \
-      hackathon-site-server
+        --link $API_CONTAINTER_NAME \
+        --name $SITE_CONTAINER_NAME \
+        --publish 127.0.0.1:4000:4000 \
+        --restart unless-stopped \
+        hackathon-site-server
     docker start $SITE_CONTAINER_NAME
   "
 }

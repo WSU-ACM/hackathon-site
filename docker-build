@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+cd "$(dirname "$0")"
+
+docker build -t hackathon-site-dev tools/
+
+docker run -it --name hackathon-site-dev \
+    hackathon-site-dev \
+    useradd --home-dir /home --uid $UID $USER
+docker commit hackathon-site-dev hackathon-site-dev
+docker rm hackathon-site-dev

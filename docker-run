@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
+cd "$(dirname "$0")"
+
+# Default cmd is bash
+if [ ! "$@" ]; then eval set -- "bash"; fi
 
 if [ ! -e build ]; then mkdir build; fi
 
-docker-compose run --user $UID --service-ports dev $@
+docker run -it --user $USER --rm \
+    -v $PWD/build:/hackathon-site/build \
+    -v $PWD/api-server:/hackathon-site/api-server \
+    -v $PWD/tools:/hackathon-site/tools \
+    -v $PWD/web:/hackathon-site/web \
+    -v $HOME/.ssh:/home/.ssh \
+    -v /etc/localtime:/etc/localtime \
+    --publish 4000:4000 \
+    --workdir /hackathon-site \
+    hackathon-site-dev $@
+

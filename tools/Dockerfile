@@ -16,6 +16,7 @@ RUN apt-get update && apt-get upgrade -y && \
       python \
       ruby \
       ruby-dev \
+      ssh \
       unzip \      
       wget
 
@@ -53,9 +54,12 @@ ENV GOROOT /opt/go
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN cp /root/.bashrc /home/.bashrc
+
 VOLUME /hackathon-site/build
 VOLUME /hackathon-site/api-server
 VOLUME /hackathon-site/tools
 VOLUME /hackathon-site/web
 
 EXPOSE 4000
+CMD bash
