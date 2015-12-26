@@ -7,6 +7,7 @@ if [ ! "$@" ]; then eval set -- "bash"; fi
 if [ ! -e build ]; then mkdir build; fi
 
 docker run -it --user $USER --rm \
+    --env USER=$USER \
     -v $PWD/build:/hackathon-site/build \
     -v $PWD/api-server:/hackathon-site/api-server \
     -v $PWD/tools:/hackathon-site/tools \
