@@ -104,6 +104,7 @@ start_site_server() {
         --name $SITE_CONTAINER_NAME \
         --publish 127.0.0.1:4000:4000 \
         --restart unless-stopped \
+        -v /etc/timezone:/etc/timezone \
         hackathon-site-server
     docker start $SITE_CONTAINER_NAME
   "
@@ -118,6 +119,7 @@ start_api_server() {
     docker create \
         --name $API_CONTAINTER_NAME \
         --restart unless-stopped \
+        -v /etc/timezone:/etc/timezone \
         --workdir /opt/hackathon-api-server/ \
         hackathon-api-server
     docker start $API_CONTAINTER_NAME
