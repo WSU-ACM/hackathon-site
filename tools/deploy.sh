@@ -15,16 +15,15 @@
 ##
 
 
-ARGS=$(getopt -o "" -l "api" -- "$@");
+ARGS=$(getopt -o "" -l "api" -- "$@")
 
 #Bad arguments
-if [ $? -ne 0 ];
-then
+if [ $? -ne 0 ]; then
   echo "Bad arguments"
   exit 1
 fi
 
-eval set -- "$ARGS";
+eval set -- "$ARGS"
 
 DEPLOY_ALL=true
 DEPLOY_API=false
@@ -37,7 +36,7 @@ for arg in "$@"; do
       ;;
 
     --)
-      break;
+      break
       ;;
   esac
 done
