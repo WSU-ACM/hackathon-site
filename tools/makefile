@@ -6,9 +6,9 @@ Gemfile.lock: Gemfile
 
 ../web/assets/photoswipe:
 	wget https://github.com/dimsemenov/PhotoSwipe/archive/v4.1.0.zip -O photoswipe.zip
-	unzip -o photoswipe.zip PhotoSwipe-4.1.0/dist/\* -d tmp || rm -rf tmp
-	mv tmp/PhotoSwipe-4.1.0/dist ../web/assets/photoswipe
-	rm -rf tmp photoswipe.zip
+	unzip -o photoswipe.zip PhotoSwipe-4.1.0/dist/\* -d ../build
+	mv ../build/PhotoSwipe-4.1.0/dist ../web/assets/photoswipe
+	rm -rf ../build/PhotoSwipe-4.1.0 photoswipe.zip
 
 clean:
 	touch Gemfile
