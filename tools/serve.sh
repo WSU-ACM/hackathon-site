@@ -13,7 +13,7 @@ clean_up() {
     nginx_proc=$(cat nginx.pid)
     if [ ! -z "$nginx_proc" ]; then
       kill $nginx_proc
-      while kill -0 $nginx_proc &> /dev/null; do sleep 1; done
+      while kill -0 $nginx_proc &> /dev/null; do sleep 0.1; done # Wait for the process to exit
       if [ -e nginx.pid ]; then rm nginx.pid; fi
     fi
   fi
