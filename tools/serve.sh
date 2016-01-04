@@ -6,16 +6,14 @@ make
 if [[ "$?" != 0 ]]; then exit 1; fi
 
 clean_up() {
-  jekyll_proc=$(pgrep -f jekyll)
-  if [ ! -z "$jekyll_proc" ]; then
-    # Sometimes jekyll stays running and needs to be manually killed
-    kill $jekyll_proc
-  fi
+  if [ ! -z "$jekyll_pid" ]; then kill $jekyll_pid; fi
+  if [ ! -z "$api_pid" ]; then kill $api_pid; fi
 
   if [ -e nginx.pid ]; then
     nginx_proc=$(cat nginx.pid)
     if [ ! -z "$nginx_proc" ]; then
       kill $nginx_proc
+      while kill -0 $nginx_proc &> /dev/null; do sleep 1; done
       if [ -e nginx.pid ]; then rm nginx.pid; fi
     fi
   fi
@@ -23,8 +21,11 @@ clean_up() {
 
 trap clean_up SIGHUP SIGINT SIGTERM
 
-jekyll build --watch --config _jekyll-config.yml &
+jekyll build --watch --config jekyll-config.dev.yml &
+jekyll_pid=$!
+
 (cd ../api-server && go run main.go) &
+api_pid=$!
 
 /usr/sbin/nginx -c nginx.conf -p "$(pwd)"
 
