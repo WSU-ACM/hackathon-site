@@ -21,7 +21,7 @@ failure() {
 }
 trap failure SIGHUP SIGINT SIGTERM
 
-jekyll build --config _config.production.yml
+jekyll build --config _jekyll-config.production.yml
 if [ $? -ne 0 ]; then failure; fi
 
 echo
@@ -59,7 +59,7 @@ ssh -p $ssh_port $user_name@$server_addr \
   "rm -r $deploy_dir
    tar -xf $build_tarball && 
    mv build $deploy_dir && 
-   chown -R :web $deploy_dir && s
+   chown -R :web $deploy_dir &&
    chmod -R o-w,g+w $deploy_dir"
 
 if [ $? -ne 0 ]; then danger; fi
