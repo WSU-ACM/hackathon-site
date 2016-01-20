@@ -47,8 +47,8 @@ make
 site_server_tarball=site-server.tar
 api_server_tarbell=api-server.tar
 
-server_addr=home.dylankpowers.com
-ssh_port=48924
+server_addr=hackathon.eecs.wsu.edu
+ssh_port=22
 
 echo
 if [ "$ACM_SERVER_USER" ]; then server_user=$ACM_SERVER_USER; else server_user=$USER; fi
@@ -78,18 +78,18 @@ sync_site_server() {
   jekyll build --config jekyll-config.production.yml
   (cd ../build && tar -cf $site_server_tarball .)
 
-  scp -P $ssh_port ../build/$site_server_tarball $server_user@$server_addr:$deploy_dir
+  scp -P $ssh_port ../build/$site_server_tarball $server_user@$server_addr:$deploy_dir || failure
 
   ssh -p $ssh_port $server_user@$server_addr \
-      "docker build -f $deploy_dir/site.dockerfile -t hackathon-site-server $deploy_dir"
+      "docker build -f $deploy_dir/site.dockerfile -t hackathon-site-server $deploy_dir" || failure
 }
 
 sync_api_server() {
   (cd ../api-server && tar -cf ../build/$api_server_tarbell .)
 
-  scp -P $ssh_port ../build/$api_server_tarbell $server_user@$server_addr:$deploy_dir
+  scp -P $ssh_port ../build/$api_server_tarbell $server_user@$server_addr:$deploy_dir || failure
   ssh -p $ssh_port $server_user@$server_addr \
-      "docker build -f $deploy_dir/api.dockerfile -t hackathon-api-server $deploy_dir"
+      "docker build -f $deploy_dir/api.dockerfile -t hackathon-api-server $deploy_dir" || failure
 }
 
 scp -P $ssh_port production/* $server_user@$server_addr:$deploy_dir
@@ -117,7 +117,7 @@ start_site_server() {
         -v /etc/timezone:/etc/timezone \
         hackathon-site-server
     docker start $SITE_CONTAINER_NAME
-  "
+  " || failure
 }
 
 start_api_server() {
@@ -133,7 +133,7 @@ start_api_server() {
         --workdir /opt/hackathon-api-server/ \
         hackathon-api-server
     docker start $API_CONTAINTER_NAME
-  "
+  " || failure
 }
 
 start_api_server
