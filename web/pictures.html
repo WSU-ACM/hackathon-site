@@ -58,35 +58,17 @@ css: pictures.css
     </div>
 </div>
 
-<section id="polaroids">
-  <section id="gallery-wrapper">
-    <!-- This section will be hidden until we add some pictures -->
-    <h1>3rd EECS Hackathon</h1>
-    <p>
-      We will add pictures as they become available.
-    </p>
-    <div id="hackathon_03" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-      <button id="hackathon_03_button" class="picture-button" onclick="loadMore(hackathon_03)">Load More</button>
-    </div>
+<nav id="year-tabs">
+  <h1 id="tab_3" class="selected" onclick="selectTab(3)">3rd EECS Hackathon</h1>
+  <h1 id="tab_2" onclick="selectTab(2)">2nd EECS Hackathon</h1>
+</nav>
+<section id="pictures">
+  <section>
+    <div id="hackathon_3" class="gallery" itemscope itemtype="http://schema.org/ImageGallery"></div>
   </section>
 
-  <section id="gallery-wrapper">
-    <h1>2nd EECS Hackathon</h1>
-    <p>
-      Pictures from the October 19th, 2013 when the 2nd EECS Hackathon 
-      occured in the Smith Center for Undergraduate Education (CUE). Feel 
-      free to explore these to get a feel for what this year's EECS 
-      hackathon will be like.
-    </p>
-
-    <!-- 
-      pictures.js will use the element id 'hackathon_02' to get all picture names in /var/www/hosted-images/hackathon_02
-      So we don't use ALL the bandwidth, we use a thumbnail hosted in hackathon_02_mini (<id> + '_mini')
-    -->
-
-    <div id="hackathon_02" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-      <button id="hackathon_02_button" class="picture-button" onclick="loadMore(hackathon_02)">Load More</button>
-    </div>
+  <section>
+    <div id="hackathon_2" class="gallery" itemscope itemtype="http://schema.org/ImageGallery"></div>
   </section>
 </section>
 

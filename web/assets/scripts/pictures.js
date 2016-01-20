@@ -47,7 +47,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       items.push(item);
     }
     return items;
-  }
+  };
 
   // find nearest parent element
   var closest = function closest(el, fn) {
@@ -190,21 +190,23 @@ function findGalleries(callback) {
 //contains some data about the galleries
 var img_galleries = {};
 
-function loadMore(gallery) {
-  getImagesForGalleries([gallery]);
+function selectTab(year) {
+  document.getElementById("hackathon_" + year).style.display = 'block';
+  document.getElementById("tab_" + year).classList.add('selected');
+
+  switch (year) {
+    case 2:
+      document.getElementById('hackathon_3').style.display = 'none';
+      document.getElementById('tab_3').classList.remove('selected');
+      break;
+    case 3:
+      document.getElementById('hackathon_2').style.display = 'none';
+      document.getElementById('tab_2').classList.remove('selected');
+      break;
+  }
 }
 
 function getImagesForGalleries(galleries) {
-  function moreButton(galleryID, show) {
-    console.log("button: " + galleryID + "_button");
-    var button = document.getElementById(galleryID + '_button');
-
-    if(show) {
-      button.style.display = "block";
-    } else {
-      button.style.display = "none";
-    }
-  }
 
   function imgRequest(year, options, callback) {
     var url;
@@ -231,19 +233,16 @@ function getImagesForGalleries(galleries) {
 
     var year;
     switch (gallery.id) {
-      case "hackathon_02":
+      case "hackathon_2":
         year = 2;
         break;
-      case "hackathon_03":
+      case "hackathon_3":
         year = 3;
         break;
     }
 
     imgRequest(year, {skip: skip}, function(response) {
       //console.log(imgs.length + " images for " + gallery.id);
-      
-      
-      moreButton(gallery.id, response.moreImages);
 
       var imgs = response;
       img_galleries[gallery.id] += imgs.length;
