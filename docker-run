@@ -2,7 +2,8 @@
 cd "$(dirname "$0")"
 
 # Default cmd is bash
-if [ ! "$@" ]; then eval set -- "bash"; fi
+echo "$@"
+if [[ -z $@ ]]; then eval set -- "bash"; fi
 
 if [ ! -e build ]; then mkdir build; fi
 
