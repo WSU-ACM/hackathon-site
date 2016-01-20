@@ -24,7 +24,13 @@ type Image struct {
 
 type PhotoRequest struct {
 	Data   []*Photo
-	Paging interface{}
+	Paging Pagination
+}
+
+type Pagination struct {
+	Cursors  interface{}
+	Previous *string
+	Next     *string
 }
 
 func RequestFBAccessToken(secret string) (string, error) {
@@ -54,9 +60,32 @@ func RequestFBAccessToken(secret string) (string, error) {
 }
 
 func RequestPhotosForAlbum(accessToken string, albumID string) ([]*Photo, error) {
-	resp, err := http.Get(facebookApiEndpoint + "/" + albumID + "/photos?" +
+
+	photosResponse, err := requestPhotos(facebookApiEndpoint + "/" + albumID + "/photos?" +
 		"access_token=" + accessToken +
-		"&fields=images,picture")
+		"&fields=images,picture" +
+		"&limit=1024")
+
+	if err != nil {
+		return nil, err
+	}
+
+	photos := photosResponse.Data
+	for photosResponse.Paging.Next != nil {
+		photosResponse, err = requestPhotos(*photosResponse.Paging.Next)
+
+		if err != nil {
+			return nil, err
+		}
+
+		photos = append(photos, photosResponse.Data...)
+	}
+
+	return photos, nil
+}
+
+func requestPhotos(url string) (*PhotoRequest, error) {
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("Unable to access the Facebook photos api\n%v", err)
 	}
@@ -70,5 +99,5 @@ func RequestPhotosForAlbum(accessToken string, albumID string) ([]*Photo, error)
 		return nil, fmt.Errorf("Unable to marshal from JSON\n%v", err)
 	}
 
-	return f.Data, nil
+	return &f, nil
 }
