@@ -29,4 +29,10 @@ api_pid=$!
 
 /usr/sbin/nginx -c nginx.conf -p "$(pwd)"
 
+echo
+echo "*****************************************************************************"
+echo "**                 Server listening at localhost:4000                      **"
+echo "*****************************************************************************"
+echo
+
 sleep infinity
