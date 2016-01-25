@@ -16,6 +16,19 @@
   float: right;
 }
 
+#facebook-img {
+  width: 128px;
+}
+
+#mlh-logo {
+  display: block;
+  width: 256px;
+}
+
+#quick-info {
+  margin-top: 20px;
+}
+
 #connect-list li {
   /*max-width: 300px;*/
   min-width: 192px;
@@ -29,12 +42,11 @@
   width: 160px;
 }
 
-#facebook-img {
-  width: 128px;
-}
 
-#quick-info {
-  margin-top: 20px;
+#mlh-logo img {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 #quick-info * {
