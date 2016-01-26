@@ -35,7 +35,11 @@
 
 #connect-list li {
   /*max-width: 300px;*/
+  display: flex;
+  height: 54px;
+  flex-direction: column;
   min-width: 192px;
+  justify-content: center;
   text-align: center;
   width: 33%;
 }
