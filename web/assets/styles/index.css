@@ -1,5 +1,9 @@
 @import "common.css";
 
+.center-text {
+  text-align: center;
+}
+
 .left {
   float: left;
 }
