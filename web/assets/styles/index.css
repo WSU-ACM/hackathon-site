@@ -30,7 +30,11 @@
 }
 
 #quick-info {
-  margin-top: 20px;
+  font-size: 48px;
+}
+
+#quick-info-title {
+  font-size: 64px;
 }
 
 #connect-list li {
@@ -57,10 +61,6 @@
   width: 100%;
 }
 
-#quick-info * {
-  margin: 0;
-}
-
 /* 
   Note that scroll bars are considered to be part of the screen width. 
   However, there's no way to know the width of the scroll bar or whether one
@@ -72,6 +72,16 @@
   #connect-list li {
     clear: both;
     width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  #quick-info {
+    font-size: 24px;
+  }
+
+  #quick-info-title {
+    font-size: 32px;
   }
 }
 
