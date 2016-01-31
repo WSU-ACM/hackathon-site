@@ -8,14 +8,6 @@
   float: left;
 }
 
-.index-section {
-  padding-top: 5px;
-}
-
-.index-section h1 {
-  margin-top: 10px;
-}
-
 .right {
   float: right;
 }
@@ -37,8 +29,12 @@
   font-size: 64px;
 }
 
+#sponsor-us {
+  font-size: 36px;
+  margin-top: 36px;
+}
+
 #connect-list li {
-  /*max-width: 300px;*/
   display: flex;
   height: 54px;
   flex-direction: column;
