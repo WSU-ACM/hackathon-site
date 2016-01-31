@@ -40,15 +40,27 @@ figure a img {
   box-shadow: inset 0 0 8px #000;
 }
 
-#year-tabs h1 {
-  cursor: pointer;
+#year-tabs button {
+  background-color: inherit;
+  border: none;
   display: inline-block;
-  text-align: center;
+  min-height: 48px;
+  outline: none;
+  padding: 0;
   width: 49%;
+}
+
+#year-tabs h1 {
+  font-size: 32px;
+  margin: 0;
+  text-align: center;
 }
 
 #year-tabs .selected {
   background-color: #981e32;
   border-radius: 8px;
+}
+
+#year-tabs .selected h1 {
   color: #fff;
 }
