@@ -32,7 +32,7 @@ angular
     });
 
     $stateProvider.state("sponsor", {
-      url: "/team",
+      url: "/sponsor",
       templateUrl: "views/sponsor.html"
     });
 

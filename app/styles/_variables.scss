@@ -8,6 +8,10 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Gray and brand colors for use across Bootstrap.
 
+$wsu-crimson: #981e32 !default;
+$wsu-gray-light: #d7dadb !default;
+$wsu-gray-dark: #5e6a71 !default;
+
 $gray-base:              #000 !default;
 $gray-darker:            #272B30 !default; // #222
 $gray-dark:              #3A3F44 !default;   // #333
@@ -15,11 +19,11 @@ $gray:                   #52575C !default; // #555
 $gray-light:             #7A8288 !default;   // #999
 $gray-lighter:           #999 !default; // #eee
 
-$brand-primary:         $gray-light !default;
-$brand-success:         #62c462 !default;
-$brand-info:            #5bc0de !default;
-$brand-warning:         #f89406 !default;
-$brand-danger:          #ee5f5b !default;
+$brand-primary:         $wsu-gray-dark !default;
+$brand-success:         #8f7e35 !default;
+$brand-info:            #4f868e !default;
+$brand-warning:         #c69214 !default;
+$brand-danger:          #981e32 !default;
 
 
 //== Scaffolding
@@ -27,9 +31,11 @@ $brand-danger:          #ee5f5b !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               $gray-darker !default;
+$body-bg:               $wsu-gray-light !default;
 //** Global text color on `<body>`.
-$text-color:            #C8C8C8 !default;
+$text-color-light:            $wsu-gray-light !default;
+$text-color-dark:            $wsu-gray-dark !default;
+
 
 //** Global textual link color.
 $link-color:            #fff !default;
@@ -43,7 +49,7 @@ $link-hover-decoration: underline !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Monda", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -70,7 +76,6 @@ $headings-font-family:    $font-family-base !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
-
 
 //== Iconography
 //
@@ -216,7 +221,7 @@ $input-height-small:             (floor($font-size-small * $line-height-small) +
 //** `.form-group` margin
 $form-group-margin-bottom:       15px !default;
 
-$legend-color:                   $text-color !default;
+$legend-color:                   $text-color-light !default;
 $legend-border-color:            darken($gray-darker, 5%) !default;
 
 //** Background color for textual input addons
@@ -242,7 +247,7 @@ $dropdown-fallback-border:       $gray-darker !default;
 $dropdown-divider-bg:            $gray-darker !default;
 
 //** Dropdown link text color.
-$dropdown-link-color:            $text-color !default;
+$dropdown-link-color:            $wsu-gray-light !default;
 //** Hover color for dropdown links.
 $dropdown-link-hover-color:      #fff !default;
 //** Hover background for dropdown links.
@@ -358,19 +363,19 @@ $container-lg:                 $container-large-desktop !default;
 //##
 
 // Basics of a navbar
-$navbar-height:                    50px !default;
+$navbar-height:                    35px !default;
 $navbar-margin-bottom:             $line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
 $navbar-collapse-max-height:       340px !default;
 
-$navbar-default-color:             $text-color !default;
-$navbar-default-bg:                $gray-dark !default;
+$navbar-default-color:             $text-color-light !default;
+$navbar-default-bg:                $wsu-crimson !default;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
-$navbar-default-link-color:                $text-color !default;
+$navbar-default-link-color:                $text-color-light !default;
 $navbar-default-link-hover-color:          #fff !default;
 $navbar-default-link-hover-bg:             darken($navbar-default-bg, 8%) !default;
 $navbar-default-link-active-color:         #fff !default;
@@ -385,7 +390,7 @@ $navbar-default-brand-hover-bg:            none !default;
 
 // Navbar toggle
 $navbar-default-toggle-hover-bg:           darken($navbar-default-bg, 8%) !default;
-$navbar-default-toggle-icon-bar-bg:        $text-color !default;
+$navbar-default-toggle-icon-bar-bg:        $text-color-light !default;
 $navbar-default-toggle-border-color:       darken($navbar-default-bg, 8%) !default;
 
 
@@ -694,7 +699,7 @@ $list-group-disabled-bg:         $gray-lighter !default;
 //** Text color for content within disabled list items
 $list-group-disabled-text-color: $list-group-disabled-color !default;
 
-$list-group-link-color:         $text-color !default;
+$list-group-link-color:         $text-color-light !default;
 $list-group-link-hover-color:   $list-group-link-color !default;
 $list-group-link-heading-color: #fff !default;
 
@@ -713,7 +718,7 @@ $panel-border-radius:         $border-radius-base !default;
 $panel-inner-border:          rgba(0, 0, 0, 0.6) !default;
 $panel-footer-bg:             lighten($body-bg, 10%) !default;
 
-$panel-default-text:          $text-color !default;
+$panel-default-text:          $text-color-dark !default;
 $panel-default-border:        rgba(0, 0, 0, 0.6) !default;
 $panel-default-heading-bg:    $panel-footer-bg !default;
 
@@ -752,7 +757,7 @@ $thumbnail-border:            darken($thumbnail-bg, 7%) !default;
 $thumbnail-border-radius:     $border-radius-base !default;
 
 //** Custom text color for thumbnail captions
-$thumbnail-caption-color:     $text-color !default;
+$thumbnail-caption-color:     $text-color-dark !default;
 //** Padding around the thumbnail caption
 $thumbnail-caption-padding:   9px !default;
 
