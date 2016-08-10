@@ -1,10 +1,6 @@
 // Simplex 3.3.7
 // Bootswatch
 // -----------------------------------------------------
-
-$web-font-path: "https://fonts.googleapis.com/css?family=Monda:400,700,400italic" !default;
-@import url($web-font-path);
-
 @mixin btn-shadow($color){
   @include gradient-vertical-three-colors(lighten($color, 3%), $color, 6%, darken($color, 3%));
   filter: none;
