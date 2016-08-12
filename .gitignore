@@ -1,13 +1,7 @@
-build/
-hosted-images/
-fb-client-secret
-/web/assets/photoswipe
-
-## Node.js
-logs
-*.log
-
-## npm
-node_modules/
-
-tools/nginx.pid
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+/.idea
+*.DS_Store

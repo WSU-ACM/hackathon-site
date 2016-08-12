@@ -1,0 +1,31 @@
+// Color Variables
+$wsu-crimson: #981e32 !default;
+$wsu-gray-light: #d7dadb !default;
+$wsu-gray-dark: #5e6a71 !default;
+
+.jumbotron {
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.1em;
+    border: 1px;
+    border-style: solid;
+    border-color: #000;
+}
+
+.footer {
+  background-color: $wsu-gray-dark;
+}
+
+.text-wsucrimson {
+  color: $wsu-crimson;
+}
+
+.text-wsugraylight {
+  color: $wsu-gray-light;
+}
+
+.text-wsugraydark {
+  color: $wsu-gray-dark;
+}

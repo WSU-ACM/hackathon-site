@@ -1,9 +1,12 @@
-[CrimsonCode Website](http://crimsoncode.org)
-======================
+# hackathon-site
 
-For documentation go to the docs folder
-or visit https://github.com/WSU-ACM/hackathon-site/wiki. Most importantly, 
-if you want
-to know how to set everything up for development go to
-https://github.com/WSU-ACM/hackathon-site/wiki/build-instructions
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.15.1.
 
+## Build & development
+
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+
+Running `grunt test` will run the unit tests with karma.
