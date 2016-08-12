@@ -170,7 +170,7 @@ label {
   }
 
   a:hover,
-  .active > a, {
+  .active > a {
     border-color: $brand-primary;
     color: #fff;
   }
