@@ -1,7 +1,8 @@
-/node_modules
+node_modules
 /dist
-/.tmp
-/.sass-cache
-/bower_components
-/.idea
+.tmp
+.sass-cache
+bower_components
+.idea
 *.DS_Store
+workspace.xml
