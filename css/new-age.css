@@ -596,3 +596,65 @@ footer {
 .btn-xl {
   font-size: 11px;
   padding: 15px 5px; }
+
+/* Mobile Styling */
+@media screen and (max-width: 991px) {
+  header.masthead {
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: white;
+    background: url("../img/bg-pattern.png"), #981e32;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
+    background-size: 10%;
+    background-position: right top; }
+
+    header.masthead .header-content {
+    display: inline;
+    max-width: 500px;
+    margin-bottom: 100px;
+    text-align: left; }
+    header.masthead .header-content h1 {
+      font-size:50px; 
+      text-transform: uppercase; 
+      font-weight: 300; }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+}
+
+@media screen and (max-width: 765px) {
+    header.masthead .header-content {
+      display: inline;
+      max-width: 500px;
+      margin-bottom: 100px;
+      text-align: left; 
+    }
+    header.masthead .header-content h1 {
+      font-size:40px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+
+    .faq-column {
+      column-count: 1;
+    }
+
+    .team-member-picture {
+      display: inline-block;
+      margin: 2% 5vw;
+      width: 20vw;
+      height: 20vw;
+      border-radius: 50%;
+      transition: background-image 0.5s ease;
+    }
+}
