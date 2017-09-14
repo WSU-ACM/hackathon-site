@@ -313,6 +313,29 @@ section.faq {
     section.team h2 {
       font-size: 50px; } }
 
+  section.team-content {
+  position: relative;
+  padding: 0 0; }
+  section.team-content h2 {
+    margin-bottom: -8px; 
+    font-size: 50px;
+    font-weight: 600;
+    opacity: 0.7; }
+  section.team-content .badges .badge-link {
+    display: block;
+    margin-bottom: 25px; }
+    section.team-content .badges .badge-link:last-child {
+      margin-bottom: 0; }
+    section.team-content .badges .badge-link img {
+      height: 60px; }
+    @media (min-width: 768px) {
+      section.team-content .badges .badge-link {
+        display: inline-block;
+        margin-bottom: 0; } }
+  @media (min-width: 768px) {
+    section.team-content h2 {
+      font-size: 50px; } }
+
   .team-container {
     display: inline-flex;
   }
@@ -333,6 +356,67 @@ section.faq {
   .img-wrap:hover .label-text {
     visibility: visible;
   }
+
+  #rachel {
+    background-image: url(../img/rachel-forbes2.jpg);
+    background-size: cover;
+  }
+
+  #rachel:hover {
+    background-image: url(../img/rachel-candid.jpg);
+    background-size: cover;
+  }
+
+
+  #heidi {
+    background-image: url(../img/heidi-lyons.jpg);
+    background-size: cover;
+  }
+
+  #heidi:hover {
+    background-image: url(../img/heidi-candid.jpg);
+    background-size: cover;
+  }
+
+  #courtney {
+    background-image: url(../img/courtney-ballard.jpg);
+    background-size: cover;
+  }
+
+  #courtney:hover {
+    background-image: url(../img/courtney-candid.jpg);
+    background-size: cover;
+  }
+
+  #eli {
+    background-image: url(../img/eli-forbes.jpg);
+    background-size: cover;
+  }
+
+  #eli:hover {
+    background-image: url(../img/eli-candid.jpg);
+    background-size: cover;
+  }
+
+  #nick {
+    background-image: url(../img/nick-vasicek.jpg);
+    background-size: cover;
+  }
+
+  #nick:hover {
+    background-image: url(../img/nick-candid.jpg);
+    background-size: cover;
+  }
+
+  .team-member-picture {
+    display: inline-block;
+    margin: 2% 5vw;
+    width: 16vw;
+    height: 16vw;
+    border-radius: 50%;
+    transition: background-image 0.5s ease;
+  }
+
 
 section.features .section-heading {
   margin-bottom: 100px; }
@@ -512,3 +596,65 @@ footer {
 .btn-xl {
   font-size: 11px;
   padding: 15px 5px; }
+
+/* Mobile Styling */
+@media screen and (max-width: 991px) {
+  header.masthead {
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: white;
+    background: url("../img/bg-pattern.png"), #981e32;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
+    background-size: 10%;
+    background-position: right top; }
+
+    header.masthead .header-content {
+    display: inline;
+    max-width: 500px;
+    margin-bottom: 100px;
+    text-align: left; }
+    header.masthead .header-content h1 {
+      font-size:50px; 
+      text-transform: uppercase; 
+      font-weight: 300; }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+}
+
+@media screen and (max-width: 765px) {
+    header.masthead .header-content {
+      display: inline;
+      max-width: 500px;
+      margin-bottom: 100px;
+      text-align: left; 
+    }
+    header.masthead .header-content h1 {
+      font-size:40px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+
+    .faq-column {
+      column-count: 1;
+    }
+
+    .team-member-picture {
+      display: inline-block;
+      margin: 2% 5vw;
+      width: 20vw;
+      height: 20vw;
+      border-radius: 50%;
+      transition: background-image 0.5s ease;
+    }
+}
