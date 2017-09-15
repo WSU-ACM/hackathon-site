@@ -38,11 +38,20 @@ gulp.task('minify-css', ['sass'], function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
 });
+
+gulp.task('minify-img', function() {
+  return gulp.src('img/**/*')
+    .pipe(gulp.dest('dist/img'))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
+});
+
 
 // Minify custom JS
 gulp.task('minify-js', function() {
@@ -54,7 +63,7 @@ gulp.task('minify-js', function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -69,19 +78,21 @@ gulp.task('copy', function() {
       '!**/bootstrap-theme.*',
       '!**/*.map'
     ])
-    .pipe(gulp.dest('vendor/bootstrap'))
+    .pipe(gulp.dest('dist/vendor/bootstrap'))
 
+  gulp.src(['index.html'])
+    .pipe(gulp.dest('dist'))
   gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-    .pipe(gulp.dest('vendor/jquery'))
+    .pipe(gulp.dest('dist/vendor/jquery'))
 
   gulp.src(['node_modules/popper.js/dist/umd/popper.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
-    .pipe(gulp.dest('vendor/popper'))
+    .pipe(gulp.dest('dist/vendor/popper'))
 
   gulp.src(['node_modules/jquery.easing/*.js'])
-    .pipe(gulp.dest('vendor/jquery-easing'))
+    .pipe(gulp.dest('dist/vendor/jquery-easing'))
 
   gulp.src(['node_modules/simple-line-icons/*/*'])
-    .pipe(gulp.dest('vendor/simple-line-icons'))
+    .pipe(gulp.dest('dist/vendor/simple-line-icons'))
 
 
   gulp.src([
@@ -92,17 +103,17 @@ gulp.task('copy', function() {
       '!node_modules/font-awesome/*.md',
       '!node_modules/font-awesome/*.json'
     ])
-    .pipe(gulp.dest('vendor/font-awesome'))
+    .pipe(gulp.dest('dist/vendor/font-awesome'))
 })
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'minify-img']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: ''
+      baseDir: 'dist'
     },
   })
 })
