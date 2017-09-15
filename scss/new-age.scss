@@ -48,7 +48,7 @@ h5,
 h6 {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
-  letter-spacing: 1px;
+  letter-spacing: 1px; 
   color: white;}
 
 p {
@@ -142,8 +142,8 @@ header.masthead {
     margin-bottom: 100px;
     text-align: center; }
     header.masthead .header-content h1 {
-      font-size:70px;
-      text-transform: uppercase;
+      font-size:70px; 
+      text-transform: uppercase; 
       font-weight: 300; }
   header.masthead .device-container {
     max-width: 325px;
@@ -171,15 +171,15 @@ header.masthead {
 
 section.schedule {
   position: relative;
-  padding: 25px 0;
+  padding: 25px 0; 
   display: flex;
   justify-content: center;
   align-items: center; }
   section.schedule h2 {
     font-size: 60px;
-    margin-bottom: -8px;
-    color: white;
-    font-weight: 400;
+    margin-bottom: -8px; 
+    color: white; 
+    font-weight: 400; 
     opacity: 0.9}
   section.schedule .badges .badge-link {
     display: block;
@@ -198,20 +198,20 @@ section.schedule {
 
 section.schedule-content {
   position: relative;
-  padding: 50px 0;
+  padding: 50px 0; 
   display: flex;
   justify-content: center;
   align-items: center; }
   section.schedule-content h2 {
     font-size: 100px;
-    margin-bottom: -8px;
-    color: #222222;
-    font-weight: 400;
+    margin-bottom: -8px; 
+    color: #222222; 
+    font-weight: 400; 
     opacity: 0.9}
   section.schedule-content h4 {
     font-size: 20px;
-    color: #222222;
-    font-weight: 400;
+    color: #222222; 
+    font-weight: 400; 
     opacity: 0.9}
   section.schedule-content .badges .badge-link {
     display: block;
@@ -232,7 +232,7 @@ section.faq {
   position: relative;
   padding: 50px 0; }
   section.faq h2 {
-    margin-bottom: -8px;
+    margin-bottom: -8px; 
     font-size: 50px;
     font-weight: 600;
     opacity: 0.7; }
@@ -254,10 +254,10 @@ section.faq {
   section.faq-content {
   position: relative;
   padding: 50px 0; }
-  section.faq-content h3 {
+  section.faq-content h3 { 
     font-size: 30px;
     font-weight: 600;
-    opacity: 0.9;
+    opacity: 0.9; 
     color: black; }
   section.faq-content .badges .badge-link {
     display: block;
@@ -283,7 +283,7 @@ section.faq {
   position: relative;
   padding: 50px 0; }
   section.sponsors h2 {
-    margin-bottom: -8px;
+    margin-bottom: -8px; 
     font-size: 50px;
     font-weight: 600;
     opacity: 0.7; }
@@ -300,13 +300,13 @@ section.faq {
         margin-bottom: 0; } }
   @media (min-width: 768px) {
     section.sponsors h2 {
-      font-size: 50px; } }
-
+      font-size: 50px; } }  
+      
  section.team {
   position: relative;
   padding: 50px 0; }
   section.team h2 {
-    margin-bottom: -8px;
+    margin-bottom: -8px; 
     font-size: 50px;
     font-weight: 600;
     opacity: 0.7; }
@@ -329,7 +329,7 @@ section.faq {
   position: relative;
   padding: 0 0; }
   section.team-content h2 {
-    margin-bottom: -8px;
+    margin-bottom: -8px; 
     font-size: 50px;
     font-weight: 600;
     opacity: 0.7; }
@@ -427,6 +427,10 @@ section.faq {
     height: 16vw;
     border-radius: 50%;
     transition: background-image 0.5s ease;
+  }
+
+  .team-titles {
+    display: none;
   }
 
 
@@ -591,7 +595,7 @@ footer {
 .btn-outline {
   color: white;
   border: 1px solid;
-  border-color: white;
+  border-color: white; 
   font-weight: bold; }
   .btn-outline:hover, .btn-outline:focus, .btn-outline:active, .btn-outline.active {
     color: #981e32;
@@ -602,15 +606,114 @@ footer {
   border-radius: 6px;
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
   letter-spacing: 2px;
-  text-transform: uppercase;
+  text-transform: uppercase; 
   background-color: rgba(250, 250, 250, 0.3); }
 
 .btn-xl {
   font-size: 11px;
   padding: 15px 5px; }
 
+@media screen and (max-width: 1200px) {
+  header.masthead {
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: white;
+    background: url("../img/solder-bg.jpg"), #981e32;
+    background: url("../img/solder-bg.jpg"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/solder-bg.jpg"), linear-gradient(to top, #981e32, #981e32);
+    background-size: 130%;
+    background-position: right top; 
+  }
+}
+
 /* Mobile Styling */
 @media screen and (max-width: 991px) {
+    header.masthead .header-content {
+    display: inline;
+    max-width: 500px;
+    margin-bottom: 100px;
+    text-align: left; }
+    header.masthead .header-content h1 {
+      font-size:50px; 
+      text-transform: uppercase; 
+      font-weight: 300; }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+}
+
+@media screen and (max-width: 769px) {
+    header.masthead {
+      position: relative;
+      width: 100%;
+      padding-top: 150px;
+      padding-bottom: 100px;
+      color: white;
+      background: url("../img/bg-pattern.png"), #981e32;
+      background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
+      background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
+      background-size: 10%;
+      background-position: right top; 
+    }
+    header.masthead .header-content {
+      display: inline;
+      max-width: 500px;
+      margin-bottom: 100px;
+      text-align: left; 
+    }
+    header.masthead .header-content h1 {
+      font-size:40px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+    header.masthead .header-content h2 {
+      font-size:25px; 
+      text-transform: uppercase; 
+      font-weight: 300; 
+    }
+
+    .faq-column {
+      column-count: 1;
+    }
+
+    section.team {
+      position: relative;
+      padding: 35px 0;
+    }
+
+    section.team-content h2 {
+      margin-bottom: 0; 
+      font-size: 25px;
+      font-weight: 600;
+      opacity: 0.7;
+      color: black;
+    }
+
+  section.team-content h4 {
+    margin-bottom: 10px; 
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0.7;
+    color: black;
+  }
+
+    .team-member-picture {
+      display: inline-block;
+      margin: 5% 5vw 0% 5vw;
+      width: 40vw;
+      height: 40vw;
+      border-radius: 50%;
+    }
+    .team-titles {
+      display: block;
+    }
+}
+
+@media screen and (max-width: 414px) {
   header.masthead {
     position: relative;
     width: 100%;
@@ -620,53 +723,36 @@ footer {
     background: url("../img/bg-pattern.png"), #981e32;
     background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
     background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
-    background-size: 10%;
-    background-position: right top; }
+    background-size: 11%;
+    background-position: right top; 
+  }
 
-    header.masthead .header-content {
-    display: inline;
-    max-width: 500px;
-    margin-bottom: 100px;
-    text-align: left; }
-    header.masthead .header-content h1 {
-      font-size:50px;
-      text-transform: uppercase;
-      font-weight: 300; }
-    header.masthead .header-content h2 {
-      font-size:25px;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
-}
+  section.team {
+    position: relative;
+    padding: 25px 0;
+  }
 
-@media screen and (max-width: 765px) {
-    header.masthead .header-content {
-      display: inline;
-      max-width: 500px;
-      margin-bottom: 100px;
-      text-align: left;
-    }
-    header.masthead .header-content h1 {
-      font-size:40px;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
-    header.masthead .header-content h2 {
-      font-size:25px;
-      text-transform: uppercase;
-      font-weight: 300;
-    }
+  section.team-content h2 {
+    margin-bottom: 0; 
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.7;
+    color: black;
+  }
 
-    .faq-column {
-      column-count: 1;
-    }
+  section.team-content h4 {
+    margin-bottom: 10px; 
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.7;
+    color: black;
+  }
 
-    .team-member-picture {
-      display: inline-block;
-      margin: 2% 5vw;
-      width: 20vw;
-      height: 20vw;
-      border-radius: 50%;
-      transition: background-image 0.5s ease;
-    }
+  .team-member-picture {
+    display: inline-block;
+    margin: 5% 5vw 0% 5vw;
+    width: 40vw;
+    height: 40vw;
+    border-radius: 50%;
+  }
 }
