@@ -408,6 +408,18 @@ section.faq {
     section.team-content h2 {
       font-size: 50px; } }
 
+  .team-content h1 {
+    color: #464e54;
+  }
+
+  .team-content h3 {
+    color: #981e32;
+  }
+
+  .organizer-container {
+    column-count: 3;
+  }
+
   .team-container {
     display: inline-flex;
   }
