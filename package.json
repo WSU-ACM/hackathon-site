@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/BlackrockDigital/startbootstrap-new-age.git"
+    "url": "git+https://github.com/BlackrockDigital/startbootstrap-new-age.git"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
@@ -35,11 +35,16 @@
   },
   "devDependencies": {
     "browser-sync": "2.18.13",
+    "grunt": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "3.7.0",
     "gulp-header": "1.8.9",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "3.0.0"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
