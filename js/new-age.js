@@ -4,11 +4,11 @@
   // ensure red wheat logo for small screens
   $(window).on('load resize', function() {
     if ($(window).width() < 992) {
-      $(".navbar-brand img").attr("src","img/RedWheatLogoTransparent.png");
+      $(".navbar-brand img").attr("src","img/crimson-code-logo-color.png");
       $(".navbar .list-social li a").addClass("red");
     } else {
       $("#mainNav").removeClass("navbar-shrink");
-      $(".navbar-brand img").attr("src","img/WhiteWheatLogoTransparent.png");
+      $(".navbar-brand img").attr("src","img/crimson-code-logo-white.png");
       $(".navbar .list-social li a").removeClass("red");
     }
   });
@@ -42,11 +42,11 @@
   $(window).scroll(function() {
     if ($("#mainNav").offset().top > 100 || $(window).width() < 992) {
       $("#mainNav").addClass("navbar-shrink");
-      $(".navbar-brand img").attr("src","img/RedWheatLogoTransparent.png")
+      $(".navbar-brand img").attr("src","img/crimson-code-logo-color.png")
       $(".navbar .list-social li a").addClass("red");
     } else {
       $("#mainNav").removeClass("navbar-shrink");
-      $(".navbar-brand img").attr("src","img/WhiteWheatLogoTransparent.png");
+      $(".navbar-brand img").attr("src","img/crimson-code-logo-white.png");
       $(".navbar .list-social li a").removeClass("red");
     }
   });
