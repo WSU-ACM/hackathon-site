@@ -1112,6 +1112,11 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
     display: block; } }
 
 @media screen and (max-width: 414px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; }
   header.masthead {
     position: relative;
     width: 100%;
