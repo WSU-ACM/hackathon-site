@@ -26,18 +26,20 @@
     "url": "git+https://github.com/BlackrockDigital/startbootstrap-new-age.git"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
+    "bootstrap": "^4.0.0-beta.3",
     "font-awesome": "4.7.0",
     "jquery": "^3.2.1",
     "jquery.easing": "^1.4.1",
-    "popper.js": "^1.11.1",
+    "popper.js": "^1.13.0",
     "simple-line-icons": "2.4.1"
   },
   "devDependencies": {
     "browser-sync": "2.18.13",
     "grunt": "^1.0.1",
     "gulp": "^3.9.1",
+    "gulp-build": "^0.5.3",
     "gulp-clean-css": "3.7.0",
+    "gulp-force-developer": "^0.1.16",
     "gulp-header": "1.8.9",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
