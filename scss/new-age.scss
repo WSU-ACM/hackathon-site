@@ -18,7 +18,9 @@
 html,
 body {
   width: 100%;
-  height: 100%; }
+  height: 100%; 
+  overflow-x: hidden;
+  }
 
 body {
   font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; }
@@ -346,7 +348,8 @@ section.faq {
     margin-bottom: -8px; 
     font-size: 50px;
     font-weight: 600;
-    opacity: 0.7; }
+    opacity: 0.7; 
+    word-break: break-word; }
   section.sponsors .badges .badge-link {
     display: block;
     margin-bottom: 25px; }
@@ -503,6 +506,10 @@ section.faq {
 
   .team-titles {
     display: none;
+  }
+
+  .team-intro {
+    padding: 10px 100px 10px 100px;
   }
 
 
@@ -755,7 +762,7 @@ footer {
       display: inline;
       max-width: 500px;
       margin-bottom: 100px;
-      text-align: left; 
+      text-align: center; 
     }
     header.masthead .header-content h1 {
       font-size:40px; 
@@ -770,6 +777,7 @@ footer {
 
     .faq-column {
       column-count: 1;
+      text-align: center;
     }
 
     section.team {
@@ -810,7 +818,7 @@ footer {
     position: relative;
     width: 100%;
     padding-top: 150px;
-    padding-bottom: 100px;
+    padding-bottom: 0px;
     color: white;
     background: url("../img/bg-pattern.png"), #981e32;
     background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
@@ -846,5 +854,31 @@ footer {
     width: 40vw;
     height: 40vw;
     border-radius: 50%;
+  }
+
+  #mlh-badge {
+    margin-left: -35px;
+  }
+
+  .organizer-container {
+    column-count: 1;
+  }
+
+  .sponsor-logo-large {
+    width: 100%;
+    margin-left: 0px !important;
+  }
+
+  .sponsor-logo-smaller {
+    width: 60%;
+    margin-left: 0px !important;
+  }
+
+  .add-flex {
+    display: flex;
+  }
+
+  .team-intro {
+    padding: 10px 30px 10px 30px;
   }
 }

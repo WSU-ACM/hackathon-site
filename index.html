@@ -22,13 +22,13 @@
 
     <!-- Custom styles for this template -->
     <link href="css/new-age.min.css" rel="stylesheet">
-    <!--<link href="scss/new-age.scss" rel="stylesheet">-->
+    <link href="scss/new-age.scss" rel="stylesheet">
 
     <link rel="icon" href="img/crimson-code-logo-white.png">
   </head>
 
   <!-- MLH Trust Badge -->
-  <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a>
+  <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:50px;top:0;width:10%;z-index:10000" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img id="mlh-badge" src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a>
 
   <body id="page-top">
 
@@ -79,7 +79,7 @@
     <header class="masthead">
       <div class="container h-100">
         <div class="row h-100">
-          <div class="col-lg-12 my-auto">
+          <div class="col-lg-12 my-auto add-flex">
             <div class="header-content mx-auto">
               <h1 class="add-shadow">Dream. Think. Learn. Explore. Teach. Collaborate. Innovate. Advocate. Code. Build. Hack. CrimsonCode.</h1>
               <a style="margin-right: 20px;" href="https://goo.gl/forms/DTWgMqaQtFu0dqJo1" class="btn btn-outline js-scroll-trigger" target="_blank">Volunteer</a>
@@ -318,11 +318,11 @@
         <div class="row">
           <div class="col-md-12 mx-auto">
           <h1>Sponsors</h1>
-          <a href="https://selinc.com/" target="_blank"><img src="img/sponsor-logos/SEL_Logo-Stacked_White.png" alt="sel-logo" width="1000px"></a></br>
-          <a href="https://aswsu.wsu.edu/" target="_blank"><img src="img/sponsor-logos/aswsu-logo.png" alt="aswsu-logo" width="450px"></a></br></br>
-          <a href="https://www.expeditors.com/" target="_blank"><img src="img/sponsor-logos/Expeditors_logo.png" alt="expeditors-logo" width="300px"></a>
-          <a href="http://studentinvolvement.orgsync.com/org/wsurha/home" target="_blank"><img src="img/sponsor-logos/rha-logo.png" alt="rha-logo" width="300px" style="margin-left: 100px"></a></br></br>
-          <a href="http://www.boeing.com/" target="_blank"><img src="img/sponsor-logos/Boeing_full_logo.png" alt="boeing-logo" width="300px"></a>
+          <a href="https://selinc.com/" target="_blank"><img class="sponsor-logo-large" src="img/sponsor-logos/SEL_Logo-Stacked_White.png" alt="sel-logo" width="1000px"></a></br>
+          <a href="https://aswsu.wsu.edu/" target="_blank"><img class="sponsor-logo-smaller" src="img/sponsor-logos/aswsu-logo.png" alt="aswsu-logo" width="450px"></a></br></br>
+          <a href="https://www.expeditors.com/" target="_blank"><img class="sponsor-logo-smaller" src="img/sponsor-logos/Expeditors_logo.png" alt="expeditors-logo" width="300px"></a>
+          <a href="http://studentinvolvement.orgsync.com/org/wsurha/home" target="_blank"><img class="sponsor-logo-smaller" src="img/sponsor-logos/rha-logo.png" alt="rha-logo" width="300px" style="margin-left: 100px"></a></br></br>
+          <a href="http://www.boeing.com/" target="_blank"><img class="sponsor-logo-smaller" src="img/sponsor-logos/Boeing_full_logo.png" alt="boeing-logo" width="300px"></a>
           </div>
         </div>
         </br></br></br>
@@ -347,7 +347,7 @@
       <div class="team-container">
         <div>
           <br>
-          <p style="padding: 10px 100px 10px 100px;">The leaders and organizers of the CrimsonCode hackathon are a group of hard working people that help to make this event possible. All of the leaders and organizers are full-time students at Washington State University who have volunteered to dedicate their valuable time to the planning and execution of the CrimsonCode hackathon. </p>
+          <p class="team-intro">The leaders and organizers of the CrimsonCode hackathon are a group of hard working people that help to make this event possible. All of the leaders and organizers are full-time students at Washington State University who have volunteered to dedicate their valuable time to the planning and execution of the CrimsonCode hackathon. </p>
           <h1>CrimsonCode Leaders</h1>
           <a href="https://www.linkedin.com/in/rachel-forbes-78a11396/" target="_blank"><div id="rachel" class="team-member-picture"></div></a>
           <h2 class="team-titles">Executive Chair</h2>
@@ -370,16 +370,7 @@
       <h1>CrimsonCode Organizers</h1>
       <br>
       <div class="organizer-container">
-          <h3>Logistics Team</h3>
-          <p>
-            Aleah Lucena <br>
-            Alex Castillo <br>
-            David Henshaw <br>
-            Jacob Plank <br>
-            Kelsey Dearing <br>
-            Morgan Gehrke <br>
-            Nikolaus Walton <br><br><br>
-          </p>
+        <div>
           <h3>Sponsorship Team</h3>
           <p>
             Amber Skogen <br>
@@ -392,6 +383,20 @@
             Carlos He He <br>
             Ngoc Duong <br>
           </p>
+        </div>
+        <div>
+          <h3>Logistics Team</h3>
+          <p>
+            Aleah Lucena <br>
+            Alex Castillo <br>
+            David Henshaw <br>
+            Jacob Plank <br>
+            Kelsey Dearing <br>
+            Morgan Gehrke <br>
+            Nikolaus Walton <br><br>
+          </p>
+        </div>
+        <div>
           <h3>Operations/Marketing Team</h3>
           <p>
             Aaron Hansen <br>
@@ -401,6 +406,7 @@
             Manuel Berrueta <br>
             Monique Perez <br>
           </p>
+        </div>
       </div>
     </section>
 
