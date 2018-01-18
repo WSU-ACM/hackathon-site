@@ -1109,7 +1109,9 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
     height: 40vw;
     border-radius: 50%; }
   .team-titles {
-    display: block; } }
+    display: block; }
+  .schedule-days {
+    column-count: 1; } }
 
 @media screen and (max-width: 414px) {
   html,

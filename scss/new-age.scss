@@ -811,6 +811,9 @@ footer {
     .team-titles {
       display: block;
     }
+    .schedule-days {
+      column-count: 1;
+    }
 }
 
 @media screen and (max-width: 414px) {
