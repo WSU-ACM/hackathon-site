@@ -1111,7 +1111,13 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   .team-titles {
     display: block; }
   .schedule-days {
-    column-count: 1; } }
+    column-count: 1; }
+  .schedule-event-right {
+    display: inline-flex;
+    column-count: 2;
+    width: 400px;
+    text-align: left;
+    padding-left: 0; } }
 
 @media screen and (max-width: 414px) {
   html,

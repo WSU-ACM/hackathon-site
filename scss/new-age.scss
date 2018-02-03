@@ -814,6 +814,13 @@ footer {
     .schedule-days {
       column-count: 1;
     }
+    .schedule-event-right {
+      display: inline-flex;
+      column-count: 2;
+      width: 400px;
+      text-align: left;
+      padding-left: 0;
+    }
 }
 
 @media screen and (max-width: 414px) {
