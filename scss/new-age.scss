@@ -240,6 +240,17 @@ section.schedule-content {
     justify-content: center;
 }
 
+.event-header a {
+    color: #464e54;
+    font-weight: 520;
+    text-decoration: underline;
+}
+
+.event-header a:hover {
+    color: #981e32;
+    font-weight: 520;
+}
+
 .schedule-days {
   column-count: 2;
 }
