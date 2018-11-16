@@ -452,55 +452,55 @@ section.faq {
   }
 
   #jessica {
-    background-image: url(../img/rachel-forbes2.jpg);
+    background-image: url(../img/jessica-zhou.jpg);
     background-size: cover;
   }
 
-  #jessica:hover {
-    background-image: url(../img/rachel-candid.jpg);
-    background-size: cover;
-  }
+  // #jessica:hover {
+  //   background-image: url(../img/rachel-candid.jpg);
+  //   background-size: cover;
+  // }
 
 
   #kyler {
-    background-image: url(../img/heidi-lyons.jpg);
+    background-image: url(../img/kyler-little.jpg);
     background-size: cover;
   }
 
-  #kyler:hover {
-    background-image: url(../img/heidi-candid.jpg);
-    background-size: cover;
-  }
+  // #kyler:hover {
+  //   background-image: url(../img/heidi-candid.jpg);
+  //   background-size: cover;
+  // }
 
   #monique {
-    background-image: url(../img/courtney-ballard.jpg);
+    background-image: url(../img/monique-perez.jpg);
     background-size: cover;
   }
 
-  #monique:hover {
-    background-image: url(../img/courtney-candid.jpg);
-    background-size: cover;
-  }
+  // #monique:hover {
+  //   background-image: url(../img/courtney-candid.jpg);
+  //   background-size: cover;
+  // }
 
   #eli {
     background-image: url(../img/eli-forbes.jpg);
     background-size: cover;
   }
 
-  #eli:hover {
-    background-image: url(../img/eli-candid.jpg);
-    background-size: cover;
-  }
+  // #eli:hover {
+  //   background-image: url(../img/eli-candid.jpg);
+  //   background-size: cover;
+  // }
 
   #nick {
     background-image: url(../img/nick-vasicek.jpg);
     background-size: cover;
   }
 
-  #nick:hover {
-    background-image: url(../img/nick-candid.jpg);
-    background-size: cover;
-  }
+  // #nick:hover {
+  //   background-image: url(../img/nick-candid.jpg);
+  //   background-size: cover;
+  // }
 
   .team-member-picture {
     display: inline-block;
@@ -663,6 +663,12 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+ul.hack-week-events {
+  padding: 10px;
+  text-align: left;
+  font-size: 18px;
 }
 
 .bg-primary {
