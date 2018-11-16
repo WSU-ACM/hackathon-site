@@ -804,6 +804,33 @@ section.team-content .badges .badge-link img {
   background-image: url(../img/nick-vasicek.jpg);
   background-size: cover; }
 
+@media screen and (min-width: 1150px) {
+  #jessica:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/jessiza-zhou.jpeg);
+    background-size: cover; }
+    #jessica:hover .team-member-picture-text {
+      visibility: visible; }
+  #kyler:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/kyler-little.jpg);
+    background-size: cover; }
+    #kyler:hover .team-member-picture-text {
+      visibility: visible; }
+  #monique:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/monique-perez.jpeg);
+    background-size: cover; }
+    #monique:hover .team-member-picture-text {
+      visibility: visible; }
+  #eli:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/eli-forbes.jpg);
+    background-size: cover; }
+    #eli:hover .team-member-picture-text {
+      visibility: visible; }
+  #nick:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/nick-vasicek.jpg);
+    background-size: cover; }
+    #nick:hover .team-member-picture-text {
+      visibility: visible; } }
+
 .team-member-picture {
   display: inline-block;
   margin: 2% 5vw;
@@ -811,6 +838,12 @@ section.team-content .badges .badge-link img {
   height: 16vw;
   border-radius: 50%;
   transition: background-image 0.5s ease; }
+
+.team-member-picture-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  visibility: hidden; }
 
 .team-titles {
   display: none; }

@@ -456,51 +456,84 @@ section.faq {
     background-size: cover;
   }
 
-  // #jessica:hover {
-  //   background-image: url(../img/rachel-candid.jpg);
-  //   background-size: cover;
-  // }
-
-
   #kyler {
     background-image: url(../img/kyler-little.jpg);
     background-size: cover;
   }
-
-  // #kyler:hover {
-  //   background-image: url(../img/heidi-candid.jpg);
-  //   background-size: cover;
-  // }
 
   #monique {
     background-image: url(../img/monique-perez.jpg);
     background-size: cover;
   }
 
-  // #monique:hover {
-  //   background-image: url(../img/courtney-candid.jpg);
-  //   background-size: cover;
-  // }
-
   #eli {
     background-image: url(../img/eli-forbes.jpg);
     background-size: cover;
   }
-
-  // #eli:hover {
-  //   background-image: url(../img/eli-candid.jpg);
-  //   background-size: cover;
-  // }
 
   #nick {
     background-image: url(../img/nick-vasicek.jpg);
     background-size: cover;
   }
 
-  // #nick:hover {
-  //   background-image: url(../img/nick-candid.jpg);
-  //   background-size: cover;
-  // }
+  @media screen and (min-width: 1150px) {
+    #jessica:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/jessiza-zhou.jpeg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #kyler:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/kyler-little.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #monique:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/monique-perez.jpeg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #eli:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/eli-forbes.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #nick:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/nick-vasicek.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+  }
+
+
 
   .team-member-picture {
     display: inline-block;
@@ -509,6 +542,13 @@ section.faq {
     height: 16vw;
     border-radius: 50%;
     transition: background-image 0.5s ease;
+  }
+
+  .team-member-picture-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
   }
 
   .team-titles {
