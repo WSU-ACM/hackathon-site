@@ -784,27 +784,27 @@ section.team-content .badges .badge-link img {
 .img-wrap:hover .label-text {
   visibility: visible; }
 
-#rachel {
+#jessica {
   background-image: url(../img/rachel-forbes2.jpg);
   background-size: cover; }
 
-#rachel:hover {
+#jessica:hover {
   background-image: url(../img/rachel-candid.jpg);
   background-size: cover; }
 
-#heidi {
+#kyler {
   background-image: url(../img/heidi-lyons.jpg);
   background-size: cover; }
 
-#heidi:hover {
+#kyler:hover {
   background-image: url(../img/heidi-candid.jpg);
   background-size: cover; }
 
-#courtney {
+#monique {
   background-image: url(../img/courtney-ballard.jpg);
   background-size: cover; }
 
-#courtney:hover {
+#monique:hover {
   background-image: url(../img/courtney-candid.jpg);
   background-size: cover; }
 
