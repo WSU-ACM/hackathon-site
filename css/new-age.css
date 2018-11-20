@@ -793,7 +793,7 @@ section.team-content .badges .badge-link img {
   background-size: cover; }
 
 #monique {
-  background-color: #2a3033;
+  background-image: url(../img/monique-perez.jpg);
   background-size: cover; }
 
 #eli {
@@ -816,7 +816,7 @@ section.team-content .badges .badge-link img {
     #kyler:hover .team-member-picture-text {
       visibility: visible; }
   #monique:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/monique-perez.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/monique-perez.jpg);
     background-size: cover; }
     #monique:hover .team-member-picture-text {
       visibility: visible; }
