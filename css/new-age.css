@@ -785,7 +785,7 @@ section.team-content .badges .badge-link img {
   visibility: visible; }
 
 #jessica {
-  background-color: #2a3033;
+  background-image: url(../img/jessica-zhou.jpg);
   background-size: cover; }
 
 #kyler {
@@ -806,7 +806,7 @@ section.team-content .badges .badge-link img {
 
 @media screen and (min-width: 1150px) {
   #jessica:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/jessiza-zhou.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/jessica-zhou.jpg);
     background-size: cover; }
     #jessica:hover .team-member-picture-text {
       visibility: visible; }
