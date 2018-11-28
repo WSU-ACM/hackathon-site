@@ -2,17 +2,13 @@
 Site for CrimsonCode Hackathon. Template from Start Bootstrap.
 
 ## Developer Usage
-You need npm and node installed. Not sure what versions... when I get more time, I'll make this README better.
+You need npm (^6.0.1) and node (^10.13.0) installed.
 
 Next, you'll probably have to update some crusty old node modules.
 ```
 npm update
 ```
-Add gulp's command-line interface. You'll probably need to be super user although this isn't recommended.
-```
-sudo npm install --global gulp-cli
-```
-Install modules in node_modules folder. 
+Install modules locally in node_modules folder. 
 ```
 npm install
 ```
