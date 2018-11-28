@@ -20,6 +20,8 @@ body {
   width: 100%;
   height: 100%; 
   overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   }
 
 body {
@@ -451,34 +453,18 @@ section.faq {
     visibility: visible;
   }
 
-  #rachel {
-    background-image: url(../img/rachel-forbes2.jpg);
+  #jessica {
+    background-image: url(../img/jessica-zhou.jpg);
     background-size: cover;
   }
 
-  #rachel:hover {
-    background-image: url(../img/rachel-candid.jpg);
+  #kyler {
+    background-image: url(../img/kyler-little.jpg);
     background-size: cover;
   }
 
-
-  #heidi {
-    background-image: url(../img/heidi-lyons.jpg);
-    background-size: cover;
-  }
-
-  #heidi:hover {
-    background-image: url(../img/heidi-candid.jpg);
-    background-size: cover;
-  }
-
-  #courtney {
-    background-image: url(../img/courtney-ballard.jpg);
-    background-size: cover;
-  }
-
-  #courtney:hover {
-    background-image: url(../img/courtney-candid.jpg);
+  #monique {
+    background-image: url(../img/monique-perez.jpg);
     background-size: cover;
   }
 
@@ -487,20 +473,69 @@ section.faq {
     background-size: cover;
   }
 
-  #eli:hover {
-    background-image: url(../img/eli-candid.jpg);
-    background-size: cover;
-  }
-
   #nick {
     background-image: url(../img/nick-vasicek.jpg);
     background-size: cover;
   }
 
-  #nick:hover {
-    background-image: url(../img/nick-candid.jpg);
-    background-size: cover;
+  @media screen and (min-width: 1150px) {
+    #jessica:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/jessica-zhou.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #kyler:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/kyler-little.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #monique:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/monique-perez.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #eli:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/eli-forbes.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
+
+    #nick:hover {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ), url(../img/nick-vasicek.jpg);
+      background-size: cover;
+      .team-member-picture-text {
+        visibility: visible;
+      }
+    }
   }
+
+
 
   .team-member-picture {
     display: inline-block;
@@ -509,6 +544,13 @@ section.faq {
     height: 16vw;
     border-radius: 50%;
     transition: background-image 0.5s ease;
+  }
+
+  .team-member-picture-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
   }
 
   .team-titles {
@@ -663,6 +705,12 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+ul.hack-week-events {
+  padding: 10px;
+  text-align: left;
+  font-size: 18px;
 }
 
 .bg-primary {

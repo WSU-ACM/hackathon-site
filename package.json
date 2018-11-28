@@ -39,6 +39,7 @@
     "gulp": "^3.9.1",
     "gulp-build": "^0.5.3",
     "gulp-clean-css": "3.7.0",
+    "gulp-cli": "^2.0.1",
     "gulp-force-developer": "^0.1.16",
     "gulp-header": "1.8.9",
     "gulp-rename": "^1.2.2",
