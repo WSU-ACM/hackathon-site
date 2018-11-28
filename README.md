@@ -26,3 +26,7 @@ In order for any new changes in master to show up on the website, it needs to be
 3. Make sure you are in the hackathon directory and then run the "deploy_script.sh"
 
 If you have any issues, contact whoever set up your access to the server and if they are unable to help, contact a past ACM chair or troubleshoot via Google.
+
+## Notes
+- Remember that deploying the site won't delete any files that already exist in ```public_html```
+- Using ```scp``` isn't working properly on Ubuntu. It won't overwrite the minified css; a simple hack is to delete the minified css on the server, and then deploy. I'll try to fix this in the future.
