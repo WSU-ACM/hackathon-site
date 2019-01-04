@@ -47,3 +47,11 @@ section.contact {
         }
     }
 }
+
+/* The damn MLH trust badge is tricky on mobile. This scoots the social media icons over so the MLH
+badge doesn't cover them. */
+@media screen and (max-width: 1430px) and (min-width: 991px) {
+    ul.list-social {
+        margin-left: 30% !important;
+    }
+}

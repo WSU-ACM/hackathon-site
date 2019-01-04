@@ -260,6 +260,12 @@ section.contact {
       section.contact ul.list-social li.social-google-plus a:hover {
         background-color: #d73925; }
 
+/* The damn MLH trust badge is tricky on mobile. This scoots the social media icons over so the MLH
+badge doesn't cover them. */
+@media screen and (max-width: 1430px) and (min-width: 991px) {
+  ul.list-social {
+    margin-left: 30% !important; } }
+
 footer {
   padding: 25px 0;
   text-align: center;
@@ -362,6 +368,16 @@ section {
 
 section h2 {
   font-size: 50px; }
+
+#mlh-trust-badge {
+  display: block;
+  max-width: 100px;
+  min-width: 60px;
+  position: fixed;
+  right: 50px;
+  top: 0;
+  width: 10%;
+  z-index: 10000; }
 
 #mainNav {
   border-color: rgba(34, 34, 34, 0.05);
@@ -1008,6 +1024,8 @@ ul.hack-week-events {
   padding: 10px;
   text-align: left;
   font-size: 18px; }
+  ul.hack-week-events li {
+    padding: 5px; }
 
 .bg-primary {
   background: #981e32;
@@ -1086,9 +1104,13 @@ ul.hack-week-events {
   header.masthead .header-content h2 {
     font-size: 25px;
     text-transform: uppercase;
-    font-weight: 300; } }
+    font-weight: 300; }
+  #mlh-trust-badge {
+    right: 25%; } }
 
 @media screen and (max-width: 769px) {
+  #hack-week-info {
+    padding: 15px; }
   header.masthead {
     position: relative;
     width: 100%;
@@ -1144,7 +1166,7 @@ ul.hack-week-events {
   .schedule-event-right {
     display: inline-flex;
     column-count: 2;
-    width: 400px;
+    width: 330px;
     text-align: left;
     padding-left: 0; } }
 
@@ -1186,8 +1208,6 @@ ul.hack-week-events {
     width: 40vw;
     height: 40vw;
     border-radius: 50%; }
-  #mlh-badge {
-    margin-left: -35px; }
   .organizer-container {
     column-count: 1; }
   .sponsor-logo-large {
