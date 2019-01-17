@@ -852,8 +852,8 @@ section.team-content .badges .badge-link img {
 .team-member-picture {
   display: inline-block;
   margin: 2% 5vw;
-  width: 16vw;
-  height: 16vw;
+  width: 13vw;
+  height: 13vw;
   border-radius: 50%;
   transition: background-image 0.5s ease; }
 
