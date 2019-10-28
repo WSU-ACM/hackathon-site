@@ -20,7 +20,7 @@ body {
   width: 100%;
   height: 100%; 
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
   }
 
@@ -64,6 +64,18 @@ section {
   padding: 100px 0; }
   section h2 {
     font-size: 50px; }
+    
+    .fade-in {
+      animation: fadeIn 5s ease-in;
+  }
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
 
 #mlh-trust-badge {
   display:block;
@@ -146,9 +158,9 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../img/solder-bg.jpg"), #981e32;
-  background: url("../img/solder-bg.jpg"), -webkit-linear-gradient(to top, #464e54, #981e32);
-  background: url("../img/solder-bg.jpg"), linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/CC2020header.svg"), #981e32;
+  background: url("../img/CC2020header.svg"), -webkit-linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/CC2020header.svg"), linear-gradient(to top, #464e54, #981e32);
   background-size: 100%;
   background-position: right top; }
   header.masthead .header-content {
