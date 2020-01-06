@@ -4,7 +4,7 @@
   // ensure red wheat logo for small screens
   $(window).on('load resize', function() {
     if ($(window).width() < 992) {
-      $(".navbar-brand img").attr("src","img/crimson-code-logo-color.png");
+      $(".navbar-brand img").attr("src","img/crimson-code-logo-white.png");
       $(".navbar .list-social li a").addClass("red");
     } else {
       $("#mainNav").removeClass("navbar-shrink");
