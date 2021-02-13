@@ -30,3 +30,4 @@ If you have any issues, contact whoever set up your access to the server and if 
 ## Notes
 - Remember that deploying the site won't delete any files that already exist in ```public_html```
 - Using ```scp``` isn't working properly on Ubuntu. It won't overwrite the minified css; a simple hack is to delete the minified css on the server, and then deploy. I'll try to fix this in the future.
+- As of 2021, node hates almost everything that this website uses. To properly build and deploy it, use node 10.23.3 and npm 6.14.11. 
