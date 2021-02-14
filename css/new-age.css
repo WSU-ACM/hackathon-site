@@ -403,9 +403,9 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../img/CC2020header.svg"), #981e32;
-  background: url("../img/CC2020header.svg"), -webkit-linear-gradient(to top, #464e54, #981e32);
-  background: url("../img/CC2020header.svg"), linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/cover.png"), #981e32;
+  background: url("../img/cover.png"), -webkit-linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/cover.png"), linear-gradient(to top, #464e54, #981e32);
   background-size: 100%;
   background-position: right top; }
 
@@ -995,15 +995,15 @@ ul.hack-week-events {
   padding-left: 0; }
 
 .btn-outline {
-  color: white;
+  color: black;
   border: 1px solid;
-  border-color: white;
+  border-color: crimson;
   font-weight: bold; }
 
 .btn-outline:hover, .btn-outline:focus, .btn-outline:active, .btn-outline.active {
   color: #981e32;
-  border-color: #fafafa;
-  background-color: #fafafa; }
+  border-color: crimson;
+  background-color: white; }
 
 .btn {
   border-radius: 6px;
@@ -1029,9 +1029,9 @@ ul.hack-week-events {
     padding-top: 150px;
     padding-bottom: 100px;
     color: white;
-    background: url("../img/CC2020header.svg"), #981e32;
-    background: url("../img/CC2020header.svg"), -webkit-linear-gradient(to top, #981e32, #981e32);
-    background: url("../img/CC2020header.svg"), linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/cover.png"), #981e32;
+    background: url("../img/cover.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/cover.png"), linear-gradient(to top, #981e32, #981e32);
     background-size: 130%;
     background-position: right top; } }
 
