@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - New Age v4.0.0-beta (https://startbootstrap.com/template-overviews/new-age)
- * Copyright 2013-2021 Start Bootstrap
+ * Copyright 2013-2022 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-new-age/blob/master/LICENSE)
  */
 html,
@@ -1029,9 +1029,9 @@ ul.hack-week-events {
     padding-top: 150px;
     padding-bottom: 100px;
     color: white;
-    background: url("../img/cover.png"), #981e32;
-    background: url("../img/cover.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
-    background: url("../img/cover.png"), linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-pattern.png"), #981e32;
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
     background-size: 130%;
     background-position: right top; } }
 
