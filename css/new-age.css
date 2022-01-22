@@ -403,9 +403,9 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../img/cover.png"), #981e32;
-  background: url("../img/cover.png"), -webkit-linear-gradient(to top, #464e54, #981e32);
-  background: url("../img/cover.png"), linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/bg-cover-nodate.jpeg"), #981e32;
+  background: url("../img/bg-cover-nodate.jpeg"), -webkit-linear-gradient(to top, #464e54, #981e32);
+  background: url("../img/bg-cover-nodate.jpeg"), linear-gradient(to top, #464e54, #981e32);
   background-size: 100%;
   background-position: right top; }
 
@@ -1029,9 +1029,9 @@ ul.hack-week-events {
     padding-top: 150px;
     padding-bottom: 100px;
     color: white;
-    background: url("../img/bg-pattern.png"), #981e32;
-    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to top, #981e32, #981e32);
-    background: url("../img/bg-pattern.png"), linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-cover-nodate.jpeg"), #981e32;
+    background: url("../img/bg-cover-nodate.jpeg"), -webkit-linear-gradient(to top, #981e32, #981e32);
+    background: url("../img/bg-cover-nodate.jpeg"), linear-gradient(to top, #981e32, #981e32);
     background-size: 130%;
     background-position: right top; } }
 
