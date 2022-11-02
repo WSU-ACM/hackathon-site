@@ -36,7 +36,7 @@
   "devDependencies": {
     "browser-sync": "2.18.13",
     "grunt": "^1.0.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-build": "^0.5.3",
     "gulp-clean-css": "3.7.0",
     "gulp-cli": "^2.0.1",
